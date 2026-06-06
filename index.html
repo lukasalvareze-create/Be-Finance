@@ -812,11 +812,10 @@ if(FIREBASE_OK){
         </div>
       </div>
       <div class="form-card" style="margin-top:18px">
-        <div class="form-card-header"><span class="h-icon">💼</span><h3>Honorarios y pre-evaluación Be Finance</h3><div class="green-dot"></div></div>
+        <div class="form-card-header"><span class="h-icon">💼</span><h3>Honorarios Be Finance</h3><div class="green-dot"></div></div>
         <div class="form-body">
           <div class="form-grid">
             <div class="form-group"><label>Honorarios Be Finance (% del monto financiado)</label><input type="number" id="h-honorarios" step="0.1" value="3"><span class="hint">3% presentación bancaria / 5% estructuración.</span></div>
-            <div class="form-group"><label>Pre-evaluación crediticia (UF)</label><input type="number" id="h-preeval" step="1" min="0" max="20" value="10"><span class="hint">Rango <strong>0 a 20 UF</strong>. Por defecto: <strong>UF 10</strong> persona natural · <strong>UF 20</strong> persona jurídica. Cobro al inicio.</span></div>
           </div>
         </div>
       </div>
@@ -932,11 +931,9 @@ if(FIREBASE_OK){
         <div class="form-card-header"><span class="h-icon">💰</span><h3>3. Honorarios y desglose de pagos</h3><div class="green-dot"></div></div>
         <div class="form-body">
           <div style="background:var(--green-bg); border-left:3px solid var(--green); padding:10px 14px; border-radius:4px; margin-bottom:14px; font-size:11.5px; color:var(--teal); line-height:1.5;">
-            <strong>💡 Auto-cálculo:</strong> El honorario pre-evaluación se setea según tipo persona (10 UF natural · 20 UF jurídica). El Fee Be Finance se calcula como % del monto a financiar. Los pagos 3 y 4 se dividen el fee a la mitad. Todos los campos son <strong>editables</strong> para casos especiales.
+            <strong>💡 Auto-cálculo:</strong> El cliente paga la operación inicial al firmar el contrato; el Fee Be Finance (3%) se descuenta al desembolso. Todos los campos son <strong>editables</strong> para casos especiales.
           </div>
           <div class="form-grid-3">
-            <div class="form-group"><label>Honorarios pre-evaluación (UF) <span class="req">*</span></label><input type="number" id="nv-honorarios-uf" step="0.01" oninput="nvOnInputUF()" placeholder="10 ó 20"></div>
-            <div class="form-group"><label>Honorarios pre-eval (CLP)</label><input type="text" id="nv-honorarios-clp" readonly style="background:var(--green-bg); color:var(--teal); font-weight:600;"></div>
             <div class="form-group"><label>Operación inicial (UF)</label><input type="number" id="nv-gastos-notariales-uf" step="0.01" oninput="nvOnInputUF()" placeholder="100"></div>
           </div>
           <div class="form-grid-3" style="margin-top:14px">
@@ -952,27 +949,15 @@ if(FIREBASE_OK){
             <tbody>
               <tr>
                 <td><strong>1</strong></td>
-                <td><input type="text" id="nv-pago1-desc" value="Honorarios pre-evaluación · al firmar contrato" style="border:1px solid var(--border-l); padding:5px 8px; border-radius:4px; font-size:12px; width:100%; font-family:inherit"></td>
+                <td><input type="text" id="nv-pago1-desc" value="Operación inicial · al firmar contrato" style="border:1px solid var(--border-l); padding:5px 8px; border-radius:4px; font-size:12px; width:100%; font-family:inherit"></td>
                 <td><input type="number" id="nv-pago1-uf" step="0.01" oninput="nvOnPagoChange()" style="border:1px solid var(--border-l); padding:5px 8px; border-radius:4px; font-size:12px; width:100%; text-align:right; font-variant-numeric:tabular-nums; font-family:inherit"></td>
                 <td><input type="text" id="nv-pago1-clp" readonly style="background:var(--green-bg); color:var(--teal); font-weight:600; border:1px solid var(--border-l); padding:5px 8px; border-radius:4px; font-size:12px; width:100%; text-align:right; font-variant-numeric:tabular-nums; font-family:inherit"></td>
               </tr>
               <tr>
                 <td><strong>2</strong></td>
-                <td><input type="text" id="nv-pago2-desc" value="Operación inicial · al firmar contrato" style="border:1px solid var(--border-l); padding:5px 8px; border-radius:4px; font-size:12px; width:100%; font-family:inherit"></td>
+                <td><input type="text" id="nv-pago2-desc" value="Fee de operación Be Finance (3%) · al desembolso" style="border:1px solid var(--border-l); padding:5px 8px; border-radius:4px; font-size:12px; width:100%; font-family:inherit"></td>
                 <td><input type="number" id="nv-pago2-uf" step="0.01" oninput="nvOnPagoChange()" style="border:1px solid var(--border-l); padding:5px 8px; border-radius:4px; font-size:12px; width:100%; text-align:right; font-variant-numeric:tabular-nums; font-family:inherit"></td>
                 <td><input type="text" id="nv-pago2-clp" readonly style="background:var(--green-bg); color:var(--teal); font-weight:600; border:1px solid var(--border-l); padding:5px 8px; border-radius:4px; font-size:12px; width:100%; text-align:right; font-variant-numeric:tabular-nums; font-family:inherit"></td>
-              </tr>
-              <tr>
-                <td><strong>3</strong></td>
-                <td><input type="text" id="nv-pago3-desc" value="50% honorarios gestión · al otorgamiento del crédito" style="border:1px solid var(--border-l); padding:5px 8px; border-radius:4px; font-size:12px; width:100%; font-family:inherit"></td>
-                <td><input type="number" id="nv-pago3-uf" step="0.01" oninput="nvOnPagoChange()" style="border:1px solid var(--border-l); padding:5px 8px; border-radius:4px; font-size:12px; width:100%; text-align:right; font-variant-numeric:tabular-nums; font-family:inherit"></td>
-                <td><input type="text" id="nv-pago3-clp" readonly style="background:var(--green-bg); color:var(--teal); font-weight:600; border:1px solid var(--border-l); padding:5px 8px; border-radius:4px; font-size:12px; width:100%; text-align:right; font-variant-numeric:tabular-nums; font-family:inherit"></td>
-              </tr>
-              <tr>
-                <td><strong>4</strong></td>
-                <td><input type="text" id="nv-pago4-desc" value="50% honorarios gestión · contra entrega de aprobación" style="border:1px solid var(--border-l); padding:5px 8px; border-radius:4px; font-size:12px; width:100%; font-family:inherit"></td>
-                <td><input type="number" id="nv-pago4-uf" step="0.01" oninput="nvOnPagoChange()" style="border:1px solid var(--border-l); padding:5px 8px; border-radius:4px; font-size:12px; width:100%; text-align:right; font-variant-numeric:tabular-nums; font-family:inherit"></td>
-                <td><input type="text" id="nv-pago4-clp" readonly style="background:var(--green-bg); color:var(--teal); font-weight:600; border:1px solid var(--border-l); padding:5px 8px; border-radius:4px; font-size:12px; width:100%; text-align:right; font-variant-numeric:tabular-nums; font-family:inherit"></td>
               </tr>
               <tr style="background:var(--bg)">
                 <td colspan="2" style="text-align:right; font-weight:700; color:var(--teal); padding-right:14px;">TOTAL operación</td>
@@ -998,7 +983,7 @@ if(FIREBASE_OK){
             <div class="form-group"><label>Estado del contrato</label><select id="nv-contrato-estado"><option value="pendiente">Pendiente de envío</option><option value="enviado">Enviado al cliente</option><option value="firmado">Aceptado/firmado por el cliente</option><option value="protocolizado">Protocolizado en notaría</option></select></div>
             <div class="form-group"><label>Fecha envío</label><input type="date" id="nv-contrato-fecha"></div>
           </div>
-          <div class="form-group" style="margin-top:14px"><label>Anexos / documentos adjuntos</label><input type="text" id="nv-anexos" placeholder="Ej: Pre-evaluación, simulación, mandato"></div>
+          <div class="form-group" style="margin-top:14px"><label>Anexos / documentos adjuntos</label><input type="text" id="nv-anexos" placeholder="Ej: simulación, mandato, escritura"></div>
         </div>
       </div>
 
@@ -2122,7 +2107,6 @@ function updateHTipo(){
   document.getElementById('h-seg-desg').value=ref.desg;
   document.getElementById('h-seg-incendio').value=ref.incendio;
   document.getElementById('h-seg-cesantia').value=ref.cesantia;
-  document.getElementById('h-preeval').value=tipo==='juridica'?20:10;
   document.getElementById('h-seg-desg-hint').textContent=tipo==='juridica'?'No aplica a persona jurídica (la empresa no fallece).':'Aplica a persona natural — vincula el saldo al deudor.';
   document.getElementById('h-cesantia-hint').textContent=tipo==='juridica'?'No aplica a persona jurídica (la empresa no queda cesante).':'Opcional. Recomendado para trabajadores dependientes.';
   document.getElementById('h-seg-desg').style.opacity=tipo==='juridica'?'0.5':'1';
@@ -2250,10 +2234,7 @@ function calcularHipotecarioCompleto(){
   let segCesantia=parseFloat(document.getElementById('h-seg-cesantia').value)||0;
   if(tipo==='juridica'){ segDesg=0; segCesantia=0; }
   const honorariosPct=parseFloat(document.getElementById('h-honorarios').value)||3;
-  /* pre-evaluación: input rango 0-20 UF. Default 10 natural / 20 jurídica. */
-  const preevalRaw=document.getElementById('h-preeval').value;
-  let preeval=preevalRaw===''||preevalRaw==null?(tipo==='juridica'?20:10):(parseFloat(preevalRaw)||0);
-  if(preeval<0) preeval=0; if(preeval>20) preeval=20;
+  const preeval=0; // Pre-evaluación eliminada
   const n=plazo*12;
   const iN=(tasa/100)/12;
   const cuotaBase=fin*(iN*Math.pow(1+iN,n))/(Math.pow(1+iN,n)-1);
@@ -2303,7 +2284,6 @@ function calcularHipotecarioCompleto(){
   html+=`<tr><td style="padding-left:32px; color:#3a4a55; font-style:italic; font-size:12px">${fmtPct(honTercioPct,2)} Honorarios Be Finance · al inicio</td><td class="num" style="color:#3a4a55; font-style:italic">${fmtNum(honTercio)}</td><td class="num" style="color:#3a4a55; font-style:italic">${fmtCLP(honTercio*UF_VALOR)}</td></tr>`;
   html+=`<tr><td style="padding-left:32px; color:#3a4a55; font-style:italic; font-size:12px">${fmtPct(honTercioPct,2)} Honorarios Be Finance · contra aprobación</td><td class="num" style="color:#3a4a55; font-style:italic">${fmtNum(honTercio)}</td><td class="num" style="color:#3a4a55; font-style:italic">${fmtCLP(honTercio*UF_VALOR)}</td></tr>`;
   html+=`<tr><td style="padding-left:32px; color:#3a4a55; font-style:italic; font-size:12px">${fmtPct(honTercioPct,2)} Honorarios Be Finance · al desembolso</td><td class="num" style="color:#3a4a55; font-style:italic">${fmtNum(honTercio)}</td><td class="num" style="color:#3a4a55; font-style:italic">${fmtCLP(honTercio*UF_VALOR)}</td></tr>`;
-  html+=`<tr><td>Pre-evaluación crediticia (al inicio)</td><td class="num">${fmtNum(preeval)}</td><td class="num">${fmtCLP(preeval*UF_VALOR)}</td></tr>`;
   html+=`<tr><td style="padding-top:14px; color:var(--muted)">Ingreso líquido mínimo sugerido (cuota ≤ 25%)</td><td class="num" colspan="2" style="color:var(--muted)">${fmtCLP(ingresoMin)}</td></tr>`;
   tbody.innerHTML=html;
   document.getElementById('h-resultado').style.display='block';
@@ -2502,8 +2482,7 @@ function descargarPDFHipotecario(){
                '<tr><td style="'+splitTdL+'">'+fmtPct(honTercioPct,2)+' Honorarios Be Finance · contra aprobación</td><td style="'+splitTdN+'">'+fmtNum(honTercio)+'</td><td style="'+splitTdN+'">'+fmtCLP(honTercio*UF_VALOR)+'</td></tr>' +
                '<tr><td style="'+splitTdL+'">'+fmtPct(honTercioPct,2)+' Honorarios Be Finance · al desembolso</td><td style="'+splitTdN+'">'+fmtNum(honTercio)+'</td><td style="'+splitTdN+'">'+fmtCLP(honTercio*UF_VALOR)+'</td></tr>';
       })() +
-      '<tr><td style="' + tdL + '">Pre-evaluación crediticia (al inicio)</td><td style="' + tdN + '">' + fmtNum(d.preeval) + '</td><td style="' + tdN + '">' + fmtCLP(d.preeval*UF_VALOR) + '</td></tr>' +
-      '<tr><td style="padding:7px 12px; color:#6a7a85;">Ingreso líquido mínimo sugerido (cuota ≤ 25%)</td><td colspan="2" style="padding:7px 12px; text-align:right; color:#6a7a85; font-variant-numeric:tabular-nums;">' + fmtCLP(d.ingresoMin) + '</td></tr>' +
+        '<tr><td style="padding:7px 12px; color:#6a7a85;">Ingreso líquido mínimo sugerido (cuota ≤ 25%)</td><td colspan="2" style="padding:7px 12px; text-align:right; color:#6a7a85; font-variant-numeric:tabular-nums;">' + fmtCLP(d.ingresoMin) + '</td></tr>' +
       '</tbody></table>';
 
   const html =
@@ -2526,7 +2505,7 @@ function descargarPDFHipotecario(){
     '</div>' +
     '<h2 style="font-size:11px; font-weight:700; color:#0f3a5e; text-transform:uppercase; letter-spacing:0.8px; margin:14px 0 4px;">Desglose numérico de la operación</h2>' +
     tablaNumeros +
-    '<p style="font-size:10px; color:#6a7a85; margin-top:8px; font-style:italic;">La cuota incluye los seguros aplicables a su tipo de persona. La <strong>pre-evaluación crediticia</strong> se paga al inicio del proceso, antes de la tramitación formal. Los <strong>honorarios Be Finance</strong> se pagan al otorgamiento del crédito.</p>' +
+    '<p style="font-size:10px; color:#6a7a85; margin-top:8px; font-style:italic;">La cuota incluye los seguros aplicables a su tipo de persona. Los <strong>honorarios Be Finance</strong> se descuentan al momento del desembolso.</p>' +
     '<p style="font-size:11px; line-height:1.6; text-align:justify; margin-top:14px;">Esta propuesta es válida hasta el <strong>' + addDias(5) + '</strong>. Quedamos atentos para avanzar con la solicitud formal o aclarar cualquier consulta.</p>' +
     pdfFirma(cfg) + pdfFooter(cfg);
 
@@ -2767,10 +2746,8 @@ function limpiarNotaVenta(){
     if(el.dataset) delete el.dataset.touched;
   });
   // Restaurar valores default editados (descripciones de pagos)
-  const p1 = document.getElementById('nv-pago1-desc'); if(p1) p1.value = 'Honorarios pre-evaluación · al firmar contrato';
-  const p2 = document.getElementById('nv-pago2-desc'); if(p2) p2.value = 'Operación inicial · al firmar contrato';
-  const p3 = document.getElementById('nv-pago3-desc'); if(p3) p3.value = '50% honorarios gestión · al otorgamiento del crédito';
-  const p4 = document.getElementById('nv-pago4-desc'); if(p4) p4.value = '50% honorarios gestión · contra entrega de aprobación';
+  const p1 = document.getElementById('nv-pago1-desc'); if(p1) p1.value = 'Operación inicial · al firmar contrato';
+  const p2 = document.getElementById('nv-pago2-desc'); if(p2) p2.value = 'Fee de operación Be Finance (3%) · al desembolso';
   const feePct = document.getElementById('nv-fee-pct'); if(feePct) feePct.value = '3';
   nvOnTipoPersonaChange();
   nvActualizarPagosCLP();
@@ -2821,9 +2798,6 @@ function nvOnInputUF(){
   // Monto a financiar UF → CLP
   const monto = parseFloat(document.getElementById('nv-monto-uf').value)||0;
   document.getElementById('nv-monto-clp').value = monto>0 ? fmtCLP(monto*UF_USE) : '';
-  // Honorarios pre-eval UF → CLP
-  const hon = parseFloat(document.getElementById('nv-honorarios-uf').value)||0;
-  document.getElementById('nv-honorarios-clp').value = hon>0 ? fmtCLP(hon*UF_USE) : '';
   // Fee Be Finance: si hay monto y %, recalcular fee UF; sino dejar como está (override manual)
   const pct = parseFloat(document.getElementById('nv-fee-pct').value)||0;
   if(monto>0 && pct>0){
@@ -2836,18 +2810,12 @@ function nvOnInputUF(){
   const gn = parseFloat(document.getElementById('nv-gastos-notariales-uf').value)||0;
   // (gastos notariales CLP no tiene campo visible, lo calculamos solo para los pagos)
   // Auto-asignar a los pagos cuando el usuario aún no ha hecho override
-  // Pago 1 = honorarios pre-eval
+  // Pago 1 = operación inicial (al firmar contrato)
   const p1 = document.getElementById('nv-pago1-uf');
-  if(p1 && (!p1.dataset.touched || p1.value === '')) p1.value = hon>0 ? hon : '';
-  // Pago 2 = gastos notariales
+  if(p1 && (!p1.dataset.touched || p1.value === '')) p1.value = gn>0 ? gn : '';
+  // Pago 2 = Fee Be Finance 3% (al desembolso)
   const p2 = document.getElementById('nv-pago2-uf');
-  if(p2 && (!p2.dataset.touched || p2.value === '')) p2.value = gn>0 ? gn : '';
-  // Pago 3 = fee/2
-  const p3 = document.getElementById('nv-pago3-uf');
-  if(p3 && (!p3.dataset.touched || p3.value === '')) p3.value = fee>0 ? Math.round((fee/2)*100)/100 : '';
-  // Pago 4 = fee/2
-  const p4 = document.getElementById('nv-pago4-uf');
-  if(p4 && (!p4.dataset.touched || p4.value === '')) p4.value = fee>0 ? Math.round((fee/2)*100)/100 : '';
+  if(p2 && (!p2.dataset.touched || p2.value === '')) p2.value = fee>0 ? fee : '';
   nvActualizarPagosCLP();
 }
 
@@ -2860,11 +2828,9 @@ function nvOnInputUFFee(){
     document.getElementById('nv-fee-pct').value = Math.round(pctCalc*100)/100;
   }
   document.getElementById('nv-fee-clp').value = fee>0 ? fmtCLP(fee*getNVUFActivo()) : '';
-  // Pagos 3 y 4 = fee/2 cada uno (si no han sido editados manualmente)
-  const p3 = document.getElementById('nv-pago3-uf');
-  if(p3 && !p3.dataset.touched) p3.value = fee>0 ? Math.round((fee/2)*100)/100 : '';
-  const p4 = document.getElementById('nv-pago4-uf');
-  if(p4 && !p4.dataset.touched) p4.value = fee>0 ? Math.round((fee/2)*100)/100 : '';
+  // Pago 2 = Fee Be Finance completo (al desembolso), si no fue editado manualmente
+  const p2 = document.getElementById('nv-pago2-uf');
+  if(p2 && !p2.dataset.touched) p2.value = fee>0 ? fee : '';
   nvActualizarPagosCLP();
 }
 
@@ -2903,17 +2869,14 @@ function nvOnTipoPersonaChange(){
   const pjRow = document.getElementById('nv-pj-row');
   const nomLbl = document.getElementById('nv-nombre-label');
   const dirLbl = document.getElementById('nv-direccion-label');
-  const honEl  = document.getElementById('nv-honorarios-uf');
   if(tipo === 'juridica'){
     if(pjRow) pjRow.style.display = '';
     if(nomLbl) nomLbl.innerHTML = 'Razón social <span class="req">*</span>';
     if(dirLbl) dirLbl.textContent = 'Domicilio comercial';
-    if(honEl && (!honEl.value || parseFloat(honEl.value) === 10)){ honEl.value = '20'; }
   } else {
     if(pjRow) pjRow.style.display = 'none';
     if(nomLbl) nomLbl.innerHTML = 'Nombre completo <span class="req">*</span>';
     if(dirLbl) dirLbl.textContent = 'Domicilio particular';
-    if(honEl && (!honEl.value || parseFloat(honEl.value) === 20)){ honEl.value = '10'; }
   }
   nvOnInputUF(); // recalcular todo
 }
@@ -2943,7 +2906,7 @@ function descargarNotaVenta(){
     n: i,
     desc: get('nv-pago'+i+'-desc'),
     uf: parseFloat(get('nv-pago'+i+'-uf'))||0
-  }));
+  })).filter(p => p.desc || p.uf>0);
   const totalUF = pagos.reduce((s,p) => s + p.uf, 0);
 
   // Helper: fila clave-valor compacta
@@ -2979,7 +2942,6 @@ function descargarNotaVenta(){
 
   // === BLOQUE HONORARIOS & PAGOS (con tabla prominente) ===
   let honorariosResumen = '<table style="width:100%; border-collapse:collapse;">' +
-    r('Honorarios pre-eval', honUF>0 ? fmtUF(honUF)+' · '+fmtCLP(honUF*UF_VALOR) : '—') +
     r('Fee Be Finance ('+(feePct||3)+'%)', feeUF>0 ? fmtUF(feeUF)+' · '+fmtCLP(feeUF*UF_VALOR) : '—') +
     (gnUF>0 ? r('Operación inicial', fmtUF(gnUF)+' · '+fmtCLP(gnUF*UF_VALOR)) : '') +
   '</table>';
@@ -5380,7 +5342,6 @@ function cargarSimEnSimulador(sim){
       setVal('h-plazo', inputs.plazoAnios);
       setVal('h-tasa', inputs.tasaAnual);
       setVal('h-tipo-tasa', inputs.tipoTasa);
-      setVal('h-preeval', inputs.preEvalUF);
       setVal('h-honorarios', inputs.comisionPct);
       // Radio tipo persona
       if(inputs.tipoPersona){
@@ -5547,7 +5508,7 @@ async function crearContratoDesdeNV(clienteId){
       return ufBase * UF_VALOR;
     })(),
     montoLiteral: '',
-    honorariosPreEvalUF: parseFloat(campos['nv-honorarios-uf']) || (esPJ ? 20 : 10),
+    honorariosPreEvalUF: 0,
     gastosOperacionalesUF: 0,
     gastosNotarialesUF: parseFloat(campos['nv-gastos-notariales-uf']) || 66.4,
     pago3Pct: 1.5,
@@ -5931,13 +5892,10 @@ function generarHTMLContrato(cto){
     '<p>El presente contrato no constituye una obligación de resultado, sino un compromiso profesional de medios y diligencia calificada conforme al estándar de la industria financiera.</p>' +
 
     '<h3>CLÁUSULA SEGUNDA. HONORARIOS Y FORMA DE PAGO:</h3>' +
-    '<p>Como retribución por los servicios descritos en la cláusula anterior, El Cliente pagará a BE FINANCE un honorario total equivalente a <strong>'+honPreEval+' UF</strong> ('+honPreEvalLit+') por concepto de preevaluación, más un <strong>'+totalFee.toFixed(1)+'%</strong> del monto total del crédito aprobado por concepto de gestión y cierre de la operación. Dichos montos constituyen la única retribución de BE FINANCE bajo el presente contrato.</p>' +
+    '<p>Como retribución por los servicios descritos en la cláusula anterior, El Cliente pagará a BE FINANCE un honorario equivalente a un <strong>'+totalFee.toFixed(1)+'%</strong> del valor de recompra / monto del crédito aprobado, por concepto de gestión y cierre de la operación, el cual se descontará al momento del desembolso de los fondos. Dicho monto constituye la única retribución de BE FINANCE bajo el presente contrato.</p>' +
     '<p>Adicionalmente, y de forma separada a los honorarios antes señalados, el Cliente deberá solventar los gastos propios de la operación, los cuales no constituyen honorarios ni remuneración para BE FINANCE, sino desembolsos necesarios para la tramitación y formalización del financiamiento (gastos operacionales, notariales y de inscripción ante el Conservador de Bienes Raíces, entre otros).</p>' +
     '<p>El pago de los honorarios y de los gastos de la operación se efectuará según el siguiente desglose:</p>' +
-    '<p class="pago-item"><strong>Pago 1</strong> - Honorario de preevaluación equivalente a '+honPreEval+' UF, más '+gastosOp+' UF por concepto de gastos operacionales de la operación (los cuales no constituyen honorarios de BE FINANCE, sino desembolsos necesarios para la tramitación), pagaderos al momento de la firma del presente contrato, en calidad de anticipo y habilitación del servicio.</p>' +
-    '<p class="pago-item"><strong>Pago 2</strong> - '+gastosNot+' UF por concepto de gastos de notaría e inscripción ante el Conservador de Bienes Raíces (CBR), correspondientes a desembolsos propios de la operación y no a honorarios de BE FINANCE, pagaderos a 10 días corridos desde la firma del presente contrato.</p>' +
-    '<p class="pago-item"><strong>Pago 3</strong> – 50% de los Honorarios de gestión equivalente al '+pago3+'% del crédito aprobado, pagadero al momento del otorgamiento de la línea solicitada.</p>' +
-    '<p class="pago-item"><strong>Pago 4</strong> – Saldo de los Honorarios de gestión equivalente al '+pago4+'% del crédito aprobado, pagadero contra entrega de la aprobación formal del crédito, acompañada de los contratos correspondientes emitidos por la entidad financiera para firma del Cliente.</p>' +
+    '<p class="pago-item"><strong>Pago 1</strong> - Operación inicial equivalente a '+gastosNot+' UF, por concepto de tasación, estudio de títulos, gastos notariales e inscripción ante el Conservador de Bienes Raíces, pagadera al momento de la firma del presente contrato, en calidad de habilitación del servicio para gestionar la obtención de los fondos.</p>' +'<p class="pago-item"><strong>Pago 2</strong> - Honorarios de gestión equivalentes al '+totalFee.toFixed(1)+'% del valor de recompra / monto del crédito aprobado, los cuales se descontarán del giro al momento del desembolso de los fondos, conjuntamente con los intereses, gastos operativos y la deuda que correspondan a la operación.</p>' +
     '<p>Los honorarios de gestión se desglosan de la siguiente manera:</p>' +
     '<ul>' +
       '<li>Gestión ante entidades financieras y estructuración de la operación.</li>' +
