@@ -3044,6 +3044,7 @@ function initialsOf(name){ if(!name) return '?'; const p=name.trim().split(/\s+/
 function escapeHTML(s){ if(s==null) return ''; return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
 function asesorNombrePorId(uid){ if(!uid) return '—'; if(CURRENT_USER && CURRENT_USER.uid===uid && CURRENT_PROFILE) return CURRENT_PROFILE.nombre || (CURRENT_USER&&CURRENT_USER.email) || '—'; const u = USERS_CACHE.find(x=>x.id===uid); return u ? (u.nombre||u.email||'—') : '—'; }
 function miNombre(){ return (CURRENT_PROFILE&&CURRENT_PROFILE.nombre) || (CURRENT_USER&&(CURRENT_USER.displayName||CURRENT_USER.email)) || 'Asesor'; }
+function nombreVivo(id, stored){ var n=asesorNombrePorId(id); return (n && n!=='—') ? n : (stored||'—'); }
 function getMontoUF(h){
   if(!h) return 0;
   if(h.montoUF) return Number(h.montoUF)||0;
@@ -5148,7 +5149,7 @@ function renderTimeline(clienteId){
     html += '<div class="tl-item">';
     html += '<div class="tl-dot" style="background:'+tipoNotaColor(n.tipo)+'">'+tipoNotaIcon(n.tipo)+'</div>';
     html += '<div class="tl-body">';
-    html += '<div class="tl-meta"><strong>'+escapeHTML(n.asesorNombre||'—')+'</strong> · '+fmtTimestamp(n.createdAt)+'</div>';
+    html += '<div class="tl-meta"><strong>'+escapeHTML(nombreVivo(n.asesorId, n.asesorNombre))+'</strong> · '+fmtTimestamp(n.createdAt)+'</div>';
     html += '<div class="tl-text">'+escapeHTML(n.texto||'')+'</div>';
     html += '</div></div>';
   });
@@ -6112,7 +6113,7 @@ function renderTareas(){
     html += '<span>📅 '+vencStr+(vencida?' <span style="color:#dc2626; font-weight:700">(VENCIDA)</span>':'')+'</span>';
     html += '<span>🏷️ '+(t.prioridad||'media')+'</span>';
     if(cli) html += '<span>👤 '+escapeHTML(cli)+'</span>';
-    html += '<span>✍️ '+escapeHTML(t.asesorNombre||'—')+'</span>';
+    html += '<span>✍️ '+escapeHTML(nombreVivo(t.asesorId, t.asesorNombre))+'</span>';
     html += '</div></div></label></div>';
   });
   html += '</div>';
