@@ -38,8 +38,8 @@ if(FIREBASE_OK){
 </script>
 <style>
   :root {
-    --teal-d:#062831; --teal:#0a3d4a; --teal-m:#14525f; --teal-l:#1b6b7a;
-    --green:#2aa07f; --green-l:#3dd9a7; --green-bg:#eaf6f2;
+    --teal-d:#0a1a2c; --teal:#0f3a5e; --teal-m:#1a527e; --teal-l:#2069a0;
+    --green:#1761a3; --green-l:#f2632e; --green-bg:#e9f1f9;
     --white:#ffffff; --bg:#f3f6f8; --bg-card:#ffffff;
     --border:#d8e0e4; --border-l:#e8eef1;
     --text:#1a2730; --text-2:#3a4a55; --muted:#6a7a85;
@@ -47,8 +47,8 @@ if(FIREBASE_OK){
     --red:#b52a2a; --red-bg:#fdeaea;
     --blue:#1a6aa0; --blue-bg:#e6f0fa;
     --radius:12px;
-    --shadow:0 4px 18px rgba(10,61,74,0.08);
-    --shadow-lg:0 10px 36px rgba(10,61,74,0.14);
+    --shadow:0 4px 18px rgba(10,26,44,0.08);
+    --shadow-lg:0 10px 36px rgba(10,26,44,0.14);
   }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
@@ -61,7 +61,7 @@ if(FIREBASE_OK){
   .nav-label { font-size:9.5px; letter-spacing:1.8px; text-transform:uppercase; color:rgba(255,255,255,0.32); padding:10px 12px 4px; font-weight:600; }
   .nav-item { display:flex; align-items:center; gap:11px; padding:10px 12px; border-radius:8px; cursor:pointer; font-size:13px; color:rgba(255,255,255,0.62); transition:all 0.18s; border:none; background:none; width:100%; text-align:left; font-family:inherit; font-weight:500; }
   .nav-item:hover { background:rgba(255,255,255,0.06); color:rgba(255,255,255,0.92); }
-  .nav-item.active { background:rgba(42,160,127,0.18); color:var(--green-l); font-weight:600; }
+  .nav-item.active { background:rgba(23,97,163,0.18); color:var(--green-l); font-weight:600; }
   .nav-item .icon { width:18px; text-align:center; font-size:15px; }
   .sidebar-foot { padding:14px 18px; font-size:10.5px; color:rgba(255,255,255,0.35); border-top:1px solid rgba(255,255,255,0.06); display:flex; align-items:center; gap:6px; }
   .dot-on { width:7px; height:7px; border-radius:50%; background:var(--green-l); box-shadow:0 0 6px var(--green-l); }
@@ -70,8 +70,8 @@ if(FIREBASE_OK){
   .topbar { height:64px; background:#fff; border-bottom:1px solid var(--border-l); display:flex; align-items:center; justify-content:space-between; padding:0 36px; position:sticky; top:0; z-index:50; }
   .topbar-title { font-size:14px; color:var(--muted); font-weight:500; }
   .topbar-right { display:flex; gap:10px; align-items:center; }
-  .uf-chip { background:var(--green-bg); border:1px solid #c9ebde; color:var(--teal); padding:6px 13px; border-radius:24px; font-size:12px; font-weight:600; display:flex; gap:8px; align-items:center; cursor:pointer; transition:all 0.18s; }
-  .uf-chip:hover { background:#d9f0e6; }
+  .uf-chip { background:var(--green-bg); border:1px solid #d3e3f2; color:var(--teal); padding:6px 13px; border-radius:24px; font-size:12px; font-weight:600; display:flex; gap:8px; align-items:center; cursor:pointer; transition:all 0.18s; }
+  .uf-chip:hover { background:#dfeaf7; }
   .uf-chip .uf-dot { width:7px; height:7px; border-radius:50%; background:var(--green); }
   .usd-chip { background:#eef5fb; border:1px solid #cfe0ee; color:#1a5a90; padding:6px 13px; border-radius:24px; font-size:12px; font-weight:600; display:flex; gap:8px; align-items:center; cursor:pointer; transition:all 0.18s; }
   .usd-chip:hover { background:#dfeaf5; }
@@ -84,10 +84,10 @@ if(FIREBASE_OK){
   .section-sub { color:var(--muted); font-size:13.5px; margin-bottom:28px; max-width:760px; line-height:1.55; }
 
   .form-card { background:var(--bg-card); border:1px solid var(--border-l); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; }
-  .form-card-header { display:flex; align-items:center; gap:10px; padding:16px 22px; background:linear-gradient(180deg,#fafdfb,#fff); border-bottom:1px solid var(--border-l); }
+  .form-card-header { display:flex; align-items:center; gap:10px; padding:16px 22px; background:linear-gradient(180deg,#fafcff,#fff); border-bottom:1px solid var(--border-l); }
   .form-card-header h3 { font-size:13.5px; font-weight:600; color:var(--teal); flex:1; text-transform:uppercase; letter-spacing:0.5px; }
   .form-card-header .h-icon { font-size:17px; }
-  .green-dot { width:8px; height:8px; border-radius:50%; background:var(--green); }
+  .green-dot { width:8px; height:8px; border-radius:50%; background:var(--green-l); }
   .form-body { padding:22px; }
 
   .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px 18px; }
@@ -97,21 +97,21 @@ if(FIREBASE_OK){
   .form-group label .req { color:var(--red); }
   .form-group label .opt { color:var(--muted); font-weight:400; text-transform:none; letter-spacing:0; }
   .form-group input, .form-group select, .form-group textarea { background:#fafcfd; border:1px solid var(--border); border-radius:8px; padding:10px 13px; font-size:13px; color:var(--text); font-family:inherit; transition:all 0.18s; outline:none; width:100%; }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--green); box-shadow:0 0 0 3px rgba(42,160,127,0.12); background:#fff; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--green); box-shadow:0 0 0 3px rgba(23,97,163,0.12); background:#fff; }
   .form-group .hint { font-size:11px; color:var(--muted); margin-top:5px; }
   .form-group .hint strong { color:var(--teal); }
 
   .btn { background:var(--teal); color:#fff; border:none; padding:12px 22px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; font-family:inherit; transition:all 0.18s; display:inline-flex; align-items:center; gap:8px; }
   .btn:hover { background:var(--teal-m); transform:translateY(-1px); box-shadow:var(--shadow); }
   .btn.green { background:var(--green); }
-  .btn.green:hover { background:#239278; }
+  .btn.green:hover { background:#124e84; }
   .btn.ghost { background:#fff; color:var(--teal); border:1px solid var(--border); }
   .btn.ghost:hover { background:var(--bg); }
   .btn-row { display:flex; gap:10px; flex-wrap:wrap; }
   .btn-calc { background:var(--teal); color:#fff; border:none; width:100%; padding:16px; border-radius:10px; font-size:14px; font-weight:600; cursor:pointer; font-family:inherit; transition:all 0.18s; letter-spacing:0.3px; }
   .btn-calc:hover { background:var(--teal-m); }
   .btn-pdf { background:var(--green); color:#fff; border:none; padding:13px 26px; border-radius:8px; font-size:13.5px; font-weight:600; cursor:pointer; font-family:inherit; display:inline-flex; align-items:center; gap:8px; transition:all 0.18s; }
-  .btn-pdf:hover { background:#239278; transform:translateY(-1px); box-shadow:var(--shadow); }
+  .btn-pdf:hover { background:#124e84; transform:translateY(-1px); box-shadow:var(--shadow); }
 
   .sim-grid { display:grid; grid-template-columns:1fr 1.05fr; gap:24px; }
   .sim-result { background:var(--teal-d); border-radius:var(--radius); padding:8px 0; box-shadow:var(--shadow-lg); height:fit-content; }
@@ -124,7 +124,7 @@ if(FIREBASE_OK){
   .sr-value.small { color:rgba(255,255,255,0.75); font-size:13px; font-weight:500; }
 
   .alert { display:flex; gap:12px; background:var(--blue-bg); border-left:3px solid var(--blue); color:var(--blue); padding:12px 16px; border-radius:6px; font-size:12.5px; line-height:1.5; margin-top:14px; }
-  .alert.green { background:var(--green-bg); border-left-color:var(--green); color:#1d7a5f; }
+  .alert.green { background:var(--green-bg); border-left-color:var(--green); color:#14568a; }
   .alert.amber { background:var(--amber-bg); border-left-color:var(--amber); color:var(--amber); }
   .alert strong { font-weight:600; }
 
@@ -170,8 +170,8 @@ if(FIREBASE_OK){
   .login-card .login-sub { font-size:13px; color:rgba(255,255,255,0.65); margin-bottom:24px; }
   .login-card .form-group { margin-bottom:16px; }
   .login-card .btn-login { width:100%; background:var(--green); color:#fff; border:none; padding:14px; border-radius:10px; font-size:14px; font-weight:600; cursor:pointer; font-family:inherit; transition:all 0.18s; }
-  .login-card .btn-login:hover { background:#239278; }
-  .login-card .btn-login:disabled { background:#a8c9be; cursor:not-allowed; }
+  .login-card .btn-login:hover { background:#124e84; }
+  .login-card .btn-login:disabled { background:#aac6dd; cursor:not-allowed; }
   .login-err { background:var(--red-bg); color:var(--red); padding:10px 12px; border-radius:8px; font-size:12.5px; margin-bottom:14px; display:none; border-left:3px solid var(--red); }
   .login-err.active { display:block; }
   .login-warn { background:var(--amber-bg); color:var(--amber); padding:10px 12px; border-radius:8px; font-size:12px; margin-bottom:14px; line-height:1.5; border-left:3px solid var(--amber); }
@@ -213,7 +213,7 @@ if(FIREBASE_OK){
 
   /* Badge / pill */
   .badge { display:inline-flex; align-items:center; gap:4px; padding:3px 9px; border-radius:24px; font-size:10.5px; font-weight:600; letter-spacing:0.4px; text-transform:uppercase; }
-  .badge.green { background:var(--green-bg); color:#1d7a5f; }
+  .badge.green { background:var(--green-bg); color:#14568a; }
   .badge.blue { background:var(--blue-bg); color:var(--blue); }
   .badge.amber { background:var(--amber-bg); color:var(--amber); }
   .badge.red { background:var(--red-bg); color:var(--red); }
@@ -222,7 +222,7 @@ if(FIREBASE_OK){
   /* Filter bar */
   .filter-bar { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:18px; align-items:center; }
   .filter-bar input, .filter-bar select { background:#fff; border:1px solid var(--border); border-radius:8px; padding:9px 13px; font-size:13px; color:var(--text); font-family:inherit; outline:none; }
-  .filter-bar input:focus, .filter-bar select:focus { border-color:var(--green); box-shadow:0 0 0 3px rgba(42,160,127,0.12); }
+  .filter-bar input:focus, .filter-bar select:focus { border-color:var(--green); box-shadow:0 0 0 3px rgba(23,97,163,0.12); }
   .filter-bar .grow { flex:1; min-width:200px; }
 
   /* Empty state */
@@ -232,35 +232,35 @@ if(FIREBASE_OK){
   .empty-state p { font-size:13px; line-height:1.55; max-width:380px; margin:0 auto; }
 
   /* Cliente picker */
-  .cliente-picker { background:linear-gradient(180deg,#fff,#fafdfb); border:1px dashed var(--green); border-radius:10px; padding:12px 14px; margin-bottom:18px; display:flex; align-items:center; gap:12px; }
+  .cliente-picker { background:linear-gradient(180deg,#fff,#fafcff); border:1px dashed var(--green); border-radius:10px; padding:12px 14px; margin-bottom:18px; display:flex; align-items:center; gap:12px; }
   .cliente-picker .cp-ico { font-size:20px; }
   .cliente-picker .cp-text { flex:1; font-size:12.5px; color:var(--text-2); }
   .cliente-picker .cp-text strong { color:var(--teal); }
   .cliente-picker select { background:#fff; border:1px solid var(--border); border-radius:7px; padding:7px 11px; font-size:12.5px; min-width:240px; }
   .cliente-picker .cp-wrap { display:flex; flex-direction:column; gap:5px; min-width:240px; }
   .cliente-picker .cp-search { background:#fff; border:1px solid var(--border); border-radius:7px; padding:6px 10px; font-size:12px; font-family:inherit; transition:border-color 0.15s; }
-  .cliente-picker .cp-search:focus { outline:none; border-color:var(--green); box-shadow:0 0 0 2px rgba(42,160,127,0.15); }
+  .cliente-picker .cp-search:focus { outline:none; border-color:var(--green); box-shadow:0 0 0 2px rgba(23,97,163,0.15); }
   .cliente-picker .cp-meta { font-size:10.5px; color:var(--muted); }
   .cliente-picker .btn-clear { background:none; border:none; color:var(--muted); cursor:pointer; font-size:14px; padding:4px 8px; }
   .cliente-picker .btn-clear:hover { color:var(--red); }
 
   /* SII card — link al avalúo fiscal */
-  .sii-card { display:flex; align-items:center; gap:14px; background:linear-gradient(180deg,#fff,#f3fbf8); border:1.5px solid var(--green); border-radius:10px; padding:14px 18px; margin-bottom:18px; box-shadow:0 1px 0 rgba(42,160,127,0.06); }
+  .sii-card { display:flex; align-items:center; gap:14px; background:linear-gradient(180deg,#fff,#f3f9fd); border:1.5px solid var(--green); border-radius:10px; padding:14px 18px; margin-bottom:18px; box-shadow:0 1px 0 rgba(23,97,163,0.06); }
   .sii-card .sii-ico { font-size:26px; line-height:1; }
   .sii-card .sii-body { flex:1; }
   .sii-card .sii-body h4 { font-size:14px; color:var(--teal); margin:0 0 2px; font-weight:700; }
   .sii-card .sii-body p { font-size:12px; color:var(--text-2); margin:0 0 8px; }
   .sii-card .sii-steps { display:flex; flex-wrap:wrap; gap:6px; }
-  .sii-card .sii-step { display:inline-flex; align-items:center; gap:6px; font-size:11.5px; color:var(--text-2); background:#eaf6f2; border-radius:999px; padding:3px 10px 3px 4px; }
+  .sii-card .sii-step { display:inline-flex; align-items:center; gap:6px; font-size:11.5px; color:var(--text-2); background:#e9f1f9; border-radius:999px; padding:3px 10px 3px 4px; }
   .sii-card .sii-step .num { width:18px; height:18px; border-radius:50%; background:var(--green); color:#fff; font-weight:700; font-size:11px; display:inline-flex; align-items:center; justify-content:center; }
   .sii-card .btn-sii { background:var(--green); color:#fff; text-decoration:none; padding:10px 18px; border-radius:8px; font-size:13px; font-weight:600; display:inline-flex; align-items:center; gap:7px; white-space:nowrap; transition:background 0.15s; }
-  .sii-card .btn-sii:hover { background:#1d7a5f; }
+  .sii-card .btn-sii:hover { background:#14568a; }
 
   /* Save banner en resultado de simulación */
-  .save-banner { background:var(--green-bg); border:1px solid #c9ebde; border-radius:10px; padding:14px 18px; margin-top:18px; display:flex; align-items:center; gap:14px; }
+  .save-banner { background:var(--green-bg); border:1px solid #d3e3f2; border-radius:10px; padding:14px 18px; margin-top:18px; display:flex; align-items:center; gap:14px; }
   .save-banner .sb-text { flex:1; font-size:13px; color:var(--teal); }
   .save-banner .sb-text strong { font-weight:600; }
-  .save-banner .sb-status { font-size:11.5px; color:#1d7a5f; font-weight:600; }
+  .save-banner .sb-status { font-size:11.5px; color:#14568a; font-weight:600; }
 
   /* Hide app shell until logged in */
   .app-hidden { display:none !important; }
@@ -282,8 +282,8 @@ if(FIREBASE_OK){
   .kanban-card { background:#fafcfd; border:1px solid var(--border-l); border-left:3px solid var(--green); border-radius:6px; padding:7px 9px; cursor:grab; transition:all 0.15s; user-select:none; }
   .kanban-card:hover { background:#f1f6f8; box-shadow:var(--shadow); }
   .kanban-card:active { cursor:grabbing; }
-  .kanban-card.dragging { opacity:0.4; box-shadow:0 8px 20px rgba(10,61,74,0.18); transform:scale(0.96); }
-  .kanban-col-body.drop-target { background:rgba(42,160,127,0.10); border-radius:6px; outline:2px dashed var(--green); outline-offset:-3px; }
+  .kanban-card.dragging { opacity:0.4; box-shadow:0 8px 20px rgba(10,26,44,0.18); transform:scale(0.96); }
+  .kanban-col-body.drop-target { background:rgba(23,97,163,0.10); border-radius:6px; outline:2px dashed var(--green); outline-offset:-3px; }
   .kc-nom { font-size:11.5px; font-weight:600; color:var(--text); line-height:1.3; }
   .kc-meta { font-size:10px; color:var(--muted); margin-top:2px; display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-variant-numeric:tabular-nums; }
   .kc-estado { font-size:10px; color:var(--muted); font-style:italic; margin-top:4px; line-height:1.3; }
@@ -321,9 +321,24 @@ if(FIREBASE_OK){
   .cd-etapa-bar select { background:rgba(255,255,255,0.12); color:#fff; border:1px solid rgba(255,255,255,0.25); border-radius:6px; padding:6px 10px; font-size:12px; font-family:inherit; }
   .cd-etapa-bar select option { background:var(--teal-d); }
   .cd-card { background:#fff; border:1px solid var(--border-l); border-radius:12px; box-shadow:var(--shadow); margin-bottom:18px; overflow:hidden; }
-  .cd-card-head { padding:14px 20px; border-bottom:1px solid var(--border-l); background:linear-gradient(180deg,#fafdfb,#fff); display:flex; align-items:center; gap:10px; }
+  .cd-card-head { padding:14px 20px; border-bottom:1px solid var(--border-l); background:linear-gradient(180deg,#fafcff,#fff); display:flex; align-items:center; gap:10px; }
   .cd-card-head h3 { font-size:13px; font-weight:600; color:var(--teal); text-transform:uppercase; letter-spacing:0.5px; flex:1; }
   .cd-card-body { padding:18px 20px; }
+  .fe-sec { font-size:11px; font-weight:700; color:var(--teal); text-transform:uppercase; letter-spacing:.5px; margin:18px 0 8px; border-bottom:1px solid var(--border-l); padding-bottom:5px; }
+  .fe-sec:first-child { margin-top:0; }
+  .fe-grid { display:grid; gap:10px 12px; }
+  .fe-grid.c3 { grid-template-columns:repeat(3,1fr); }
+  .fe-grid.c2 { grid-template-columns:repeat(2,1fr); }
+  .fe-f label { display:block; font-size:11px; color:var(--muted); margin-bottom:3px; font-weight:500; }
+  .fe-f input, .fe-f textarea, .fe-f select { width:100%; padding:8px 10px; border:1px solid var(--border); border-radius:8px; font-size:13px; font-family:inherit; color:var(--text); background:#fff; box-sizing:border-box; }
+  .fe-f textarea { resize:vertical; min-height:70px; }
+  .fe-tbl { width:100%; border-collapse:collapse; margin-top:4px; }
+  .fe-tbl th { font-size:10px; text-transform:uppercase; letter-spacing:.4px; color:var(--muted); text-align:left; padding:4px 6px; font-weight:600; }
+  .fe-tbl td { padding:3px 4px; }
+  .fe-tbl input, .fe-tbl select { width:100%; padding:6px 8px; border:1px solid var(--border); border-radius:6px; font-size:12.5px; font-family:inherit; box-sizing:border-box; }
+  .fe-del { background:none; border:none; color:var(--red); cursor:pointer; font-size:13px; padding:4px; }
+  .fe-addrow { background:var(--green-bg); color:var(--green); border:1px dashed var(--green); border-radius:7px; padding:6px 12px; font-size:12px; cursor:pointer; font-family:inherit; margin-top:6px; font-weight:600; }
+  @media(max-width:760px){ .fe-grid.c3,.fe-grid.c2{ grid-template-columns:1fr; } }
 
   /* Timeline */
   .timeline { position:relative; padding-left:22px; }
@@ -343,10 +358,19 @@ if(FIREBASE_OK){
   .doc-item:hover { background:#f1f6f8; }
   .doc-item .lbl { flex:1; font-size:13px; color:var(--text); }
   .doc-item select { background:#fff; border:1px solid var(--border); border-radius:6px; padding:5px 9px; font-size:11.5px; font-family:inherit; font-weight:500; }
-  .doc-item.recibido { background:var(--green-bg); border-color:#c9ebde; }
+  .doc-item.recibido { background:var(--green-bg); border-color:#d3e3f2; }
   .doc-item.observado { background:var(--amber-bg); border-color:#f5dcb0; }
-  .doc-item.recibido .lbl { color:#1d7a5f; }
+  .doc-item.recibido .lbl { color:#14568a; }
   .doc-item.observado .lbl { color:var(--amber); }
+  .doc-item.aprobado { background:#e8f6ee; border-color:#bfe3cf; }
+  .doc-item.aprobado .lbl { color:#198754; }
+  .doc-grp-title { font-size:12px; font-weight:700; color:var(--teal); margin:16px 0 8px; display:flex; justify-content:space-between; align-items:center; gap:8px; }
+  .doc-grp-title:first-child { margin-top:0; }
+  .doc-grp-prog { font-size:10.5px; font-weight:700; color:var(--green); background:var(--green-bg); padding:2px 9px; border-radius:10px; white-space:nowrap; }
+  .doc-sub { font-size:10px; text-transform:uppercase; letter-spacing:.4px; color:var(--muted); margin:10px 0 4px; font-weight:700; }
+  .doc-drive { display:inline-block; margin-bottom:12px; font-size:12px; font-weight:600; color:var(--green); text-decoration:none; background:var(--green-bg); padding:7px 12px; border-radius:8px; border:1px solid #cfe0ee; }
+  .doc-drive:hover { text-decoration:underline; }
+  .doc-item .lbl { line-height:1.35; }
 
   /* Tareas */
   .tarea-card { background:#fff; border:1px solid var(--border-l); border-left:3px solid var(--blue); border-radius:10px; padding:14px 18px; display:flex; align-items:center; gap:14px; margin-bottom:10px; transition:all 0.15s; }
@@ -387,29 +411,29 @@ if(FIREBASE_OK){
   .lider-toolbar .field select, .lider-toolbar .field input[type="date"] { padding:7px 11px; border:1px solid var(--border-l); border-radius:8px; font-size:13px; background:#fff; color:var(--teal); font-family:inherit; }
   .lider-toolbar .grow { flex:1; }
   .lider-toolbar .btn-pdf-lider { background:var(--teal); color:#fff; border:none; padding:9px 16px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; display:inline-flex; align-items:center; gap:6px; }
-  .lider-toolbar .btn-pdf-lider:hover { background:#0a3d4a; }
+  .lider-toolbar .btn-pdf-lider:hover { background:#0f3a5e; }
   .funnel-card { background:#fff; border:1px solid var(--border-l); border-radius:12px; padding:22px 24px; box-shadow:var(--shadow); margin-bottom:18px; }
   .funnel-card h3 { font-size:13px; font-weight:700; color:var(--teal); text-transform:uppercase; letter-spacing:0.8px; margin:0 0 16px; }
   .funnel-row { display:grid; grid-template-columns:140px 1fr 90px 80px; gap:14px; align-items:center; padding:7px 0; }
-  .funnel-row .stage-label { font-size:12.5px; color:#0a3d4a; font-weight:600; display:flex; align-items:center; gap:7px; }
+  .funnel-row .stage-label { font-size:12.5px; color:#0f3a5e; font-weight:600; display:flex; align-items:center; gap:7px; }
   .funnel-row .stage-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
   .funnel-row .stage-bar-wrap { background:#f3f6f8; border-radius:6px; height:26px; position:relative; overflow:hidden; }
   .funnel-row .stage-bar { height:100%; border-radius:6px; transition:width 0.6s ease; }
-  .funnel-row .stage-count { font-size:14px; font-weight:700; color:#0a3d4a; text-align:right; font-variant-numeric:tabular-nums; }
+  .funnel-row .stage-count { font-size:14px; font-weight:700; color:#0f3a5e; text-align:right; font-variant-numeric:tabular-nums; }
   .funnel-row .stage-conv { font-size:11.5px; color:var(--muted); text-align:right; font-variant-numeric:tabular-nums; }
   .funnel-row.bottleneck .stage-label { color:#b52a2a; }
   .funnel-row.bottleneck .stage-conv { color:#b52a2a; font-weight:700; }
   .conv-table-card { background:#fff; border:1px solid var(--border-l); border-radius:12px; box-shadow:var(--shadow); margin-bottom:18px; overflow:hidden; }
   .conv-table-card h3 { font-size:13px; font-weight:700; color:var(--teal); text-transform:uppercase; letter-spacing:0.8px; margin:0; padding:18px 24px 10px; }
   table.t-conv { width:100%; border-collapse:collapse; font-size:13px; }
-  table.t-conv thead th { background:#0a3d4a; color:#fff; padding:11px 16px; font-size:10.5px; font-weight:600; letter-spacing:0.7px; text-transform:uppercase; text-align:right; }
+  table.t-conv thead th { background:#0f3a5e; color:#fff; padding:11px 16px; font-size:10.5px; font-weight:600; letter-spacing:0.7px; text-transform:uppercase; text-align:right; }
   table.t-conv thead th:first-child { text-align:left; }
   table.t-conv td { padding:11px 16px; border-bottom:1px solid var(--border-l); text-align:right; font-variant-numeric:tabular-nums; }
-  table.t-conv td:first-child { text-align:left; color:#0a3d4a; font-weight:600; }
-  table.t-conv td .pct-chip { display:inline-block; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:700; background:#eaf6f2; color:#1d7a5f; margin-left:6px; }
+  table.t-conv td:first-child { text-align:left; color:#0f3a5e; font-weight:600; }
+  table.t-conv td .pct-chip { display:inline-block; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:700; background:#e9f1f9; color:#14568a; margin-left:6px; }
   table.t-conv td .pct-chip.low { background:#fdecec; color:#b52a2a; }
   table.t-conv td .pct-chip.mid { background:#fdf3e0; color:#a05c10; }
-  table.t-conv tr.totals td { background:#eef5f3; color:var(--teal); font-weight:700; }
+  table.t-conv tr.totals td { background:#eef4fb; color:var(--teal); font-weight:700; }
   table.t-conv tr.top-row td:first-child::before { content:'\2605 '; color:var(--green); }
   .insights-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:18px; }
   @media (max-width:980px){ .insights-grid { grid-template-columns:1fr; } }
@@ -417,14 +441,14 @@ if(FIREBASE_OK){
   .insight-card .ico { font-size:24px; line-height:1; flex-shrink:0; }
   .insight-card .body { flex:1; }
   .insight-card .head { font-size:10.5px; color:var(--muted); text-transform:uppercase; letter-spacing:0.7px; font-weight:600; margin-bottom:4px; }
-  .insight-card .text { font-size:13px; color:#0a3d4a; line-height:1.4; }
+  .insight-card .text { font-size:13px; color:#0f3a5e; line-height:1.4; }
   .insight-card.warn { border-left:3px solid #b52a2a; }
-  .insight-card.good { border-left:3px solid #1d7a5f; }
+  .insight-card.good { border-left:3px solid #14568a; }
   .insight-card.info { border-left:3px solid #1a6aa0; }
   /* === LEASEBACK TABLE (Quiet Capital · 3 secciones) === */
   .lb-section-title { font-size:11px; font-weight:700; color:var(--teal); text-transform:uppercase; letter-spacing:1.2px; margin:8px 0 6px; }
   table.t-leaseback { width:100%; border-collapse:collapse; background:#fff; border-radius:10px; overflow:hidden; box-shadow:var(--shadow); margin-top:6px; font-size:13px; }
-  table.t-leaseback thead th { background:#0a3d4a; color:#fff; padding:11px 16px; font-size:10.5px; font-weight:600; letter-spacing:0.8px; text-transform:uppercase; }
+  table.t-leaseback thead th { background:#0f3a5e; color:#fff; padding:11px 16px; font-size:10.5px; font-weight:600; letter-spacing:0.8px; text-transform:uppercase; }
   table.t-leaseback thead th.lbl { text-align:left; }
   table.t-leaseback thead th.pct { text-align:center; width:18%; }
   table.t-leaseback thead th.num { text-align:right; width:22%; }
@@ -432,12 +456,12 @@ if(FIREBASE_OK){
   table.t-leaseback td.lbl { color:#1a2530; }
   table.t-leaseback td.pct { text-align:center; color:#4a5a65; font-variant-numeric:tabular-nums; }
   table.t-leaseback td.num { text-align:right; font-variant-numeric:tabular-nums; color:#1a2530; font-weight:500; letter-spacing:-0.1px; }
-  table.t-leaseback tr.row-teal td { background:#2aa07f; color:#fff; font-weight:600; }
+  table.t-leaseback tr.row-teal td { background:#1761a3; color:#fff; font-weight:600; }
   table.t-leaseback tr.row-teal td.pct { color:rgba(255,255,255,0.85); }
-  table.t-leaseback tr.row-deep-green td { background:#1d7a5f; color:#fff; font-weight:700; }
+  table.t-leaseback tr.row-deep-green td { background:#14568a; color:#fff; font-weight:700; }
   table.t-leaseback tr.row-deep-green td.pct { color:rgba(255,255,255,0.85); }
-  table.t-leaseback tr.row-section-divider td { background:#0a3d4a; color:#fff; padding:7px 16px; font-size:9.5px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; }
-  table.t-leaseback tr.row-subhead td { background:#eef5f3; color:var(--teal); font-size:10.5px; font-weight:700; padding:9px 16px; letter-spacing:0.8px; text-transform:uppercase; }
+  table.t-leaseback tr.row-section-divider td { background:#0f3a5e; color:#fff; padding:7px 16px; font-size:9.5px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; }
+  table.t-leaseback tr.row-subhead td { background:#eef4fb; color:var(--teal); font-size:10.5px; font-weight:700; padding:9px 16px; letter-spacing:0.8px; text-transform:uppercase; }
   table.t-leaseback tr.row-split td.lbl { padding-left:32px; color:#3a4a55; font-size:12px; font-style:italic; }
   table.t-leaseback tr:last-child td { border-bottom:none; }
 </style>
@@ -607,7 +631,7 @@ if(FIREBASE_OK){
         <div class="sr-row"><span class="sr-label">Equivalente en CLP</span><span class="sr-value small" id="qh-r-cuota-total-clp">—</span></div>
         <div class="sr-row sep"><span class="sr-label">Cuota capital + interés</span><span class="sr-value small" id="qh-r-cuota">—</span></div>
         <div class="sr-row"><span class="sr-label">Seguros estimados</span><span class="sr-value small" id="qh-r-seguros">—</span></div>
-        <div class="sr-row sep"><span class="sr-label">CAE estimado <span style="opacity:0.6">(derivado)</span></span><span class="sr-value" id="qh-r-cae" style="color:#3dd9a7">—</span></div>
+        <div class="sr-row sep"><span class="sr-label">CAE estimado <span style="opacity:0.6">(derivado)</span></span><span class="sr-value" id="qh-r-cae" style="color:#f2632e">—</span></div>
         <div class="sr-row sep"><span class="sr-label">Total a pagar (capital + interés)</span><span class="sr-value small" id="qh-r-total">—</span></div>
         <div class="sr-row"><span class="sr-label">Costo financiero (intereses)</span><span class="sr-value small" id="qh-r-interes">—</span></div>
         <div class="sr-row sep"><span class="sr-label">Ingreso líquido mínimo recomendado</span><span class="sr-value small" id="qh-r-ingreso-min">—</span></div>
@@ -1049,7 +1073,7 @@ if(FIREBASE_OK){
       <div class="form-grid" style="padding:0 24px 18px;">
         <div class="form-group">
           <label>Valor UF</label>
-          <div style="background:var(--green-bg); border:1px solid #c9ebde; border-radius:8px; padding:14px 18px;">
+          <div style="background:var(--green-bg); border:1px solid #d3e3f2; border-radius:8px; padding:14px 18px;">
             <div style="font-size:24px; font-weight:800; color:var(--teal);" id="conv-uf-display">—</div>
             <div style="font-size:11px; color:var(--muted); margin-top:4px;">Actualizado: <span id="conv-uf-fecha">—</span> · Fuente: mindicador.cl</div>
           </div>
@@ -1246,7 +1270,7 @@ if(FIREBASE_OK){
           <p style="font-size:13px; color:var(--text-2); line-height:1.55; margin-bottom:16px;">
             Sube un archivo CSV exportado desde Kommo (Settings → Leads → Export to CSV). El sistema detecta automáticamente las columnas, te muestra un preview, y solo cuando confirmas hace la importación en bloque a etapa <strong>Contacto</strong>.
           </p>
-          <div style="background:var(--green-bg); border:1px solid #c9ebde; border-radius:8px; padding:14px 16px; margin-bottom:18px;">
+          <div style="background:var(--green-bg); border:1px solid #d3e3f2; border-radius:8px; padding:14px 16px; margin-bottom:18px;">
             <div style="font-size:12.5px; color:var(--teal); font-weight:600; margin-bottom:6px;">📋 Columnas que se auto-detectan</div>
             <div style="font-size:11.5px; color:var(--text-2); line-height:1.5;">Nombre · Email · Teléfono · RUT · Empresa · Giro · Origen · Tipo de persona · Observaciones. Reconoce variantes en español, inglés y portugués (ej: "name", "nombre", "nome do contato", "full name").</div>
           </div>
@@ -1390,6 +1414,46 @@ if(FIREBASE_OK){
         <input type="text" id="cd-estado-input" placeholder="Texto breve del estado actual…" style="background:rgba(255,255,255,0.12); color:#fff; border:1px solid rgba(255,255,255,0.25); border-radius:6px; padding:6px 10px; font-size:12px; font-family:inherit; min-width:260px;" onchange="guardarEstadoActual()">
         <button class="btn ghost" onclick="abrirClienteModal(CD_ID)" style="margin-left:auto"><span>✏️</span> Editar ficha</button>
         <button class="btn ghost" onclick="eliminarClienteActual()" style="color:#fdc6c6; border-color:rgba(255,255,255,0.25); background:transparent;" title="Eliminar este cliente permanentemente"><span>🗑</span> Eliminar</button>
+      </div>
+    </div>
+
+    <div class="cd-card" id="cd-ficha-empresa-card">
+      <div class="cd-card-head"><h3>🏢 Ficha de empresa</h3><button onclick="generarRIB()" style="padding:7px 13px;font-size:12px;background:#fff;color:#0f3a5e;border:1px solid #0f3a5e;border-radius:7px;cursor:pointer;font-family:inherit;font-weight:600;margin-right:8px;">📄 Resumen / RIB</button><button class="btn green" id="fe-btn-guardar" style="padding:7px 13px; font-size:12px" onclick="guardarFichaEmpresa()"><span>💾</span> Guardar ficha</button></div>
+      <div class="cd-card-body">
+        <div class="fe-sec">1 · Identificación</div>
+        <div class="fe-grid c3">
+          <div class="fe-f"><label>RUT</label><input id="fe-rut"></div>
+          <div class="fe-f"><label>Razón social</label><input id="fe-razon"></div>
+          <div class="fe-f"><label>Giro</label><input id="fe-giro"></div>
+          <div class="fe-f"><label>Dirección</label><input id="fe-direccion"></div>
+          <div class="fe-f"><label>Comuna</label><input id="fe-comuna"></div>
+          <div class="fe-f"><label>Ciudad</label><input id="fe-ciudad"></div>
+          <div class="fe-f"><label>Teléfonos</label><input id="fe-telefonos"></div>
+        </div>
+        <div class="fe-sec">2 · Socios y representantes</div>
+        <table class="fe-tbl"><thead><tr><th>Nombre</th><th>RUT</th><th style="width:90px">% Part.</th><th style="width:34px"></th></tr></thead><tbody id="fe-socios"></tbody></table>
+        <button type="button" class="fe-addrow" onclick="feAddSocio()">＋ Agregar socio</button>
+        <div class="fe-sec">3 · Contacto / Administrador</div>
+        <div class="fe-grid c2">
+          <div class="fe-f"><label>Nombre</label><input id="fe-adm-nombre"></div>
+          <div class="fe-f"><label>Teléfono</label><input id="fe-adm-tel"></div>
+          <div class="fe-f"><label>Cargo</label><input id="fe-adm-cargo"></div>
+          <div class="fe-f"><label>Correo</label><input id="fe-adm-correo"></div>
+        </div>
+        <div class="fe-sec">4 · Síntesis de la empresa</div>
+        <div class="fe-f"><textarea id="fe-sintesis" placeholder="Constitución, desarrollo, situación actual y futura, hitos…"></textarea></div>
+        <div class="fe-sec">5 · Instalaciones y activos</div>
+        <div class="fe-grid c3">
+          <div class="fe-f"><label>Tenencia</label><select id="fe-tenencia"><option value="">—</option><option>Propia</option><option>Arrendada</option></select></div>
+          <div class="fe-f"><label>Metros²</label><input id="fe-m2"></div>
+          <div class="fe-f"><label>Seguros</label><select id="fe-seguros"><option value="">—</option><option>Sí</option><option>No</option></select></div>
+        </div>
+        <div class="fe-f" style="margin-top:10px"><label>Principales activos fijos</label><textarea id="fe-activos" placeholder="Activos relevantes, propios/leasing, seguros…"></textarea></div>
+        <div class="fe-sec">6 · Endeudamiento</div>
+        <table class="fe-tbl"><thead><tr><th>Tipo de crédito</th><th>Institución</th><th>Cuota mensual</th><th>Saldo capital</th><th style="width:34px"></th></tr></thead><tbody id="fe-deudas"></tbody></table>
+        <button type="button" class="fe-addrow" onclick="feAddDeuda()">＋ Agregar deuda</button>
+        <div class="fe-sec">7 · Carpeta del cliente (Drive)</div>
+        <div class="fe-f"><label>Link a la carpeta de documentos</label><input id="fe-drive" placeholder="https://drive.google.com/…"></div>
       </div>
     </div>
 
@@ -1738,9 +1802,9 @@ const ETAPAS = [
   { id:'prospecto',  label:'Prospecto',     color:'#94a4af', desc:'Lead capturado, sin contacto aún' },
   { id:'contacto',   label:'Contacto',      color:'#1a6aa0', desc:'Primer contacto realizado' },
   { id:'simulacion', label:'Simulación',    color:'#a05c10', desc:'Producto asignado, simulación en curso' },
-  { id:'notaventa',  label:'Nota de Venta', color:'#2aa07f', desc:'Nota de Venta emitida' },
-  { id:'contrato',   label:'Contrato',      color:'#0a3d4a', desc:'Contrato enviado al cliente · pendiente de firma' },
-  { id:'cerrado',    label:'Cerrado',       color:'#1d7a5f', desc:'Cliente firmó · operación cerrada y desembolsada' },
+  { id:'notaventa',  label:'Nota de Venta', color:'#1761a3', desc:'Nota de Venta emitida' },
+  { id:'contrato',   label:'Contrato',      color:'#0f3a5e', desc:'Contrato enviado al cliente · pendiente de firma' },
+  { id:'cerrado',    label:'Cerrado',       color:'#14568a', desc:'Cliente firmó · operación cerrada y desembolsada' },
   { id:'rechazo',    label:'Rechazo',       color:'#b52a2a', desc:'Lead descartado / no avanzó' }
 ];
 function etapaInfo(id){ return ETAPAS.find(e=>e.id===id) || ETAPAS[0]; }
@@ -1768,6 +1832,59 @@ const DOCUMENTOS_JURIDICA = [
   { id:'cert_no_quiebra', label:'Cert. no quiebra Superir' },
   { id:'avaluo', label:'Avalúo fiscal de la propiedad' },
   { id:'cv', label:'Certificado dominio vigente CBR' }
+];
+const VERIF_DOCS = [
+  { grupo:'Empresa', items:[
+    { id:'v_malla', label:'Malla societaria del grupo (socios + RUT)' },
+    { id:'v_balance', label:'Balances + declaraciones de renta (firmados rep. legal y contador)' },
+    { id:'v_carpeta', label:'Carpeta tributaria (36 últimos IVA / F29)' },
+    { id:'v_tgr', label:'Certificado de deuda TGR (+ convenios si aplica)' },
+    { id:'v_deuda', label:'Cuadro de deuda del grupo' },
+    { id:'v_obras', label:'Cuadro de obras actualizado (si aplica)' },
+    { id:'v_patrimonio', label:'Cuadro de patrimonio del grupo' },
+    { id:'v_cmf', label:'Deuda CMF de empresa y socios' },
+    { id:'v_flujo', label:'Flujo proyectado 12–24 meses' },
+    { id:'v_erut', label:'e-RUT de la empresa' },
+    { id:'v_destino', label:'Destino de los fondos y forma de pago' }
+  ]},
+  { grupo:'Socios', items:[
+    { id:'v_ci', label:'Cédula de identidad socios (ambos lados)' },
+    { id:'v_renta_s', label:'Declaración de renta socios (2 años) / liquidaciones' },
+    { id:'v_cotiz', label:'Certificado de cotizaciones' },
+    { id:'v_situacion', label:'Estado de situación con acreditación patrimonial' }
+  ]},
+  { grupo:'Legales', items:[
+    { id:'v_escritura', label:'Escritura de constitución y modificaciones vigentes' },
+    { id:'v_vigencia', label:'Certificado de vigencia de sociedad (< 30 días)' },
+    { id:'v_inicio', label:'Inicio de actividades SII' },
+    { id:'v_extracto', label:'Inscripción de extracto + publicación Diario Oficial' },
+    { id:'v_personeria', label:'Escritura de personería del representante legal' }
+  ]}
+];
+const FONDO_DOCS = [
+  { grupo:'Solicitud', items:[
+    { id:'f_solicitud', label:'Solicitud de crédito (titular, monto, destino)' },
+    { id:'f_condiciones', label:'Condiciones actuales y propuestas (plazo, amortización, gracia)' },
+    { id:'f_financiamiento', label:'Detalle del financiamiento buscado' }
+  ]},
+  { grupo:'Antecedentes (3 años)', items:[
+    { id:'f_carpeta3', label:'Carpeta tributaria últimos 3 años' },
+    { id:'f_renta3', label:'Declaración de renta 3 años (aceptada por SII)' },
+    { id:'f_eeff3', label:'Estados financieros firmados últimos 3 años' }
+  ]},
+  { grupo:'Estructura y deuda', items:[
+    { id:'f_estructura', label:'Detalle estructura societaria (hasta personas naturales)' },
+    { id:'f_deuda', label:'Detalle de deuda y garantías' },
+    { id:'f_activos', label:'Detalle y valoración de activos (muebles e inmuebles)' }
+  ]},
+  { grupo:'Garantías', items:[
+    { id:'f_tasacion', label:'Tasación / avalúo de la garantía' },
+    { id:'f_garantias', label:'Garantías ofrecidas (descripción, valor comercial)' }
+  ]},
+  { grupo:'Presentación', items:[
+    { id:'f_rib', label:'RIB / Resumen ejecutivo (se genera en la app)' },
+    { id:'f_resena', label:'Reseña de la sociedad (PPT)' }
+  ]}
 ];
 const SEGUROS_REF = {
   natural:  { desg: 0.90, incendio: 0.52, cesantia: 0.18 },
@@ -2311,11 +2428,11 @@ function generarPDFLegacy(htmlContent, titulo, opts){
 
 /* === PDF HEADERS COMUNES === */
 function pdfHeader(cfg, titulo, idCot){
-  return '<div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 0 14px 0; border-bottom:2px solid #0a3d4a;">' +
-    '<div><div style="font-size:22px; font-weight:800; color:#0a3d4a; letter-spacing:-0.5px;">loans<span style="color:#2aa07f">4B</span></div>' +
-    '<div style="font-size:9px; color:#6a7a85; letter-spacing:1.6px; text-transform:uppercase; margin-top:4px; font-weight:500;">Just loans for business</div></div>' +
+  return '<div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 0 14px 0; border-bottom:2px solid #0f3a5e;">' +
+    '<div><div style="font-size:22px; font-weight:800; color:#0f3a5e; letter-spacing:-0.5px;">BE FINANC<span style="color:#f2632e">E</span></div>' +
+    '<div style="font-size:9px; color:#6a7a85; letter-spacing:1.6px; text-transform:uppercase; margin-top:4px; font-weight:500;">Leasing · Leaseback · Créditos</div></div>' +
     '<div style="text-align:right; font-size:10px; color:#3a4a55;">' +
-    '<div style="font-weight:600; color:#0a3d4a; font-size:11px;">' + titulo + '</div>' +
+    '<div style="font-weight:600; color:#0f3a5e; font-size:11px;">' + titulo + '</div>' +
     '<div style="margin-top:4px;">ID COT: <strong>' + idCot + '</strong></div>' +
     '<div>Fecha: ' + fmtFecha() + ' · Vigente hasta: ' + addDias(5) + '</div>' +
     '<div>Valor UF referencial: ' + fmtCLP(UF_VALOR) + '</div></div></div>';
@@ -2338,9 +2455,9 @@ function pdfFirma(cfg){
   }
   return '<div style="margin-top:24px; font-size:11px; color:#1a2730; line-height:1.6;">' +
     '<p style="margin-top:14px;"><strong>Atentamente,</strong></p>' +
-    '<div style="margin-top:6px; padding:12px 16px; background:#eaf6f2; border-left:3px solid #2aa07f; border-radius:4px;">' +
-    '<div style="font-size:13px; font-weight:700; color:#0a3d4a;">' + cfg.nombre + '</div>' +
-    '<div style="font-size:11px; color:#14525f; margin-top:2px;">' + (cfg.cargo||'Asesor de Crédito Hipotecario') + '</div>' +
+    '<div style="margin-top:6px; padding:12px 16px; background:#e9f1f9; border-left:3px solid #1761a3; border-radius:4px;">' +
+    '<div style="font-size:13px; font-weight:700; color:#0f3a5e;">' + cfg.nombre + '</div>' +
+    '<div style="font-size:11px; color:#1a527e; margin-top:2px;">' + (cfg.cargo||'Asesor de Crédito Hipotecario') + '</div>' +
     '<div style="font-size:10.5px; color:#3a4a55; margin-top:6px;">' + (cfg.email||'') + ' · ' + (cfg.telefono||'') + '</div></div></div>';
 }
 function generarIdCot(){ return Math.floor(1000+Math.random()*9000); }
@@ -2362,9 +2479,9 @@ function descargarPDFHipotecario(){
   const tablaNumeros =
     '<table style="width:100%; border-collapse:collapse; font-size:10.5px; margin-top:8px;">' +
       '<thead><tr style="background:#f3f6f8;">' +
-        '<th style="' + tdL + ' font-weight:600; color:#0a3d4a; text-transform:uppercase; font-size:9.5px; letter-spacing:0.4px;">Concepto</th>' +
-        '<th style="' + tdN + ' font-weight:600; color:#0a3d4a; text-transform:uppercase; font-size:9.5px; letter-spacing:0.4px; width:90px;">UF</th>' +
-        '<th style="' + tdN + ' font-weight:600; color:#0a3d4a; text-transform:uppercase; font-size:9.5px; letter-spacing:0.4px; width:120px;">CLP</th>' +
+        '<th style="' + tdL + ' font-weight:600; color:#0f3a5e; text-transform:uppercase; font-size:9.5px; letter-spacing:0.4px;">Concepto</th>' +
+        '<th style="' + tdN + ' font-weight:600; color:#0f3a5e; text-transform:uppercase; font-size:9.5px; letter-spacing:0.4px; width:90px;">UF</th>' +
+        '<th style="' + tdN + ' font-weight:600; color:#0f3a5e; text-transform:uppercase; font-size:9.5px; letter-spacing:0.4px; width:120px;">CLP</th>' +
       '</tr></thead><tbody>' +
       '<tr><td style="' + tdL + '">Valor del inmueble (referencial)</td><td style="' + tdN + '">' + fmtNum(d.valor) + '</td><td style="' + tdN + '">' + fmtCLP(d.valor*UF_VALOR) + '</td></tr>' +
       '<tr><td style="' + tdL + '">Pie aportado (' + fmtPct(d.pctPie,1) + ' del valor)</td><td style="' + tdN + '">' + fmtNum(d.pie) + '</td><td style="' + tdN + '">' + fmtCLP(d.pie*UF_VALOR) + '</td></tr>' +
@@ -2375,8 +2492,8 @@ function descargarPDFHipotecario(){
       '<tr><td style="' + tdL + '">(+) ' + segDesgTxt + '</td><td style="' + tdN + '">' + fmtNum(d.segDesg) + '</td><td style="' + tdN + '">' + fmtCLP(d.segDesg*UF_VALOR) + '</td></tr>' +
       '<tr><td style="' + tdL + '">(+) Seguro incendio y sismo</td><td style="' + tdN + '">' + fmtNum(d.segIncendio) + '</td><td style="' + tdN + '">' + fmtCLP(d.segIncendio*UF_VALOR) + '</td></tr>' +
       '<tr><td style="' + tdL + '">(+) ' + segCesTxt + '</td><td style="' + tdN + '">' + fmtNum(d.segCesantia) + '</td><td style="' + tdN + '">' + fmtCLP(d.segCesantia*UF_VALOR) + '</td></tr>' +
-      '<tr style="background:#eaf6f2;"><td style="padding:9px 12px; font-weight:700; color:#0a3d4a;">Cuota mensual total al cliente</td><td style="padding:9px 12px; text-align:right; font-weight:700; color:#0a3d4a; font-variant-numeric:tabular-nums;">' + fmtNum(d.cuotaTotal) + '</td><td style="padding:9px 12px; text-align:right; font-weight:700; color:#0a3d4a; font-variant-numeric:tabular-nums;">' + fmtCLP(d.cuotaTotal*UF_VALOR) + '</td></tr>' +
-      '<tr><td style="' + tdL + ' font-weight:600; color:#0a3d4a;">CAE estimado <span style="color:#6a7a85; font-weight:400;">(incluye intereses + seguros)</span></td><td colspan="2" style="' + tdN + ' font-weight:700; color:#0a3d4a;">' + fmtPct(d.cae,2) + '</td></tr>' +
+      '<tr style="background:#e9f1f9;"><td style="padding:9px 12px; font-weight:700; color:#0f3a5e;">Cuota mensual total al cliente</td><td style="padding:9px 12px; text-align:right; font-weight:700; color:#0f3a5e; font-variant-numeric:tabular-nums;">' + fmtNum(d.cuotaTotal) + '</td><td style="padding:9px 12px; text-align:right; font-weight:700; color:#0f3a5e; font-variant-numeric:tabular-nums;">' + fmtCLP(d.cuotaTotal*UF_VALOR) + '</td></tr>' +
+      '<tr><td style="' + tdL + ' font-weight:600; color:#0f3a5e;">CAE estimado <span style="color:#6a7a85; font-weight:400;">(incluye intereses + seguros)</span></td><td colspan="2" style="' + tdN + ' font-weight:700; color:#0f3a5e;">' + fmtPct(d.cae,2) + '</td></tr>' +
       '<tr><td style="' + tdL + '">Total a pagar en ' + d.plazo + ' años (sin seguros)</td><td style="' + tdN + '">' + fmtNum(d.totalPago) + '</td><td style="' + tdN + '">' + fmtCLP(d.totalPago*UF_VALOR) + '</td></tr>' +
       '<tr><td style="' + tdL + '">Costo financiero (intereses)</td><td style="' + tdN + '">' + fmtNum(d.interes) + '</td><td style="' + tdN + '">' + fmtCLP(d.interes*UF_VALOR) + '</td></tr>' +
       '<tr><td style="' + tdL + '"><strong>Honorarios Be Finance</strong> (' + fmtPct(d.honorariosPct,1) + ' del financiamiento, al otorgamiento)</td><td style="' + tdN + '"><strong>' + fmtNum(d.honorariosUF) + '</strong></td><td style="' + tdN + '"><strong>' + fmtCLP(d.honorariosUF*UF_VALOR) + '</strong></td></tr>' +
@@ -2396,23 +2513,23 @@ function descargarPDFHipotecario(){
 
   const html =
     pdfHeader(cfg, 'Simulación de Crédito Hipotecario', idCot) +
-    '<h1 style="font-family:\'Playfair Display\',serif; font-size:22px; color:#0a3d4a; margin:20px 0 6px;">Simulación de Crédito Hipotecario</h1>' +
+    '<h1 style="font-family:\'Playfair Display\',serif; font-size:22px; color:#0f3a5e; margin:20px 0 6px;">Simulación de Crédito Hipotecario</h1>' +
     '<div style="font-size:11px; color:#6a7a85; margin-bottom:16px; font-style:italic;">Financiamiento simple, rápido y confiable.</div>' +
     '<p style="font-size:11.5px; line-height:1.6; text-align:justify; margin-bottom:14px;">' +
     'Estimado/a <strong>' + d.nombre + '</strong>' + (d.rut ? ' / RUT ' + d.rut : '') + ', le presentamos la simulación referencial gestionada por <strong>' + (cfg.empresa||'Asesorías Be Finance SpA') + '</strong> sobre un inmueble valorado en <strong>' + fmtUF(d.valor) + '</strong> (' + fmtCLP(d.valor*UF_VALOR) + '). Como <strong>' + tipoTxt + '</strong>, solicita un financiamiento de <strong>' + fmtUF(d.fin) + '</strong> (' + fmtCLP(d.fin*UF_VALOR) + ', equivalente al ' + fmtPct(d.pctFin,1) + ' del valor del inmueble)' + (d.pie>0 ? ', con un pie de <strong>' + fmtUF(d.pie) + '</strong> (' + fmtPct(d.pctPie,1) + ')' : ', sin pie') + (d.saldoLibre>=1 && d.pctSaldo>=0.05 ? '. El saldo de <strong>' + fmtUF(d.saldoLibre) + '</strong> (' + fmtPct(d.pctSaldo,1) + ') no se financia ni se aporta como pie' : '') + '. El financiamiento se estructura a <strong>' + d.plazo + ' años</strong> con tasa ' + tipoTasaTxt.toLowerCase() + ' del <strong>' + fmtPct(d.tasa,2) + '</strong> (CAE ' + fmtPct(d.cae,2) + ').</p>' +
     '<div style="display:flex; gap:14px; margin:14px 0 18px;">' +
-      '<div style="flex:1; background:linear-gradient(135deg,#0a3d4a,#14525f); color:#fff; padding:16px 20px; border-radius:10px;">' +
+      '<div style="flex:1; background:linear-gradient(135deg,#0f3a5e,#1a527e); color:#fff; padding:16px 20px; border-radius:10px;">' +
         '<div style="font-size:10px; opacity:0.7; text-transform:uppercase; letter-spacing:1px; font-weight:500;">Cuota mensual estimada</div>' +
         '<div style="font-size:24px; font-weight:700; margin-top:4px; font-variant-numeric:tabular-nums;">' + fmtUF(d.cuotaTotal) + '</div>' +
         '<div style="font-size:10px; opacity:0.7; margin-top:2px;">Capital + interés + seguros</div>' +
       '</div>' +
-      '<div style="flex:1; background:#eaf6f2; color:#0a3d4a; padding:16px 20px; border-radius:10px;">' +
-        '<div style="font-size:10px; color:#14525f; text-transform:uppercase; letter-spacing:1px; font-weight:600;">Equivalente en CLP</div>' +
+      '<div style="flex:1; background:#e9f1f9; color:#0f3a5e; padding:16px 20px; border-radius:10px;">' +
+        '<div style="font-size:10px; color:#1a527e; text-transform:uppercase; letter-spacing:1px; font-weight:600;">Equivalente en CLP</div>' +
         '<div style="font-size:24px; font-weight:700; margin-top:4px; font-variant-numeric:tabular-nums;">' + fmtCLP(d.cuotaTotal*UF_VALOR) + '</div>' +
         '<div style="font-size:10px; color:#6a7a85; margin-top:2px;">al valor UF vigente</div>' +
       '</div>' +
     '</div>' +
-    '<h2 style="font-size:11px; font-weight:700; color:#0a3d4a; text-transform:uppercase; letter-spacing:0.8px; margin:14px 0 4px;">Desglose numérico de la operación</h2>' +
+    '<h2 style="font-size:11px; font-weight:700; color:#0f3a5e; text-transform:uppercase; letter-spacing:0.8px; margin:14px 0 4px;">Desglose numérico de la operación</h2>' +
     tablaNumeros +
     '<p style="font-size:10px; color:#6a7a85; margin-top:8px; font-style:italic;">La cuota incluye los seguros aplicables a su tipo de persona. La <strong>pre-evaluación crediticia</strong> se paga al inicio del proceso, antes de la tramitación formal. Los <strong>honorarios Be Finance</strong> se pagan al otorgamiento del crédito.</p>' +
     '<p style="font-size:11px; line-height:1.6; text-align:justify; margin-top:14px;">Esta propuesta es válida hasta el <strong>' + addDias(5) + '</strong>. Quedamos atentos para avanzar con la solicitud formal o aclarar cualquier consulta.</p>' +
@@ -2436,14 +2553,14 @@ function descargarPDFLeaseback(){
   // Cell helpers para tabla cliente estilo Esteban
   const fieldRow = (label, value) =>
     '<tr>' +
-    '<td style="padding:7px 12px; background:#f3f6f8; color:#0a3d4a; font-weight:600; font-size:10.5px; letter-spacing:0.4px; text-transform:uppercase; border-bottom:1px solid #e8eef1; width:42%;">' + label + '</td>' +
+    '<td style="padding:7px 12px; background:#f3f6f8; color:#0f3a5e; font-weight:600; font-size:10.5px; letter-spacing:0.4px; text-transform:uppercase; border-bottom:1px solid #e8eef1; width:42%;">' + label + '</td>' +
     '<td style="padding:7px 12px; font-size:11.5px; color:#1a2530; border-bottom:1px solid #e8eef1;">' + value + '</td>' +
     '</tr>';
   // Fila de tabla numérica
   const tRow = (concepto, uf, clp, opts) => {
     opts = opts || {};
     const bg = opts.bg ? ' style="background:'+opts.bg+';"' : '';
-    const w = opts.bold ? 'font-weight:700; color:#0a3d4a;' : '';
+    const w = opts.bold ? 'font-weight:700; color:#0f3a5e;' : '';
     return '<tr'+bg+'>' +
       '<td style="padding:'+(opts.bold?'11px':'8px')+' 12px; border-bottom:1px solid #e8eef1; '+w+'">' + concepto + '</td>' +
       '<td style="padding:'+(opts.bold?'11px':'8px')+' 12px; border-bottom:1px solid #e8eef1; text-align:right; '+w+'">' + (uf||'') + '</td>' +
@@ -2455,7 +2572,7 @@ function descargarPDFLeaseback(){
 
   const html =
     pdfHeader(cfg, 'Simulación de Leaseback Inmobiliario', idCot) +
-    '<h1 style="font-family:\'Playfair Display\',serif; font-size:22px; color:#0a3d4a; margin:18px 0 4px;">Simulación de Leaseback Inmobiliario</h1>' +
+    '<h1 style="font-family:\'Playfair Display\',serif; font-size:22px; color:#0f3a5e; margin:18px 0 4px;">Simulación de Leaseback Inmobiliario</h1>' +
     '<div style="font-size:11px; color:#6a7a85; margin-bottom:14px; font-style:italic;">Liquidez inmediata sobre propiedad libre de gravamen · Recompra al final del plazo.</div>' +
     // === FICHA DE LA OPERACIÓN (estilo Esteban) ===
     '<table style="width:100%; border-collapse:collapse; border:1px solid #d8e0e4; border-radius:6px; overflow:hidden; margin-bottom:14px;">' +
@@ -2475,7 +2592,7 @@ function descargarPDFLeaseback(){
     // === Texto de 3 líneas (voz Be Finance) ===
     '<p style="font-size:11px; line-height:1.55; text-align:justify; color:#3a4a55; margin-bottom:16px;">La presente operación corresponde a una estructura de <strong>financiamiento privado con respaldo inmobiliario</strong>, en virtud de la cual <strong>' + escapeHTML(cfg.empresa||'Asesorías Be Finance SpA') + '</strong> evalúa, diseña y coordina una solución a la medida del perfil del cliente y de las condiciones particulares del inmueble objeto del análisis. Los valores informados son aproximados y referenciales: la aprobación queda sujeta a evaluación legal, financiera y comercial.</p>' +
     // === SIMULACIÓN DE LEASEBACK INMOBILIARIO — tabla oficial 3 secciones ===
-    '<h2 style="font-size:11px; font-weight:700; color:#0a3d4a; text-transform:uppercase; letter-spacing:0.8px; margin:14px 0 8px;">Simulación de Leaseback Inmobiliario</h2>' +
+    '<h2 style="font-size:11px; font-weight:700; color:#0f3a5e; text-transform:uppercase; letter-spacing:0.8px; margin:14px 0 8px;">Simulación de Leaseback Inmobiliario</h2>' +
     (function(){
       const tasaAnual = (d.tasaMensual||0) * 12;
       const prepagoRenta = (d.prepagoRenta != null) ? d.prepagoRenta : interesesAnticipUF;
@@ -2511,18 +2628,18 @@ function descargarPDFLeaseback(){
       const rowPlain = (lbl, pct, clp, uf) =>
         '<tr>' + cell(lbl) + cell(pct,{align:'center'}) + cell(clp,{align:'right'}) + cell(uf,{align:'right'}) + '</tr>';
       const rowTeal = (lbl, pct, clp, uf) =>
-        '<tr>' + cell(lbl,{bold:true,color:'#fff',bg:'#2aa07f'}) + cell(pct,{align:'center',color:'#fff',bg:'#2aa07f'}) + cell(clp,{align:'right',color:'#fff',bg:'#2aa07f',bold:true}) + cell(uf,{align:'right',color:'#fff',bg:'#2aa07f',bold:true}) + '</tr>';
+        '<tr>' + cell(lbl,{bold:true,color:'#fff',bg:'#1761a3'}) + cell(pct,{align:'center',color:'#fff',bg:'#1761a3'}) + cell(clp,{align:'right',color:'#fff',bg:'#1761a3',bold:true}) + cell(uf,{align:'right',color:'#fff',bg:'#1761a3',bold:true}) + '</tr>';
       const rowGreen = (lbl, pct, clp, uf) =>
-        '<tr>' + cell(lbl,{bold:true,color:'#fff',bg:'#1d7a5f'}) + cell(pct,{align:'center',color:'#fff',bg:'#1d7a5f'}) + cell(clp,{align:'right',color:'#fff',bg:'#1d7a5f',bold:true}) + cell(uf,{align:'right',color:'#fff',bg:'#1d7a5f',bold:true}) + '</tr>';
+        '<tr>' + cell(lbl,{bold:true,color:'#fff',bg:'#14568a'}) + cell(pct,{align:'center',color:'#fff',bg:'#14568a'}) + cell(clp,{align:'right',color:'#fff',bg:'#14568a',bold:true}) + cell(uf,{align:'right',color:'#fff',bg:'#14568a',bold:true}) + '</tr>';
       const rowSplit = (lbl, clp, uf) =>
         '<tr><td style="padding:7px 14px 7px 32px; border-bottom:1px solid #e8eef1; color:#3a4a55; font-size:10px; font-style:italic;">'+lbl+'</td>' +
         '<td style="padding:7px 14px; border-bottom:1px solid #e8eef1; text-align:center; color:#94a4af;">—</td>' +
         '<td style="padding:7px 14px; border-bottom:1px solid #e8eef1; text-align:right; color:#3a4a55; font-style:italic;">'+clp+'</td>' +
         '<td style="padding:7px 14px; border-bottom:1px solid #e8eef1; text-align:right; color:#3a4a55; font-style:italic;">'+uf+'</td></tr>';
       const rowDivider = () =>
-        '<tr><td colspan="4" style="background:#0a3d4a; padding:5px 14px; color:#fff; font-size:9px; letter-spacing:1.2px; text-transform:uppercase; font-weight:700;">&nbsp;</td></tr>';
+        '<tr><td colspan="4" style="background:#0f3a5e; padding:5px 14px; color:#fff; font-size:9px; letter-spacing:1.2px; text-transform:uppercase; font-weight:700;">&nbsp;</td></tr>';
       const rowSubhead = (lbl) =>
-        '<tr><td colspan="4" style="background:#eef5f3; padding:7px 14px; color:#0a3d4a; font-size:9.5px; letter-spacing:1.2px; text-transform:uppercase; font-weight:700;">'+lbl+'</td></tr>';
+        '<tr><td colspan="4" style="background:#eef4fb; padding:7px 14px; color:#0f3a5e; font-size:9.5px; letter-spacing:1.2px; text-transform:uppercase; font-weight:700;">'+lbl+'</td></tr>';
       let body = '';
       // SECCIÓN 1 — Datos generales
       body += rowTeal('Valor Tasación Comercial','—', fmtCLP(d.valor*UF_VALOR), fmtNum(d.valor,1));
@@ -2544,7 +2661,7 @@ function descargarPDFLeaseback(){
       body += rowSubhead('Cobros al cliente · al firmar contrato');
       body += rowSplit('Operación inicial · cubre tasación, estudio de títulos, notaría y CBR', fmtCLP(operacionInicialUF*UF_VALOR), fmtNum(operacionInicialUF,1));
       return '<table style="width:100%; border-collapse:collapse; font-size:10.5px; border-radius:6px; overflow:hidden;">'+
-             '<thead><tr style="background:#0a3d4a; color:#fff;">'+
+             '<thead><tr style="background:#0f3a5e; color:#fff;">'+
              '<th style="padding:9px 14px; text-align:left; font-weight:600; font-size:9.5px; letter-spacing:0.8px;">DESGLOSE</th>'+
              '<th style="padding:9px 14px; text-align:center; font-weight:600; font-size:9.5px; letter-spacing:0.8px; width:90px;">PORCENTAJE</th>'+
              '<th style="padding:9px 14px; text-align:right; font-weight:600; font-size:9.5px; letter-spacing:0.8px; width:120px;">PESOS</th>'+
@@ -2552,7 +2669,7 @@ function descargarPDFLeaseback(){
              '</tr></thead><tbody>'+body+'</tbody></table>';
     })() +
     // === Cómo funciona el leaseback ===
-    '<h2 style="font-size:11px; font-weight:700; color:#0a3d4a; text-transform:uppercase; letter-spacing:0.8px; margin:18px 0 8px;">¿Cómo funciona el leaseback?</h2>' +
+    '<h2 style="font-size:11px; font-weight:700; color:#0f3a5e; text-transform:uppercase; letter-spacing:0.8px; margin:18px 0 8px;">¿Cómo funciona el leaseback?</h2>' +
     '<p style="font-size:11px; line-height:1.6; text-align:justify;">El leaseback es una operación financiera mediante la cual el cliente vende temporalmente su propiedad al fondo. Los <strong>intereses del período se retienen anticipadamente</strong> del capital al momento del desembolso (junto con la estructuración y el fee del fondo), por lo que el cliente <strong>no paga cuota mensual</strong> durante la vigencia. El cliente desembolsa la <strong>operación inicial</strong> al firmar el contrato (tasación, estudio de títulos, notaría y CBR), y los <strong>gastos operativos</strong> se cobran al momento del desembolso de la operación. Al cierre del plazo, el cliente paga el <strong>valor recompra</strong> para restituir su titularidad.</p>' +
     // === Próximos pasos — 60 días + tasación ===
     '<div style="background:#fdf3e0; padding:12px 16px; border-left:3px solid #a05c10; border-radius:4px; margin-top:14px; font-size:10.5px; line-height:1.5;">' +
@@ -2806,7 +2923,7 @@ function nvOnTipoPersonaChange(){
   nvOnInputUF(); // recalcular todo
 }
 
-function sectionH(t){ return '<h2 style="font-size:11px; font-weight:700; color:#0a3d4a; text-transform:uppercase; letter-spacing:0.5px; border-bottom:1.5px solid #2aa07f; padding-bottom:3px; margin:14px 0 6px;">'+t+'</h2>'; }
+function sectionH(t){ return '<h2 style="font-size:11px; font-weight:700; color:#0f3a5e; text-transform:uppercase; letter-spacing:0.5px; border-bottom:1.5px solid #1761a3; padding-bottom:3px; margin:14px 0 6px;">'+t+'</h2>'; }
 
 function descargarNotaVenta(){
   const cfg = cargarConfig() || {};
@@ -2837,7 +2954,7 @@ function descargarNotaVenta(){
   // Helper: fila clave-valor compacta
   const r = (lbl, val) => '<tr><td style="padding:3px 8px; border-bottom:1px dotted #d8e0e4; color:#6a7a85; font-size:8.5pt; text-transform:uppercase; letter-spacing:0.2px; font-weight:600; width:34mm; vertical-align:top;">'+lbl+'</td><td style="padding:3px 8px; border-bottom:1px dotted #d8e0e4; font-size:9pt; color:#1f2d3d;">'+(val||'—')+'</td></tr>';
   // Helper: sección title compacta
-  const sec = (t) => '<h2 style="font-size:9.5pt; font-weight:700; color:#0a3d4a; text-transform:uppercase; letter-spacing:0.4px; border-bottom:1.2px solid #2aa07f; padding-bottom:2px; margin:10px 0 4px;">'+t+'</h2>';
+  const sec = (t) => '<h2 style="font-size:9.5pt; font-weight:700; color:#0f3a5e; text-transform:uppercase; letter-spacing:0.4px; border-bottom:1.2px solid #1761a3; padding-bottom:2px; margin:10px 0 4px;">'+t+'</h2>';
   const obs = get('nv-observaciones');
 
   // === BLOQUE CLIENTE (compacto, 2 columnas) ===
@@ -2860,7 +2977,7 @@ function descargarNotaVenta(){
                r('Dirección propiedad', (get('nv-prop-direccion')+(get('nv-prop-comuna')?', '+get('nv-prop-comuna'):'')+(get('nv-prop-region')?', '+get('nv-prop-region'):'')).replace(/^,\s*|,\s*$/g,'')) +
                (get('nv-rol') ? r('Rol avalúo', get('nv-rol')) : '') +
                r('Valor inmueble', valorUF>0 ? fmtUF(valorUF)+' &nbsp; · &nbsp; '+fmtCLP(valorUF*UF_VALOR) : '—') +
-               r('<strong style="color:#0a3d4a">Monto a financiar</strong>', montoUF>0 ? '<strong>'+fmtUF(montoUF)+' &nbsp; · &nbsp; '+fmtCLP(montoUF*UF_VALOR)+'</strong>' : '—') +
+               r('<strong style="color:#0f3a5e">Monto a financiar</strong>', montoUF>0 ? '<strong>'+fmtUF(montoUF)+' &nbsp; · &nbsp; '+fmtCLP(montoUF*UF_VALOR)+'</strong>' : '—') +
                r('Plazo', get('nv-plazo')) +
                r('Tasa pactada', get('nv-tasa')) +
                (get('nv-fecha-otorga') ? r('Fecha otorgamiento', get('nv-fecha-otorga')) : '');
@@ -2873,7 +2990,7 @@ function descargarNotaVenta(){
   '</table>';
 
   let pagosTable = '<table style="width:100%; border-collapse:collapse; font-size:9pt; margin-top:6px;">' +
-    '<thead><tr style="background:#0a3d4a; color:#fff;">' +
+    '<thead><tr style="background:#0f3a5e; color:#fff;">' +
       '<th style="padding:5px 8px; text-align:center; width:24px; font-size:8.5pt; font-weight:700;">#</th>' +
       '<th style="padding:5px 8px; text-align:left; font-size:8.5pt; font-weight:700;">Descripción</th>' +
       '<th style="padding:5px 8px; text-align:right; width:60px; font-size:8.5pt; font-weight:700;">UF</th>' +
@@ -2881,16 +2998,16 @@ function descargarNotaVenta(){
     '</tr></thead><tbody>';
   pagos.forEach(p => {
     pagosTable += '<tr style="border-bottom:1px solid #e5e7eb;">' +
-      '<td style="padding:4px 8px; text-align:center; color:#0a3d4a; font-weight:700;">'+p.n+'</td>' +
+      '<td style="padding:4px 8px; text-align:center; color:#0f3a5e; font-weight:700;">'+p.n+'</td>' +
       '<td style="padding:4px 8px; color:#1f2d3d;">'+escapeHTML(p.desc||'—')+'</td>' +
       '<td style="padding:4px 8px; text-align:right; font-variant-numeric:tabular-nums; color:#1f2d3d;">'+(p.uf>0?fmtNum(p.uf,2):'—')+'</td>' +
       '<td style="padding:4px 8px; text-align:right; font-variant-numeric:tabular-nums; color:#1f2d3d;">'+(p.uf>0?fmtCLP(p.uf*UF_VALOR):'—')+'</td>' +
     '</tr>';
   });
-  pagosTable += '<tr style="background:#eaf6f2;">' +
-    '<td colspan="2" style="padding:5px 8px; text-align:right; font-weight:700; color:#0a3d4a;">TOTAL operación</td>' +
-    '<td style="padding:5px 8px; text-align:right; font-weight:700; color:#0a3d4a; font-variant-numeric:tabular-nums;">'+(totalUF>0?fmtNum(totalUF,2):'—')+'</td>' +
-    '<td style="padding:5px 8px; text-align:right; font-weight:700; color:#0a3d4a; font-variant-numeric:tabular-nums;">'+(totalUF>0?fmtCLP(totalUF*UF_VALOR):'—')+'</td>' +
+  pagosTable += '<tr style="background:#e9f1f9;">' +
+    '<td colspan="2" style="padding:5px 8px; text-align:right; font-weight:700; color:#0f3a5e;">TOTAL operación</td>' +
+    '<td style="padding:5px 8px; text-align:right; font-weight:700; color:#0f3a5e; font-variant-numeric:tabular-nums;">'+(totalUF>0?fmtNum(totalUF,2):'—')+'</td>' +
+    '<td style="padding:5px 8px; text-align:right; font-weight:700; color:#0f3a5e; font-variant-numeric:tabular-nums;">'+(totalUF>0?fmtCLP(totalUF*UF_VALOR):'—')+'</td>' +
   '</tr></tbody></table>';
 
   // === BLOQUE FACTURACIÓN/CONTRATO/ASESOR (resumen 2 columnas) ===
@@ -2906,11 +3023,11 @@ function descargarNotaVenta(){
 
   // === HTML FINAL — diseño compacto pensado para 1 página A4 ===
   const html =
-    '<div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 0 8px 0; border-bottom:2px solid #0a3d4a; margin-bottom:10px;">' +
-      '<div><div style="font-size:20px; font-weight:800; color:#0a3d4a; letter-spacing:-0.5px;">loans<span style="color:#2aa07f">4B</span></div>' +
-      '<div style="font-size:8px; color:#6a7a85; letter-spacing:1.4px; text-transform:uppercase; margin-top:2px; font-weight:500;">Just loans for business</div></div>' +
+    '<div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 0 8px 0; border-bottom:2px solid #0f3a5e; margin-bottom:10px;">' +
+      '<div><div style="font-size:20px; font-weight:800; color:#0f3a5e; letter-spacing:-0.5px;">BE FINANC<span style="color:#f2632e">E</span></div>' +
+      '<div style="font-size:8px; color:#6a7a85; letter-spacing:1.4px; text-transform:uppercase; margin-top:2px; font-weight:500;">Leasing · Leaseback · Créditos</div></div>' +
       '<div style="text-align:right; font-size:9pt; color:#3a4a55;">' +
-        '<div style="font-weight:700; color:#0a3d4a; font-size:10pt;">NOTA DE VENTA INTERNA</div>' +
+        '<div style="font-weight:700; color:#0f3a5e; font-size:10pt;">NOTA DE VENTA INTERNA</div>' +
         '<div style="margin-top:1px;">F-003 · N° '+idNota+'</div>' +
         '<div>Fecha: '+fechaHoy+'</div>' +
       '</div>' +
@@ -3619,7 +3736,7 @@ function renderKommoPreview(){
       opts += '<option value="'+f+'"'+(current===f?' selected':'')+'>'+KOMMO_FIELD_LABELS[f]+'</option>';
     });
     const detected = current ? '✓' : '·';
-    const detColor = current ? '#1d7a5f' : 'var(--muted)';
+    const detColor = current ? '#14568a' : 'var(--muted)';
     mappingHTML += '<div style="background:#fafcfd; padding:8px 10px; border-radius:6px; border:1px solid var(--border-l); display:flex; gap:8px; align-items:center;">'+
       '<span style="color:'+detColor+'; font-weight:700; width:14px; flex-shrink:0;">'+detected+'</span>'+
       '<span style="flex:1; font-size:11.5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--text-2);" title="'+escapeHTML(h)+'">'+escapeHTML(h)+'</span>'+
@@ -3633,7 +3750,7 @@ function renderKommoPreview(){
   const statsHTML = '<div style="background:#fafcfd; padding:14px 16px; border-radius:8px; border:1px solid var(--border-l); margin:14px 0;">'+
     '<div style="font-size:13px; margin-bottom:8px; color:var(--teal); font-weight:600;">📊 Resumen de detección</div>'+
     '<div style="font-size:12.5px; margin-bottom:5px;">📄 <strong>'+s.stats.total+'</strong> fila'+(s.stats.total===1?'':'s')+' en el archivo</div>'+
-    '<div style="font-size:12.5px; margin-bottom:5px; color:#1d7a5f;">✓ <strong>'+s.stats.validas+'</strong> válida'+(s.stats.validas===1?'':'s')+' (nombre + email o teléfono)</div>'+
+    '<div style="font-size:12.5px; margin-bottom:5px; color:#14568a;">✓ <strong>'+s.stats.validas+'</strong> válida'+(s.stats.validas===1?'':'s')+' (nombre + email o teléfono)</div>'+
     (s.stats.sinDatos>0 ? '<div style="font-size:12.5px; margin-bottom:5px; color:var(--amber);">⚠ <strong>'+s.stats.sinDatos+'</strong> sin datos suficientes (se omitirán)</div>' : '')+
     (s.duplicados.length>0 ? '<div style="font-size:12.5px; margin-bottom:5px; color:var(--amber);">⚠ <strong>'+s.duplicados.length+'</strong> posible'+(s.duplicados.length===1?'':'s')+' duplicado'+(s.duplicados.length===1?'':'s')+' (mismo RUT o email en tu cartera)</div>' : '')+
     skipDupsChk+
@@ -3656,7 +3773,7 @@ function renderKommoPreview(){
       const isDup = s.duplicados.some(d => d.rowIdx === idx);
       const badge = !v.valid ? '<span style="background:var(--amber-bg); color:var(--amber); padding:2px 6px; border-radius:8px; font-size:10px; font-weight:600;">'+v.reason+'</span>'
                   : (isDup ? '<span style="background:#fef3c7; color:#854d0e; padding:2px 6px; border-radius:8px; font-size:10px; font-weight:600;">duplicado</span>'
-                  : '<span style="background:#dcfce7; color:#166534; padding:2px 6px; border-radius:8px; font-size:10px; font-weight:600;">✓ ok</span>');
+                  : '<span style="background:#e3eef9; color:#11537e; padding:2px 6px; border-radius:8px; font-size:10px; font-weight:600;">✓ ok</span>');
       tableHTML += '<tr><td style="color:var(--muted); text-align:center; font-variant-numeric:tabular-nums;">'+(idx+1)+'</td>';
       mappedCols.forEach(c => { tableHTML += '<td style="max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="'+escapeHTML(row[c.csvCol]||'')+'">'+escapeHTML(row[c.csvCol]||'—')+'</td>'; });
       tableHTML += '<td>'+badge+'</td></tr>';
@@ -4266,11 +4383,11 @@ function mostrarToastAutoCliente(msg, tipo){
   if(!t){
     t = document.createElement('div');
     t.id = 'toast-auto-cliente';
-    t.style.cssText = 'position:fixed; bottom:24px; right:24px; padding:14px 20px; color:#fff; border-radius:8px; font-size:13px; font-weight:600; box-shadow:0 8px 24px rgba(10,61,74,0.25); z-index:9999; opacity:0; transition:opacity 0.25s ease; max-width:340px; line-height:1.4;';
+    t.style.cssText = 'position:fixed; bottom:24px; right:24px; padding:14px 20px; color:#fff; border-radius:8px; font-size:13px; font-weight:600; box-shadow:0 8px 24px rgba(10,26,44,0.25); z-index:9999; opacity:0; transition:opacity 0.25s ease; max-width:340px; line-height:1.4;';
     document.body.appendChild(t);
   }
   t.textContent = msg;
-  t.style.background = tipo==='creado' ? '#1d7a5f' : '#0a3d4a';
+  t.style.background = tipo==='creado' ? '#14568a' : '#0f3a5e';
   // Forzar reflow para que la animación arranque desde 0
   void t.offsetWidth;
   t.style.opacity = '1';
@@ -4661,11 +4778,102 @@ async function mostrarFichaCliente(id){
   if(prodSel) prodSel.value = c.producto || '';
   document.getElementById('cd-estado-input').value = c.estadoActual || '';
 
-  renderDocsChecklist(c);
+  renderDocsChecklistV2(c);
+  renderFichaEmpresa(c);
   await cargarNotas(id);
   renderTimeline(id);
   renderSimsCliente(id);
   renderTareasCliente(id);
+}
+
+/* === FICHA DE EMPRESA (Ladrillo 1) === */
+function feSocioRow(s){ s=s||{}; return '<tr>'+
+  '<td><input class="fe-s-nombre" value="'+escapeHTML(s.nombre)+'"></td>'+
+  '<td><input class="fe-s-rut" value="'+escapeHTML(s.rut)+'"></td>'+
+  '<td><input class="fe-s-pct" value="'+escapeHTML(s.pct)+'"></td>'+
+  '<td><button type="button" class="fe-del" onclick="this.closest(\'tr\').remove()">✕</button></td></tr>'; }
+function feAddSocio(s){ var b=document.getElementById('fe-socios'); if(b) b.insertAdjacentHTML('beforeend', feSocioRow(s&&s.target?null:s)); }
+function feDeudaRow(d){ d=d||{}; return '<tr>'+
+  '<td><input class="fe-d-tipo" value="'+escapeHTML(d.tipo)+'"></td>'+
+  '<td><input class="fe-d-inst" value="'+escapeHTML(d.institucion)+'"></td>'+
+  '<td><input class="fe-d-cuota" value="'+escapeHTML(d.cuota)+'"></td>'+
+  '<td><input class="fe-d-saldo" value="'+escapeHTML(d.saldo)+'"></td>'+
+  '<td><button type="button" class="fe-del" onclick="this.closest(\'tr\').remove()">✕</button></td></tr>'; }
+function feAddDeuda(d){ var b=document.getElementById('fe-deudas'); if(b) b.insertAdjacentHTML('beforeend', feDeudaRow(d&&d.target?null:d)); }
+function renderFichaEmpresa(c){
+  var f=(c&&c.fichaEmpresa)||{};
+  var setV=function(id,v){ var el=document.getElementById(id); if(el) el.value=(v==null?'':v); };
+  setV('fe-rut', f.rut||c.rut||''); setV('fe-razon', f.razonSocial||c.nombre||''); setV('fe-giro', f.giro||c.giro||'');
+  setV('fe-direccion', f.direccion||c.direccion||''); setV('fe-comuna', f.comuna||c.comuna||''); setV('fe-ciudad', f.ciudad||'');
+  setV('fe-telefonos', f.telefonos||c.telefono||'');
+  var a=f.admin||{}; setV('fe-adm-nombre',a.nombre||''); setV('fe-adm-tel',a.tel||''); setV('fe-adm-cargo',a.cargo||''); setV('fe-adm-correo',a.correo||'');
+  setV('fe-sintesis', f.sintesis||''); setV('fe-tenencia', f.tenencia||''); setV('fe-m2', f.m2||''); setV('fe-seguros', f.seguros||''); setV('fe-activos', f.activos||'');
+  setV('fe-drive', f.driveUrl||'');
+  var sb=document.getElementById('fe-socios'); if(sb){ sb.innerHTML=''; var ss=(f.socios&&f.socios.length)?f.socios:[{}]; ss.forEach(function(s){ feAddSocio(s); }); }
+  var db=document.getElementById('fe-deudas'); if(db){ db.innerHTML=''; var dd=(f.deudas&&f.deudas.length)?f.deudas:[{}]; dd.forEach(function(d){ feAddDeuda(d); }); }
+}
+async function guardarFichaEmpresa(){
+  if(!CD_ID){ alert('Abre un cliente primero.'); return; }
+  if(!fbReady()){ alert('Firebase no configurado.'); return; }
+  var v=function(id){ var el=document.getElementById(id); return el?el.value.trim():''; };
+  var socios=[].slice.call(document.querySelectorAll('#fe-socios tr')).map(function(tr){ return {
+    nombre:tr.querySelector('.fe-s-nombre').value.trim(), rut:tr.querySelector('.fe-s-rut').value.trim(), pct:tr.querySelector('.fe-s-pct').value.trim()
+  }; }).filter(function(s){ return s.nombre||s.rut||s.pct; });
+  var deudas=[].slice.call(document.querySelectorAll('#fe-deudas tr')).map(function(tr){ return {
+    tipo:tr.querySelector('.fe-d-tipo').value.trim(), institucion:tr.querySelector('.fe-d-inst').value.trim(), cuota:tr.querySelector('.fe-d-cuota').value.trim(), saldo:tr.querySelector('.fe-d-saldo').value.trim()
+  }; }).filter(function(d){ return d.tipo||d.institucion||d.cuota||d.saldo; });
+  var ficha={ rut:v('fe-rut'), razonSocial:v('fe-razon'), giro:v('fe-giro'), direccion:v('fe-direccion'), comuna:v('fe-comuna'), ciudad:v('fe-ciudad'), telefonos:v('fe-telefonos'),
+    admin:{ nombre:v('fe-adm-nombre'), tel:v('fe-adm-tel'), cargo:v('fe-adm-cargo'), correo:v('fe-adm-correo') },
+    sintesis:v('fe-sintesis'), tenencia:v('fe-tenencia'), m2:v('fe-m2'), seguros:v('fe-seguros'), activos:v('fe-activos'),
+    socios:socios, deudas:deudas, driveUrl:v('fe-drive'), updatedAt:Date.now() };
+  var btn=document.getElementById('fe-btn-guardar'); if(btn){ btn.disabled=true; btn.innerHTML='<span>⏳</span> Guardando…'; }
+  try{
+    await fbDb.collection('clientes').doc(CD_ID).update({ fichaEmpresa:ficha, updatedAt:nowTs() });
+    var c=CLIENTES_CACHE.find(function(x){ return x.id===CD_ID; }); if(c) c.fichaEmpresa=ficha;
+    mostrarToastAutoCliente('✓ Ficha de empresa guardada','creado');
+  }catch(e){ console.error('guardarFichaEmpresa:',e); alert('Error guardando ficha: '+(e.message||e)); }
+  if(btn){ btn.disabled=false; btn.innerHTML='<span>\U0001F4BE</span> Guardar ficha'; }
+}
+
+/* === RIB / RESUMEN EJECUTIVO PDF (Ladrillo 3) === */
+var BF_RIB_LOGO="data:image/png;base64,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";
+function _ribSec(t){ return '<div style="font-size:12px;font-weight:700;color:#0f3a5e;text-transform:uppercase;letter-spacing:.5px;border-left:3px solid #f2632e;padding-left:8px;margin:20px 4px 8px;">'+t+'</div>'; }
+function _ribKV(rows){ var h='<table style="width:100%;border-collapse:collapse;margin:0 4px 4px;font-size:12px;">'; rows.forEach(function(r){ h+='<tr><td style="padding:5px 8px;color:#6a7a85;width:32%;border-bottom:1px solid #eef2f5;vertical-align:top;">'+escapeHTML(r[0])+'</td><td style="padding:5px 8px;color:#1a2730;border-bottom:1px solid #eef2f5;font-weight:500;">'+(escapeHTML(r[1])||'—')+'</td></tr>'; }); return h+'</table>'; }
+function _ribTbl(headers,rows){ if(!rows||!rows.length) return '<div style="font-size:11.5px;color:#9aa3ab;margin:0 4px 6px;font-style:italic;">Sin registros.</div>'; var h='<table style="width:100%;border-collapse:collapse;margin:0 4px 4px;font-size:11.5px;"><thead><tr>'; headers.forEach(function(x){ h+='<th style="background:#0f3a5e;color:#fff;text-align:left;padding:6px 8px;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.3px;">'+escapeHTML(x)+'</th>'; }); h+='</tr></thead><tbody>'; rows.forEach(function(r,i){ h+='<tr style="background:'+(i%2?'#f6f9fc':'#ffffff')+';">'; r.forEach(function(cc){ h+='<td style="padding:5px 8px;border-bottom:1px solid #eef2f5;color:#1a2730;">'+(escapeHTML(cc)||'—')+'</td>'; }); h+='</tr>'; }); return h+'</tbody></table>'; }
+function generarRIB(){
+  if(!CD_ID){ alert('Abre un cliente primero.'); return; }
+  var c=CLIENTES_CACHE.find(function(x){ return x.id===CD_ID; }); if(!c){ alert('Cliente no encontrado.'); return; }
+  var f=c.fichaEmpresa||{};
+  var razon=f.razonSocial||c.nombre||'(sin razón social)';
+  var rut=f.rut||c.rut||'—';
+  var giro=f.giro||c.giro||'—';
+  var fecha=new Date().toLocaleDateString('es-CL',{day:'2-digit',month:'long',year:'numeric'});
+  var a=f.admin||{};
+  var header='<div style="background:#0f3a5e;color:#fff;padding:16px 20px;border-radius:8px 8px 0 0;display:flex;align-items:center;">'+
+    '<img src="'+BF_RIB_LOGO+'" style="width:42px;height:42px;margin-right:13px;">'+
+    '<div><div style="font-size:21px;font-weight:700;letter-spacing:2px;line-height:1;">BE FINANCE</div>'+
+    '<div style="font-size:8.5px;letter-spacing:3px;color:#9fb4c6;margin-top:3px;">LEASING · LEASEBACK · CRÉDITOS</div></div>'+
+    '<div style="margin-left:auto;text-align:right;font-size:10px;color:#cfe0ee;line-height:1.5;">Resumen Ejecutivo · RIB<br>'+fecha+'</div></div>'+
+    '<div style="height:4px;background:#f2632e;margin-bottom:16px;"></div>';
+  var titulo='<div style="margin:0 4px 6px;"><div style="font-size:18px;font-weight:700;color:#0f3a5e;">'+escapeHTML(razon)+'</div>'+
+    '<div style="font-size:12px;color:#6a7a85;margin-top:2px;">RUT '+escapeHTML(rut)+'  ·  '+escapeHTML(giro)+'</div></div>';
+  var secId=_ribSec('1 · Identificación')+_ribKV([
+    ['Dirección', f.direccion||c.direccion||''],['Comuna', f.comuna||c.comuna||''],
+    ['Ciudad', f.ciudad||''],['Teléfonos', f.telefonos||c.telefono||'']]);
+  var socios=(f.socios||[]).map(function(s){ return [s.nombre, s.rut, s.pct? (s.pct+'%'):'']; });
+  var secSoc=_ribSec('2 · Socios y representantes')+_ribTbl(['Nombre','RUT','% Part.'], socios);
+  var secCon=_ribSec('3 · Contacto / Administrador')+_ribKV([
+    ['Nombre', a.nombre||''],['Cargo', a.cargo||''],['Teléfono', a.tel||''],['Correo', a.correo||'']]);
+  var sintesis=(f.sintesis||'').trim();
+  var secSin=_ribSec('4 · Síntesis de la empresa')+'<div style="margin:0 4px;font-size:12px;color:#1a2730;text-align:justify;line-height:1.6;">'+(sintesis? escapeHTML(sintesis).replace(/\n/g,'<br>') : '<span style="color:#9aa3ab;font-style:italic;">Sin información.</span>')+'</div>';
+  var secIns=_ribSec('5 · Instalaciones y activos')+_ribKV([
+    ['Tenencia', f.tenencia||''],['Metros²', f.m2||''],['Seguros', f.seguros||''],['Activos fijos', f.activos||'']]);
+  var deudas=(f.deudas||[]).map(function(d){ return [d.tipo, d.institucion, d.cuota, d.saldo]; });
+  var secDeu=_ribSec('6 · Endeudamiento')+_ribTbl(['Tipo de crédito','Institución','Cuota mensual','Saldo capital'], deudas);
+  var drive=f.driveUrl?('<div style="margin:14px 4px 0;font-size:10.5px;color:#1761a3;">Carpeta de documentos: '+escapeHTML(f.driveUrl)+'</div>'):'';
+  var footer='<div style="margin-top:22px;border-top:1px solid #eef2f5;padding:10px 4px 0;font-size:9px;color:#9aa3ab;text-align:center;">Documento generado por BE FINANCE · '+fecha+' · Información confidencial</div>';
+  var html=header+titulo+secId+secSoc+secCon+secSin+secIns+secDeu+drive+footer;
+  generarPDF(html, 'Resumen RIB - '+razon, {size:'A4'});
 }
 
 /* === PRODUCTO MODAL ===
@@ -4857,6 +5065,59 @@ async function toggleDocumento(docId, marcado){
   } catch(e){ console.error(e); alert('No se pudo actualizar documento: '+e.message); }
 }
 
+/* === CHECKLISTS DE DOCUMENTOS V2 (Ladrillo 2) === */
+function docEstado(docs,id){ var v=docs[id]; if(!v) return 'pendiente'; if(v===true||v.ok) return 'recibido'; return v.estado||'pendiente'; }
+function docLabelById(id){ var all=VERIF_DOCS.concat(FONDO_DOCS); for(var i=0;i<all.length;i++){ for(var j=0;j<all[i].items.length;j++){ if(all[i].items[j].id===id) return all[i].items[j].label; } } return id; }
+function _docOpt(val,txt,cur){ return '<option value="'+val+'"'+(cur===val?' selected':'')+'>'+txt+'</option>'; }
+function renderDocGroup(titulo, grupos, docs){
+  var total=0, ok=0;
+  grupos.forEach(function(g){ g.items.forEach(function(it){ total++; var e=docEstado(docs,it.id); if(e==='recibido'||e==='aprobado') ok++; }); });
+  var html='<div class="doc-grp-title">'+titulo+'<span class="doc-grp-prog">'+ok+' / '+total+'</span></div>';
+  grupos.forEach(function(g){
+    html+='<div class="doc-sub">'+escapeHTML(g.grupo)+'</div>';
+    g.items.forEach(function(it){
+      var e=docEstado(docs,it.id);
+      var cls=(e==='recibido'||e==='aprobado')?(' '+e):'';
+      html+='<div class="doc-item'+cls+'">';
+      html+='<span class="lbl">'+escapeHTML(it.label)+'</span>';
+      html+='<select onchange="setDocEstado(\''+it.id+'\', this.value)">'+
+        _docOpt('pendiente','Pendiente',e)+_docOpt('recibido','Recibido',e)+_docOpt('aprobado','Aprobado',e)+
+      '</select>';
+      html+='</div>';
+    });
+  });
+  return html;
+}
+function renderDocsChecklistV2(cliente){
+  var cont=document.getElementById('cd-docs'); if(!cont) return;
+  var docs=cliente.documentos||{};
+  var drive=(cliente.fichaEmpresa&&cliente.fichaEmpresa.driveUrl)||'';
+  var html='';
+  if(drive) html+='<a class="doc-drive" href="'+escapeHTML(drive)+'" target="_blank" rel="noopener">\U0001F4C1 Abrir carpeta Drive del cliente</a>';
+  html+=renderDocGroup('\U0001F6E1️ Verificación (KYC / capacidad)', VERIF_DOCS, docs);
+  html+=renderDocGroup('\U0001F3E6 Presentación a fondo', FONDO_DOCS, docs);
+  cont.innerHTML=html;
+}
+async function setDocEstado(docId, estado){
+  if(!CD_ID || !fbReady()) return;
+  var c=CLIENTES_CACHE.find(function(x){ return x.id===CD_ID; }); if(!c) return;
+  var docs=Object.assign({}, c.documentos||{});
+  if(estado==='pendiente') delete docs[docId];
+  else docs[docId]={ estado:estado, fecha:new Date().toISOString() };
+  try{
+    await fbDb.collection('clientes').doc(CD_ID).update({ documentos:docs, updatedAt:nowTs() });
+    c.documentos=docs;
+    renderDocsChecklistV2(c);
+    try{
+      await fbDb.collection('clientes').doc(CD_ID).collection('notas').add({
+        tipo:'documento', texto:'\U0001F4C4 '+docLabelById(docId)+' → '+estado,
+        asesorId:CURRENT_USER.uid, asesorNombre:CURRENT_PROFILE?CURRENT_PROFILE.nombre:'', createdAt:nowTs()
+      });
+      await cargarNotas(CD_ID); renderTimeline(CD_ID);
+    }catch(_){}
+  }catch(e){ console.error('setDocEstado:',e); alert('No se pudo actualizar el documento: '+(e.message||e)); }
+}
+
 /* === NOTAS DE SEGUIMIENTO === */
 function abrirNotaSeguimiento(){
   if(!CD_ID){ alert('Abre una ficha de cliente primero.'); return; }
@@ -4902,7 +5163,7 @@ function tipoNotaIcon(tipo){
   return ({ contacto:'📞', seguimiento:'📝', documento:'📑', simulacion:'📊', etapa:'🧭', otro:'•' })[tipo] || '•';
 }
 function tipoNotaColor(tipo){
-  return ({ contacto:'#3b82f6', seguimiento:'#2aa07f', documento:'#f59e0b', simulacion:'#8b5cf6', etapa:'#0a3d4a', otro:'#94a3b8' })[tipo] || '#94a3b8';
+  return ({ contacto:'#3b82f6', seguimiento:'#1761a3', documento:'#f59e0b', simulacion:'#8b5cf6', etapa:'#0f3a5e', otro:'#94a3b8' })[tipo] || '#94a3b8';
 }
 
 function renderTimeline(clienteId){
@@ -4940,7 +5201,7 @@ function renderSimsCliente(clienteId){
     if(cto.estado === 'pendiente_aprobacion'){
       estadoBadge = '🟡'; estadoColor = '#854d0e'; estadoTexto = 'Pendiente de aprobación';
     } else if(cto.estado === 'aprobado'){
-      estadoBadge = '✅'; estadoColor = '#166534'; estadoTexto = 'Aprobado · listo para descargar';
+      estadoBadge = '✅'; estadoColor = '#11537e'; estadoTexto = 'Aprobado · listo para descargar';
     } else if(cto.estado === 'descargado'){
       estadoBadge = '📥'; estadoColor = '#1e40af'; estadoTexto = 'Descargado';
     } else {
@@ -5359,7 +5620,7 @@ function abrirContratoModal(contratoId){
         : '📤 El administrador subió el archivo y lo está revisando. Falta confirmar como aprobado.')+
     '</div>';
   } else if(estado === 'aprobado'){
-    body += '<div style="background:#dcfce7; border:1px solid #86efac; border-radius:6px; padding:12px 14px; margin-bottom:14px; font-size:12.5px; color:#166534; line-height:1.5;">'+
+    body += '<div style="background:#e3eef9; border:1px solid #bcd6f0; border-radius:6px; padding:12px 14px; margin-bottom:14px; font-size:12.5px; color:#11537e; line-height:1.5;">'+
       '✅ <strong>Aprobado</strong> por '+escapeHTML(cto.aprobadoNombre || 'administrador')+' el '+fmtTimestamp(cto.aprobadoAt)+'. Listo para descargar.'+
     '</div>';
   } else if(estado === 'descargado'){
@@ -5384,8 +5645,8 @@ function abrirContratoModal(contratoId){
 
   // === Archivo subido (si existe) ===
   if(tieneArchivo){
-    body += '<div style="background:#eef5f3; border:1px solid #a8d5c9; border-radius:8px; padding:12px 14px; margin-bottom:14px;">'+
-      '<div style="font-size:11px; color:#0a3d4a; text-transform:uppercase; letter-spacing:0.5px; font-weight:600; margin-bottom:6px;">📎 Archivo final subido por admin</div>'+
+    body += '<div style="background:#eef4fb; border:1px solid #b4cde2; border-radius:8px; padding:12px 14px; margin-bottom:14px;">'+
+      '<div style="font-size:11px; color:#0f3a5e; text-transform:uppercase; letter-spacing:0.5px; font-weight:600; margin-bottom:6px;">📎 Archivo final subido por admin</div>'+
       '<div style="font-size:13px; color:var(--text); font-weight:600;">'+escapeHTML(cto.archivoNombre||'archivo.pdf')+'</div>'+
       '<div style="font-size:11.5px; color:var(--muted); margin-top:3px;">'+
         fmtFileSize(cto.archivoSize||0)+' · subido '+fmtTimestamp(cto.archivoSubidoAt)+
@@ -5642,10 +5903,10 @@ function generarHTMLContrato(cto){
   const styleBlock =
     '<style>' +
       '.contrato-wrap { font-family:Inter,Arial,sans-serif; font-size:11pt; line-height:1.6; color:#1a2730; text-align:justify; text-justify:inter-word; }' +
-      '.contrato-wrap h1, .contrato-wrap h2 { text-align:center; color:#0a3d4a; margin:0; }' +
+      '.contrato-wrap h1, .contrato-wrap h2 { text-align:center; color:#0f3a5e; margin:0; }' +
       '.contrato-wrap h1 { font-size:13pt; font-weight:800; }' +
       '.contrato-wrap h2 { font-size:12pt; font-weight:700; margin-bottom:18px; }' +
-      '.contrato-wrap h3 { font-size:11pt; font-weight:700; color:#0a3d4a; margin:14px 0 6px; text-align:left; }' +
+      '.contrato-wrap h3 { font-size:11pt; font-weight:700; color:#0f3a5e; margin:14px 0 6px; text-align:left; }' +
       '.contrato-wrap p { margin:0 0 8px; text-align:justify; }' +
       '.contrato-wrap ul { margin:4px 0 10px 24px; padding:0; text-align:justify; }' +
       '.contrato-wrap ul li { margin-bottom:4px; }' +
@@ -5664,22 +5925,22 @@ function generarHTMLContrato(cto){
 
     '<p>En Santiago de Chile, a <strong>'+escapeHTML(fechaContrato)+'</strong>, comparecen las siguientes partes:</p>' +
 
-    '<p><strong>I.</strong> <strong>ASESORÍAS LOANS4B SpA</strong>, RUT N° 78.302.775-5, sociedad legalmente constituida conforme a las leyes de la República de Chile, con domicilio en Av. Raúl Labbé 12613, Oficina 231, comuna de Lo Barnechea, Santiago, debidamente representada por Pablo Rivas Marín, cédula nacional de identidad número 10.860.107-8, y Roberto Pesce Centeno, cédula nacional de identidad N° 26.226.532-3, en su calidad de representantes, correo electrónico info@befinance.cl en adelante "<strong>LOANS4B</strong>" o "El Prestador".</p>' +
+    '<p><strong>I.</strong> <strong>ASESORÍAS BE FINANCE SpA</strong>, RUT N° 78.302.775-5, sociedad legalmente constituida conforme a las leyes de la República de Chile, con domicilio en Av. Raúl Labbé 12613, Oficina 231, comuna de Lo Barnechea, Santiago, debidamente representada por Pablo Rivas Marín, cédula nacional de identidad número 10.860.107-8, y Roberto Pesce Centeno, cédula nacional de identidad N° 26.226.532-3, en su calidad de representantes, correo electrónico info@befinance.cl en adelante "<strong>BE FINANCE</strong>" o "El Prestador".</p>' +
 
     '<p><strong>II.</strong> '+compareceII+'</p>' +
 
     '<p>Ambas partes, en adelante conjuntamente referidas como "las Partes", han convenido en celebrar el presente Contrato de Prestación de Servicios de Gestión de Leaseback y/o Levantamiento de Capital, en adelante "el Contrato", el cual se regirá por las siguientes cláusulas:</p>' +
 
     '<h3>CLÁUSULA PRIMERA. OBJETO DEL CONTRATO:</h3>' +
-    '<p>LOANS4B se obliga, por cuenta del Cliente, a prestar servicios de asesoría y gestión especializada con el objeto de identificar, estructurar, postular y facilitar la obtención de un Leaseback y/o Levantamiento de Capital, otorgado por una entidad especializada, cuyo monto meta objetivo ascienda la suma aproximada de <strong>'+montoCLP+'</strong> (<strong>'+escapeHTML(montoLiteralTxt)+' pesos chilenos</strong>).</p>' +
+    '<p>BE FINANCE se obliga, por cuenta del Cliente, a prestar servicios de asesoría y gestión especializada con el objeto de identificar, estructurar, postular y facilitar la obtención de un Leaseback y/o Levantamiento de Capital, otorgado por una entidad especializada, cuyo monto meta objetivo ascienda la suma aproximada de <strong>'+montoCLP+'</strong> (<strong>'+escapeHTML(montoLiteralTxt)+' pesos chilenos</strong>).</p>' +
     '<p>El presente contrato no constituye una obligación de resultado, sino un compromiso profesional de medios y diligencia calificada conforme al estándar de la industria financiera.</p>' +
 
     '<h3>CLÁUSULA SEGUNDA. HONORARIOS Y FORMA DE PAGO:</h3>' +
-    '<p>Como retribución por los servicios descritos en la cláusula anterior, El Cliente pagará a LOANS4B un honorario total equivalente a <strong>'+honPreEval+' UF</strong> ('+honPreEvalLit+') por concepto de preevaluación, más un <strong>'+totalFee.toFixed(1)+'%</strong> del monto total del crédito aprobado por concepto de gestión y cierre de la operación. Dichos montos constituyen la única retribución de LOANS4B bajo el presente contrato.</p>' +
-    '<p>Adicionalmente, y de forma separada a los honorarios antes señalados, el Cliente deberá solventar los gastos propios de la operación, los cuales no constituyen honorarios ni remuneración para LOANS4B, sino desembolsos necesarios para la tramitación y formalización del financiamiento (gastos operacionales, notariales y de inscripción ante el Conservador de Bienes Raíces, entre otros).</p>' +
+    '<p>Como retribución por los servicios descritos en la cláusula anterior, El Cliente pagará a BE FINANCE un honorario total equivalente a <strong>'+honPreEval+' UF</strong> ('+honPreEvalLit+') por concepto de preevaluación, más un <strong>'+totalFee.toFixed(1)+'%</strong> del monto total del crédito aprobado por concepto de gestión y cierre de la operación. Dichos montos constituyen la única retribución de BE FINANCE bajo el presente contrato.</p>' +
+    '<p>Adicionalmente, y de forma separada a los honorarios antes señalados, el Cliente deberá solventar los gastos propios de la operación, los cuales no constituyen honorarios ni remuneración para BE FINANCE, sino desembolsos necesarios para la tramitación y formalización del financiamiento (gastos operacionales, notariales y de inscripción ante el Conservador de Bienes Raíces, entre otros).</p>' +
     '<p>El pago de los honorarios y de los gastos de la operación se efectuará según el siguiente desglose:</p>' +
-    '<p class="pago-item"><strong>Pago 1</strong> - Honorario de preevaluación equivalente a '+honPreEval+' UF, más '+gastosOp+' UF por concepto de gastos operacionales de la operación (los cuales no constituyen honorarios de LOANS4B, sino desembolsos necesarios para la tramitación), pagaderos al momento de la firma del presente contrato, en calidad de anticipo y habilitación del servicio.</p>' +
-    '<p class="pago-item"><strong>Pago 2</strong> - '+gastosNot+' UF por concepto de gastos de notaría e inscripción ante el Conservador de Bienes Raíces (CBR), correspondientes a desembolsos propios de la operación y no a honorarios de LOANS4B, pagaderos a 10 días corridos desde la firma del presente contrato.</p>' +
+    '<p class="pago-item"><strong>Pago 1</strong> - Honorario de preevaluación equivalente a '+honPreEval+' UF, más '+gastosOp+' UF por concepto de gastos operacionales de la operación (los cuales no constituyen honorarios de BE FINANCE, sino desembolsos necesarios para la tramitación), pagaderos al momento de la firma del presente contrato, en calidad de anticipo y habilitación del servicio.</p>' +
+    '<p class="pago-item"><strong>Pago 2</strong> - '+gastosNot+' UF por concepto de gastos de notaría e inscripción ante el Conservador de Bienes Raíces (CBR), correspondientes a desembolsos propios de la operación y no a honorarios de BE FINANCE, pagaderos a 10 días corridos desde la firma del presente contrato.</p>' +
     '<p class="pago-item"><strong>Pago 3</strong> – 50% de los Honorarios de gestión equivalente al '+pago3+'% del crédito aprobado, pagadero al momento del otorgamiento de la línea solicitada.</p>' +
     '<p class="pago-item"><strong>Pago 4</strong> – Saldo de los Honorarios de gestión equivalente al '+pago4+'% del crédito aprobado, pagadero contra entrega de la aprobación formal del crédito, acompañada de los contratos correspondientes emitidos por la entidad financiera para firma del Cliente.</p>' +
     '<p>Los honorarios de gestión se desglosan de la siguiente manera:</p>' +
@@ -5691,7 +5952,7 @@ function generarHTMLContrato(cto){
     '</ul>' +
     '<p>Los pagos deberán efectuarse mediante transferencia bancaria a las siguientes cuentas y se emitirán las facturas correspondientes conforme a la legislación tributaria vigente:</p>' +
     '<div class="banco-block">' +
-      '<p><strong>ASESORIAS LOANS4B SpA</strong></p>' +
+      '<p><strong>ASESORIAS BE FINANCE SpA</strong></p>' +
       '<p>RUT: 78.302.775-5</p>' +
       '<p>Banco: SANTANDER</p>' +
       '<p>Cuenta Corriente PESOS</p>' +
@@ -5700,12 +5961,12 @@ function generarHTMLContrato(cto){
     '</div>' +
 
     '<h3>CLÁUSULA TERCERA. INICIO DE GESTIÓN Y CONDICIONES DE DEVOLUCIÓN:</h3>' +
-    '<p>La prestación de los servicios contratados dará inicio una vez verificado el pago íntegro correspondiente al Pago 1, y siempre que el Cliente haya entregado de forma completa, veraz, suficiente y oportuna toda la documentación e información requerida para la correcta evaluación y tramitación de la solicitud ante LOANS4B.</p>' +
-    '<p><em>Condiciones de devolución del Pago 1:</em> El Pago 1 tendrá carácter de no reembolsable, salvo en los siguientes casos excepcionales: (a) que LOANS4B no inicie ningún trámite de gestión dentro de los 30 días hábiles siguientes a la recepción completa de la documentación del Cliente; o (b) que LOANS4B incumpla gravemente sus obligaciones esenciales bajo el presente contrato. En ningún caso procederá la devolución si el Cliente desiste voluntariamente del proceso o no entrega la documentación requerida en forma oportuna.</p>' +
+    '<p>La prestación de los servicios contratados dará inicio una vez verificado el pago íntegro correspondiente al Pago 1, y siempre que el Cliente haya entregado de forma completa, veraz, suficiente y oportuna toda la documentación e información requerida para la correcta evaluación y tramitación de la solicitud ante BE FINANCE.</p>' +
+    '<p><em>Condiciones de devolución del Pago 1:</em> El Pago 1 tendrá carácter de no reembolsable, salvo en los siguientes casos excepcionales: (a) que BE FINANCE no inicie ningún trámite de gestión dentro de los 30 días hábiles siguientes a la recepción completa de la documentación del Cliente; o (b) que BE FINANCE incumpla gravemente sus obligaciones esenciales bajo el presente contrato. En ningún caso procederá la devolución si el Cliente desiste voluntariamente del proceso o no entrega la documentación requerida en forma oportuna.</p>' +
     '<p>No procederá devolución alguna en caso de que el rechazo se origine, directa o indirectamente, por la entrega de información falsa, incompleta, inexacta, desactualizada o por omisiones relevantes atribuibles al Cliente o por desistimiento por parte de el Cliente.</p>' +
 
     '<h3>CLÁUSULA CUARTA. MANDATO:</h3>' +
-    '<p>Por el presente instrumento, El Cliente confiere a LOANS4B un mandato especial y suficiente para que, en su nombre y representación, realice todas las gestiones necesarias para la obtención del financiamiento descrito en la Cláusula Primera. Este mandato comprende especialmente las siguientes facultades:</p>' +
+    '<p>Por el presente instrumento, El Cliente confiere a BE FINANCE un mandato especial y suficiente para que, en su nombre y representación, realice todas las gestiones necesarias para la obtención del financiamiento descrito en la Cláusula Primera. Este mandato comprende especialmente las siguientes facultades:</p>' +
     '<ul>' +
       '<li>Presentar, en nombre del Cliente, antecedentes, solicitudes, formularios y toda documentación requerida ante instituciones financieras, fondos de inversión privados, entidades bancarias y cualquier otro financista potencial.</li>' +
       '<li>Solicitar, recibir y gestionar informes de tasación, estudios de títulos, carpetas de crédito y due diligence relacionados con la operación.</li>' +
@@ -5713,14 +5974,14 @@ function generarHTMLContrato(cto){
       '<li>Coordinar y programar reuniones, visitas a inmuebles, y cualquier trámite operativo necesario para el éxito de la operación.</li>' +
       '<li>En general, realizar todos los actos y gestiones de carácter no vinculante para el Cliente que sean necesarios para el avance del proceso de financiamiento.</li>' +
     '</ul>' +
-    '<p><strong>El presente mandato no faculta a LOANS4B para comprometer patrimonialmente al Cliente, suscribir contratos definitivos en su nombre, ni ejecutar actos jurídicos vinculantes sin su consentimiento expreso y por escrito.</strong></p>' +
-    '<p><em>Irrevocabilidad:</em> Una vez que la entidad financiera haya aprobado formalmente el financiamiento objeto de este contrato, el presente mandato se volverá irrevocable, no pudiendo el Cliente revocarlo ni impedir el cobro de los honorarios establecidos en la Cláusula Segunda, habida consideración de que dicha aprobación será consecuencia directa de la gestión de LOANS4B.</p>' +
+    '<p><strong>El presente mandato no faculta a BE FINANCE para comprometer patrimonialmente al Cliente, suscribir contratos definitivos en su nombre, ni ejecutar actos jurídicos vinculantes sin su consentimiento expreso y por escrito.</strong></p>' +
+    '<p><em>Irrevocabilidad:</em> Una vez que la entidad financiera haya aprobado formalmente el financiamiento objeto de este contrato, el presente mandato se volverá irrevocable, no pudiendo el Cliente revocarlo ni impedir el cobro de los honorarios establecidos en la Cláusula Segunda, habida consideración de que dicha aprobación será consecuencia directa de la gestión de BE FINANCE.</p>' +
 
     '<h3>CLÁUSULA QUINTA. NO CAPTACIÓN DIRECTA:</h3>' +
-    '<p>Por el presente instrumento y mientras el presente Contrato se encuentre vigente, El Cliente se obliga a no contactar directamente, ni por interpuesta persona, a las instituciones o inversionistas que LOANS4B le presente o identifique en el marco de este contrato, con el propósito de cerrar la operación sin la intervención de LOANS4B. El incumplimiento de esta obligación facultará a LOANS4B para exigir el pago íntegro del honorario de gestión (Pago 3) como si la operación hubiera sido obtenida con su intermediación.</p>' +
+    '<p>Por el presente instrumento y mientras el presente Contrato se encuentre vigente, El Cliente se obliga a no contactar directamente, ni por interpuesta persona, a las instituciones o inversionistas que BE FINANCE le presente o identifique en el marco de este contrato, con el propósito de cerrar la operación sin la intervención de BE FINANCE. El incumplimiento de esta obligación facultará a BE FINANCE para exigir el pago íntegro del honorario de gestión (Pago 3) como si la operación hubiera sido obtenida con su intermediación.</p>' +
 
     '<h3>CLÁUSULA SEXTA. OBLIGACIONES DEL PRESTADOR:</h3>' +
-    '<p>Son obligaciones de LOANS4B:</p>' +
+    '<p>Son obligaciones de BE FINANCE:</p>' +
     '<ul>' +
       '<li>Asesorar al Cliente en la recopilación, estructuración y presentación de la documentación requerida por la entidad financiera seleccionada.</li>' +
       '<li>Actuar como intermediario estratégico entre El Cliente y la institución durante el proceso de análisis, evaluación, aprobación y firma del contrato.</li>' +
@@ -5743,11 +6004,11 @@ function generarHTMLContrato(cto){
 
     '<h3>CLÁUSULA NOVENA. INCUMPLIMIENTO Y PENALIDADES:</h3>' +
     '<p>El incumplimiento de las obligaciones establecidas en el presente Contrato hará responsable a la Parte infractora de los daños y perjuicios que tal incumplimiento pueda causar a la otra Parte.</p>' +
-    '<p>En particular, si El Cliente viola la cláusula de exclusividad o no captación directa (Cláusula Quinta), deberá pagar a LOANS4B, a título de indemnización, una suma equivalente al '+totalFee.toFixed(1)+'% del monto del financiamiento objetivo señalado en la Cláusula Primera, con independencia de si la operación se concretó o no.</p>' +
+    '<p>En particular, si El Cliente viola la cláusula de exclusividad o no captación directa (Cláusula Quinta), deberá pagar a BE FINANCE, a título de indemnización, una suma equivalente al '+totalFee.toFixed(1)+'% del monto del financiamiento objetivo señalado en la Cláusula Primera, con independencia de si la operación se concretó o no.</p>' +
 
     '<h3>CLÁUSULA DÉCIMA. PLAZO DE VIGENCIA:</h3>' +
     '<p>El presente contrato tendrá una vigencia de ciento ochenta (180) días corridos, contados desde la fecha de su firma. Este plazo podrá ser prorrogado por mutuo acuerdo expreso entre las partes, mediante documento escrito y firmado.</p>' +
-    '<p>No obstante lo anterior, una vez que el financiamiento sea formalmente aprobado por la entidad financiera, las obligaciones de pago del Cliente (Pago 3) y el mandato otorgado a LOANS4B no podrán ser revocados, subsistiendo hasta el completo pago de los honorarios pactados.</p>' +
+    '<p>No obstante lo anterior, una vez que el financiamiento sea formalmente aprobado por la entidad financiera, las obligaciones de pago del Cliente (Pago 3) y el mandato otorgado a BE FINANCE no podrán ser revocados, subsistiendo hasta el completo pago de los honorarios pactados.</p>' +
 
     '<h3>CLÁUSULA UNDÉCIMA. LEY APLICABLE Y RESOLUCIÓN DE CONTROVERSIAS:</h3>' +
     '<p>El presente contrato se rige por las leyes de la República de Chile. Para todos los efectos legales derivados de este contrato, las partes fijan su domicilio en la ciudad de Santiago.</p>' +
@@ -5762,7 +6023,7 @@ function generarHTMLContrato(cto){
     '<div class="firmas">' +
       '<div class="firma-box">' +
         '<p>Firma: ___________________________________</p>' +
-        '<p><strong>Por: ASESORIAS LOANS4B SpA</strong></p>' +
+        '<p><strong>Por: ASESORIAS BE FINANCE SpA</strong></p>' +
         '<p>Roberto Pesce C. y Pablo Rivas M.</p>' +
       '</div>' +
       '<div class="firma-box">' +
@@ -6000,8 +6261,8 @@ function reporteEstadoBadgeColor(estado){
     'CONTACTADO':   { bg:'#dbeafe', fg:'#1e40af' },
     'EVALUANDO':    { bg:'#e0e7ff', fg:'#3730a3' },
     'SIM ENVIADA':  { bg:'#fef3c7', fg:'#854d0e' },
-    'NOTA DE VENTA':{ bg:'#dcfce7', fg:'#166534' },
-    'CONTRATO':     { bg:'#cffafe', fg:'#155e75' },
+    'NOTA DE VENTA':{ bg:'#e3eef9', fg:'#11537e' },
+    'CONTRATO':     { bg:'#cffafe', fg:'#1a527e' },
     'RECHAZO':      { bg:'#fee2e2', fg:'#991b1b' }
   })[estado] || { bg:'#f3f4f6', fg:'#374151' };
 }
@@ -6203,13 +6464,13 @@ function generarConclusiones(k, asesoresStats){
   // Top performer
   const topAs = asesoresStats.filter(a => a.contratos > 0).sort((a,b) => b.ingreso - a.ingreso)[0];
   if(topAs){
-    out.push({ icon:'🏆', color:'#1d7a5f', txt: 'Top performer: <strong>'+escapeHTML(topAs.nombre)+'</strong> con '+fmtCLP(topAs.ingreso)+' de ingresos generados ('+topAs.contratos+' contrato'+(topAs.contratos===1?'':'s')+').' });
+    out.push({ icon:'🏆', color:'#14568a', txt: 'Top performer: <strong>'+escapeHTML(topAs.nombre)+'</strong> con '+fmtCLP(topAs.ingreso)+' de ingresos generados ('+topAs.contratos+' contrato'+(topAs.contratos===1?'':'s')+').' });
   }
   // Producto estrella
   const productos = Object.entries(k.porProducto).filter(([_, p]) => p.ops > 0).sort((a,b) => b[1].ingreso - a[1].ingreso);
   if(productos.length > 0){
     const [topProdName, topProdData] = productos[0];
-    out.push({ icon:'🏷️', color:'#0a3d4a', txt: 'Producto que más generó: <strong>'+(topProdName==='leaseback'?'Leaseback Inmobiliario':'Crédito Hipotecario')+'</strong> con '+fmtCLP(topProdData.ingreso)+' en ingresos ('+topProdData.ops+' operación'+(topProdData.ops===1?'':'es')+').' });
+    out.push({ icon:'🏷️', color:'#0f3a5e', txt: 'Producto que más generó: <strong>'+(topProdName==='leaseback'?'Leaseback Inmobiliario':'Crédito Hipotecario')+'</strong> con '+fmtCLP(topProdData.ingreso)+' en ingresos ('+topProdData.ops+' operación'+(topProdData.ops===1?'':'es')+').' });
   }
   // Cuello de botella
   const stages = [
@@ -6239,7 +6500,7 @@ function generarConclusiones(k, asesoresStats){
   }
   // Refuerzo positivo si no hay nada negativo
   if(out.filter(o => o.icon === '⚠️').length === 0 && k.contratos > 0){
-    out.push({ icon:'✅', color:'#1d7a5f', txt: 'Sin cuellos de botella significativos detectados. Mantener el ritmo de trabajo y revisar oportunidades de optimización.' });
+    out.push({ icon:'✅', color:'#14568a', txt: 'Sin cuellos de botella significativos detectados. Mantener el ritmo de trabajo y revisar oportunidades de optimización.' });
   }
   // Si no hay ningún contrato, mensaje específico
   if(k.contratos === 0 && k.prospectos > 0){
@@ -6296,9 +6557,9 @@ function renderReporte(){
     { lbl:'Prospecto',  val:prospectos,  color:'#94a4af', pct:null },
     { lbl:'Contacto',   val:contactados, color:'#1a6aa0', pct:pct(contactados,prospectos) },
     { lbl:'Simulación', val:simulados,   color:'#a05c10', pct:pct(simulados,prospectos) },
-    { lbl:'Nota Venta', val:notasVenta,  color:'#2aa07f', pct:pct(notasVenta,prospectos) },
-    { lbl:'Contrato',   val:contratos,   color:'#0a3d4a', pct:pct(contratos,prospectos) },
-    { lbl:'Cerrado',    val:cerrados,    color:'#1d7a5f', pct:pct(cerrados,prospectos) }
+    { lbl:'Nota Venta', val:notasVenta,  color:'#1761a3', pct:pct(notasVenta,prospectos) },
+    { lbl:'Contrato',   val:contratos,   color:'#0f3a5e', pct:pct(contratos,prospectos) },
+    { lbl:'Cerrado',    val:cerrados,    color:'#14568a', pct:pct(cerrados,prospectos) }
   ];
   const embudoEl = document.getElementById('rp-embudo');
   if(embudoEl){
@@ -6479,7 +6740,7 @@ function renderReporte(){
   if(progresoEl){
     const pct = metaAplicada > 0 ? Math.min(100, (kpisEjec.ingreso/metaAplicada)*100) : 0;
     const restante = Math.max(0, metaAplicada - kpisEjec.ingreso);
-    const colorBarra = pct >= 100 ? '#1d7a5f' : (pct >= 75 ? '#2aa07f' : (pct >= 50 ? '#a05c10' : '#b52a2a'));
+    const colorBarra = pct >= 100 ? '#14568a' : (pct >= 75 ? '#1761a3' : (pct >= 50 ? '#a05c10' : '#b52a2a'));
     progresoEl.innerHTML =
       '<div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:12.5px;">'+
         '<span style="color:var(--text-2)">Meta '+tipoMetaLbl+': <strong>'+fmtCLP(metaAplicada)+'</strong></span>'+
@@ -6503,7 +6764,7 @@ function renderReporte(){
     const cardComp = (lbl, curr, prev, fmt) => {
       const d = delta(curr, prev);
       const arr = d >= 0 ? '↑' : '↓';
-      const col = d >= 0 ? '#1d7a5f' : '#b52a2a';
+      const col = d >= 0 ? '#14568a' : '#b52a2a';
       const fmtV = fmt || (v => v);
       return '<div style="background:#fafcfd; border:1px solid var(--border-l); border-radius:8px; padding:10px 12px;">'+
         '<div style="font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; font-weight:600;">'+lbl+'</div>'+
@@ -6538,7 +6799,7 @@ function renderReporte(){
     };
     prodEl.innerHTML = '<div style="display:flex; gap:12px; flex-wrap:wrap;">'+
       cardProd('🏠 Leaseback Inmobiliario', kpisEjec.porProducto.leaseback, '#a05c10')+
-      cardProd('💼 Crédito Hipotecario', kpisEjec.porProducto.hipotecario, '#1d7a5f')+
+      cardProd('💼 Crédito Hipotecario', kpisEjec.porProducto.hipotecario, '#14568a')+
     '</div>'+
     (kpisEjec.contratos === 0 ? '<div style="margin-top:10px; font-size:11.5px; color:var(--muted);">Sin operaciones cerradas en el período. Los datos aparecerán cuando haya contratos.</div>' : '');
   }
@@ -6599,7 +6860,7 @@ function renderReporte(){
   const cron = document.getElementById('rp-cronologia'); if(!cron) return;
   if(eventos.length===0){ cron.innerHTML = '<div style="font-size:13px; color:var(--muted); padding:6px 0">Sin eventos registrados en este período.</div>'; return; }
   cron.innerHTML = eventos.slice(0,200).map(e => {
-    const color = ({ cliente:'#3b82f6', sim:'#2aa07f', nota:'#8b5cf6', tarea:'#f59e0b' })[e.t] || '#94a3b8';
+    const color = ({ cliente:'#3b82f6', sim:'#1761a3', nota:'#8b5cf6', tarea:'#f59e0b' })[e.t] || '#94a3b8';
     const icon  = ({ cliente:'👤', sim:'📊', nota:'📄', tarea:'✅' })[e.t] || '•';
     return '<div class="tl-item">' +
       '<div class="tl-dot" style="background:'+color+'">'+icon+'</div>' +
@@ -6663,7 +6924,7 @@ function renderTablaResumenAsesores(rows){
   '</tr></thead><tbody>';
   rows.forEach(r => {
     const pctMeta = typeof r.pctMeta === 'number' ? r.pctMeta : 0;
-    const pctMetaColor = pctMeta >= 100 ? 'var(--green)' : (pctMeta >= 75 ? '#1d7a5f' : (pctMeta >= 50 ? 'var(--amber)' : 'var(--red)'));
+    const pctMetaColor = pctMeta >= 100 ? 'var(--green)' : (pctMeta >= 75 ? '#14568a' : (pctMeta >= 50 ? 'var(--amber)' : 'var(--red)'));
     h += '<tr>'+
       '<td><strong>'+escapeHTML(r.nombre)+'</strong>'+(r.rechazos>0?'<div style="font-size:10.5px; color:var(--red);">'+r.rechazos+' rechazo'+(r.rechazos===1?'':'s')+'</div>':'')+'</td>'+
       '<td class="num">'+r.prospectos+'</td>'+
@@ -6704,8 +6965,8 @@ function renderGraficoAsesoresSVG(rows){
   svg += '<g transform="translate('+labelW+', 8)">';
   svg += '<rect x="0" y="0" width="11" height="11" fill="#94a4af" rx="2"/>';
   svg += '<text x="16" y="10" font-family="Inter, sans-serif" font-size="11" fill="#475569">Prospectos</text>';
-  svg += '<rect x="100" y="0" width="11" height="11" fill="#0a3d4a" rx="2"/>';
-  svg += '<text x="116" y="10" font-family="Inter, sans-serif" font-size="11" fill="#0a3d4a">Contratos cerrados</text>';
+  svg += '<rect x="100" y="0" width="11" height="11" fill="#0f3a5e" rx="2"/>';
+  svg += '<text x="116" y="10" font-family="Inter, sans-serif" font-size="11" fill="#0f3a5e">Contratos cerrados</text>';
   svg += '</g>';
   // Filas
   data.forEach((r, i) => {
@@ -6720,10 +6981,10 @@ function renderGraficoAsesoresSVG(rows){
     // Barra de prospectos
     svg += '<rect x="'+labelW+'" y="'+y+'" width="'+wProsp+'" height="'+barH+'" fill="#94a4af" rx="3"/>';
     // Barra de contratos (más delgada, encima en otra fila)
-    svg += '<rect x="'+labelW+'" y="'+(y+barH+3)+'" width="'+wContr+'" height="6" fill="#0a3d4a" rx="2"/>';
+    svg += '<rect x="'+labelW+'" y="'+(y+barH+3)+'" width="'+wContr+'" height="6" fill="#0f3a5e" rx="2"/>';
     // Valores a la derecha
     svg += '<text x="'+(labelW+innerW+8)+'" y="'+(y+barH)+'" font-family="Inter, sans-serif" font-size="11" fill="#475569" font-variant-numeric="tabular-nums">'+r.prospectos+' prospectos</text>';
-    svg += '<text x="'+(labelW+innerW+8)+'" y="'+(y+barH+13)+'" font-family="Inter, sans-serif" font-size="10.5" fill="#0a3d4a" font-weight="700" font-variant-numeric="tabular-nums">'+r.contratos+' contratos</text>';
+    svg += '<text x="'+(labelW+innerW+8)+'" y="'+(y+barH+13)+'" font-family="Inter, sans-serif" font-size="10.5" fill="#0f3a5e" font-weight="700" font-variant-numeric="tabular-nums">'+r.contratos+' contratos</text>';
   });
   svg += '</svg>';
   cont.innerHTML = svg;
@@ -6785,29 +7046,29 @@ function descargarReporteEjecutivoPDF(){
   // KPI principal: 4 cards (Ingresos, Ticket, Tasa cierre, Ciclo)
   const pctMetaPDF = metaAplPDF > 0 ? Math.round(kpisEjecPDF.ingreso/metaAplPDF*100) : 0;
   const kpiHTML = '<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:10px 0 14px;">' +
-    '<div style="border:1px solid #e5e7eb; border-radius:8px; padding:10px 12px; background:#fafcfd"><div style="font-size:9px; color:#6c757d; text-transform:uppercase; letter-spacing:0.6px; font-weight:600">Ingresos Be Finance</div><div style="font-size:22px; font-weight:800; color:#0a3d4a; margin-top:2px">'+fmtCLP(kpisEjecPDF.ingreso)+'</div><div style="font-size:9.5px; color:#6c757d; margin-top:2px">'+pctMetaPDF+'% de meta '+tipoMetaPDF+'</div></div>' +
-    '<div style="border:1px solid #e5e7eb; border-radius:8px; padding:10px 12px; background:#fafcfd"><div style="font-size:9px; color:#6c757d; text-transform:uppercase; letter-spacing:0.6px; font-weight:600">Ticket promedio</div><div style="font-size:22px; font-weight:800; color:#2aa07f; margin-top:2px">'+fmtCLP(kpisEjecPDF.ticketProm)+'</div><div style="font-size:9.5px; color:#6c757d; margin-top:2px">'+kpisEjecPDF.contratos+' contrato'+(kpisEjecPDF.contratos===1?'':'s')+' cerrado'+(kpisEjecPDF.contratos===1?'':'s')+'</div></div>' +
+    '<div style="border:1px solid #e5e7eb; border-radius:8px; padding:10px 12px; background:#fafcfd"><div style="font-size:9px; color:#6c757d; text-transform:uppercase; letter-spacing:0.6px; font-weight:600">Ingresos Be Finance</div><div style="font-size:22px; font-weight:800; color:#0f3a5e; margin-top:2px">'+fmtCLP(kpisEjecPDF.ingreso)+'</div><div style="font-size:9.5px; color:#6c757d; margin-top:2px">'+pctMetaPDF+'% de meta '+tipoMetaPDF+'</div></div>' +
+    '<div style="border:1px solid #e5e7eb; border-radius:8px; padding:10px 12px; background:#fafcfd"><div style="font-size:9px; color:#6c757d; text-transform:uppercase; letter-spacing:0.6px; font-weight:600">Ticket promedio</div><div style="font-size:22px; font-weight:800; color:#1761a3; margin-top:2px">'+fmtCLP(kpisEjecPDF.ticketProm)+'</div><div style="font-size:9.5px; color:#6c757d; margin-top:2px">'+kpisEjecPDF.contratos+' contrato'+(kpisEjecPDF.contratos===1?'':'s')+' cerrado'+(kpisEjecPDF.contratos===1?'':'s')+'</div></div>' +
     '<div style="border:1px solid #e5e7eb; border-radius:8px; padding:10px 12px; background:#fafcfd"><div style="font-size:9px; color:#6c757d; text-transform:uppercase; letter-spacing:0.6px; font-weight:600">Tasa de cierre</div><div style="font-size:22px; font-weight:800; color:#1a6aa0; margin-top:2px">'+(kpisEjecPDF.tasaCierre*100).toFixed(1)+'%</div><div style="font-size:9.5px; color:#6c757d; margin-top:2px">'+kpisEjecPDF.contratos+' / '+kpisEjecPDF.prospectos+' prospectos</div></div>' +
     '<div style="border:1px solid #e5e7eb; border-radius:8px; padding:10px 12px; background:#fafcfd"><div style="font-size:9px; color:#6c757d; text-transform:uppercase; letter-spacing:0.6px; font-weight:600">Ciclo de ventas</div><div style="font-size:22px; font-weight:800; color:#a05c10; margin-top:2px">'+(kpisEjecPDF.ciclo>0?kpisEjecPDF.ciclo.toFixed(1)+' d':'—')+'</div><div style="font-size:9.5px; color:#6c757d; margin-top:2px">días promedio · createdAt → contrato</div></div>' +
   '</div>';
 
   // Resumen ejecutivo (viñetas)
   const lineas = generarResumenEjec(kpisEjecPDF, kpisAntPDF, metaAplPDF);
-  const resumenPDF = '<div style="background:#fafcfd; border-left:4px solid #2aa07f; border-radius:6px; padding:10px 14px; margin-bottom:12px;">'+
-    '<div style="font-size:10.5px; color:#0a3d4a; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">📌 Resumen Ejecutivo</div>'+
+  const resumenPDF = '<div style="background:#fafcfd; border-left:4px solid #1761a3; border-radius:6px; padding:10px 14px; margin-bottom:12px;">'+
+    '<div style="font-size:10.5px; color:#0f3a5e; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">📌 Resumen Ejecutivo</div>'+
     '<ul style="margin:0; padding:0; list-style:none; font-size:10pt; line-height:1.6;">'+
       lineas.map(l => '<li style="padding:2px 0;">• '+l+'</li>').join('')+
     '</ul>'+
   '</div>';
 
   // Progreso meta (barra)
-  const colorMeta = pctMetaPDF >= 100 ? '#1d7a5f' : (pctMetaPDF >= 75 ? '#2aa07f' : (pctMetaPDF >= 50 ? '#a05c10' : '#b52a2a'));
+  const colorMeta = pctMetaPDF >= 100 ? '#14568a' : (pctMetaPDF >= 75 ? '#1761a3' : (pctMetaPDF >= 50 ? '#a05c10' : '#b52a2a'));
   const progresoPDF = '<div style="margin-bottom:12px;">'+
     '<div style="font-size:9.5px; color:#6c757d; text-transform:uppercase; letter-spacing:0.5px; font-weight:600; margin-bottom:5px;">🎯 Progreso meta '+tipoMetaPDF+' · '+fmtCLP(metaAplPDF)+'</div>'+
     '<div style="background:#f3f6f8; border:1px solid #e5e7eb; border-radius:6px; height:22px; position:relative; overflow:hidden;">'+
       '<div style="background:'+colorMeta+'; height:100%; width:'+Math.min(100,pctMetaPDF)+'%; display:flex; align-items:center; justify-content:flex-end; padding-right:8px; color:#fff; font-size:10px; font-weight:700;">'+(pctMetaPDF>=10?pctMetaPDF+'%':'')+'</div>'+
     '</div>'+
-    '<div style="font-size:9.5px; color:#6c757d; margin-top:4px;">Avance: <strong style="color:#0a3d4a">'+fmtCLP(kpisEjecPDF.ingreso)+'</strong> de '+fmtCLP(metaAplPDF)+(pctMetaPDF<100?' · Restante: '+fmtCLP(Math.max(0,metaAplPDF-kpisEjecPDF.ingreso)):' · 🎉 Meta superada')+'</div>'+
+    '<div style="font-size:9.5px; color:#6c757d; margin-top:4px;">Avance: <strong style="color:#0f3a5e">'+fmtCLP(kpisEjecPDF.ingreso)+'</strong> de '+fmtCLP(metaAplPDF)+(pctMetaPDF<100?' · Restante: '+fmtCLP(Math.max(0,metaAplPDF-kpisEjecPDF.ingreso)):' · 🎉 Meta superada')+'</div>'+
   '</div>';
 
   // Comparativa con período anterior (4 mini cards)
@@ -6815,7 +7076,7 @@ function descargarReporteEjecutivoPDF(){
   const compCard = (lbl, curr, prev, fmt) => {
     const d = deltaC(curr, prev);
     const arr = d >= 0 ? '↑' : '↓';
-    const col = d >= 0 ? '#1d7a5f' : '#b52a2a';
+    const col = d >= 0 ? '#14568a' : '#b52a2a';
     const fv = fmt || (v => v);
     return '<div style="background:#fafcfd; border:1px solid #e5e7eb; border-radius:6px; padding:8px 10px;"><div style="font-size:8.5px; color:#6c757d; text-transform:uppercase; letter-spacing:0.5px; font-weight:600;">'+lbl+'</div><div style="font-size:14px; font-weight:700; color:#1a2730; margin-top:1px; font-variant-numeric:tabular-nums;">'+fv(curr)+'</div><div style="font-size:9.5px; color:'+col+'; font-weight:600; margin-top:1px;">'+arr+' '+Math.abs(d).toFixed(1)+'% <span style="color:#6c757d; font-weight:400;">vs '+fv(prev)+'</span></div></div>';
   };
@@ -6838,7 +7099,7 @@ function descargarReporteEjecutivoPDF(){
   const productoHTML = '<div style="margin-bottom:12px;"><div style="font-size:9.5px; color:#6c757d; text-transform:uppercase; letter-spacing:0.5px; font-weight:600; margin-bottom:5px;">🏷️ Análisis por producto</div>'+
     '<div style="display:flex; gap:8px;">'+
       cardProdPDF('🏠 Leaseback', kpisEjecPDF.porProducto.leaseback, '#a05c10')+
-      cardProdPDF('💼 Hipotecario', kpisEjecPDF.porProducto.hipotecario, '#1d7a5f')+
+      cardProdPDF('💼 Hipotecario', kpisEjecPDF.porProducto.hipotecario, '#14568a')+
     '</div></div>';
 
   // (conclusiones removidas)
@@ -6850,9 +7111,9 @@ function descargarReporteEjecutivoPDF(){
     { lbl:'Prospecto',  val:prospectos,  color:'#94a4af', pct:null },
     { lbl:'Contacto',   val:contactados, color:'#1a6aa0', pct:pctP(contactados,prospectos) },
     { lbl:'Simulación', val:simulados,   color:'#a05c10', pct:pctP(simulados,prospectos) },
-    { lbl:'Nota Venta', val:notasV,      color:'#2aa07f', pct:pctP(notasV,prospectos) },
-    { lbl:'Contrato',   val:contratos,   color:'#0a3d4a', pct:pctP(contratos,prospectos) },
-    { lbl:'Cerrado',    val:cerradosEjec,color:'#1d7a5f', pct:pctP(cerradosEjec,prospectos) }
+    { lbl:'Nota Venta', val:notasV,      color:'#1761a3', pct:pctP(notasV,prospectos) },
+    { lbl:'Contrato',   val:contratos,   color:'#0f3a5e', pct:pctP(contratos,prospectos) },
+    { lbl:'Cerrado',    val:cerradosEjec,color:'#14568a', pct:pctP(cerradosEjec,prospectos) }
   ];
   let embudoHTML = '<div style="margin-bottom:14px;"><div style="font-size:9.5px; color:#6c757d; text-transform:uppercase; letter-spacing:0.5px; font-weight:600; margin-bottom:6px;">📊 Embudo de conversión</div><div style="display:flex; gap:4px; align-items:stretch;">';
   embudoSteps.forEach((s,i) => {
@@ -6914,7 +7175,7 @@ function descargarReporteEjecutivoPDF(){
   if(rowsAs.length){
     tablaResHTML = '<div style="margin-bottom:14px;"><div style="font-size:9.5px; color:#6c757d; text-transform:uppercase; letter-spacing:0.5px; font-weight:600; margin-bottom:6px;">👥 Resumen del equipo</div>'+
       '<table style="width:100%; border-collapse:collapse; font-size:9.5pt;">'+
-      '<thead><tr style="background:#0a3d4a; color:#fff;">'+
+      '<thead><tr style="background:#0f3a5e; color:#fff;">'+
         '<th style="padding:6px 6px; text-align:left;">Asesor</th>'+
         '<th style="padding:6px 6px; text-align:right;">Prosp.</th>'+
         '<th style="padding:6px 6px; text-align:right;">Contac.</th>'+
@@ -6925,15 +7186,15 @@ function descargarReporteEjecutivoPDF(){
         '<th style="padding:6px 6px; text-align:right;">% Meta</th>'+
       '</tr></thead><tbody>';
     rowsAs.forEach(r => {
-      const pctC = r.pctMeta >= 100 ? '#1d7a5f' : (r.pctMeta >= 75 ? '#2aa07f' : (r.pctMeta >= 50 ? '#a05c10' : '#b52a2a'));
+      const pctC = r.pctMeta >= 100 ? '#14568a' : (r.pctMeta >= 75 ? '#1761a3' : (r.pctMeta >= 50 ? '#a05c10' : '#b52a2a'));
       tablaResHTML += '<tr style="border-bottom:1px solid #e5e7eb;">'+
         '<td style="padding:5px 6px;"><strong>'+escapeHTML(r.nombre)+'</strong>'+(r.rechazos>0?' <span style="color:#b52a2a; font-size:8.5pt;">('+r.rechazos+'r)</span>':'')+'</td>'+
         '<td style="padding:5px 6px; text-align:right; font-variant-numeric:tabular-nums;">'+r.prospectos+'</td>'+
         '<td style="padding:5px 6px; text-align:right; font-variant-numeric:tabular-nums;">'+r.contactados+'</td>'+
         '<td style="padding:5px 6px; text-align:right; font-variant-numeric:tabular-nums;">'+r.simulados+'</td>'+
         '<td style="padding:5px 6px; text-align:right; font-variant-numeric:tabular-nums;">'+r.notasV+'</td>'+
-        '<td style="padding:5px 6px; text-align:right; font-variant-numeric:tabular-nums; color:#2aa07f; font-weight:700;">'+r.contratos+'</td>'+
-        '<td style="padding:5px 6px; text-align:right; font-variant-numeric:tabular-nums; color:#0a3d4a; font-weight:700;">'+fmtCLP(r.ingreso||0)+'</td>'+
+        '<td style="padding:5px 6px; text-align:right; font-variant-numeric:tabular-nums; color:#1761a3; font-weight:700;">'+r.contratos+'</td>'+
+        '<td style="padding:5px 6px; text-align:right; font-variant-numeric:tabular-nums; color:#0f3a5e; font-weight:700;">'+fmtCLP(r.ingreso||0)+'</td>'+
         '<td style="padding:5px 6px; text-align:right; font-variant-numeric:tabular-nums; color:'+pctC+'; font-weight:700;">'+(r.pctMeta||0)+'%</td>'+
       '</tr>';
     });
@@ -6952,7 +7213,7 @@ function descargarReporteEjecutivoPDF(){
   if(notasDia.length){
     notasHTML = '<div style="margin-top:6px; background:#fafcfd; border:1px solid #e5e7eb; border-radius:8px; padding:10px 14px;">' +
       '<div style="font-size:9.5px; color:#6c757d; text-transform:uppercase; letter-spacing:0.5px; font-weight:600; margin-bottom:4px;">📌 Notas del día</div>'+
-      notasDia.map(n => '<div style="padding:4px 0; font-size:10.5px; line-height:1.45;"><strong style="color:#0a3d4a">'+escapeHTML(n.t)+':</strong> <span style="color:#3a4a55">'+escapeHTML(n.d)+'</span></div>').join('') +
+      notasDia.map(n => '<div style="padding:4px 0; font-size:10.5px; line-height:1.45;"><strong style="color:#0f3a5e">'+escapeHTML(n.t)+':</strong> <span style="color:#3a4a55">'+escapeHTML(n.d)+'</span></div>').join('') +
     '</div>';
   }
 
@@ -6960,9 +7221,8 @@ function descargarReporteEjecutivoPDF(){
   const idCot = generarIdCot();
   const cuerpo =
     pdfHeader(cfg, 'Reporte Ejecutivo · '+tituloRango, idCot) +
-    '<h1 style="font-family:Inter,sans-serif; font-size:17px; color:#0a3d4a; margin:10px 0 2px; font-weight:700;">Reporte Ejecutivo · Equipo Comercial</h1>' +
-    '<div style="font-size:10.5px; color:#6c757d; margin-bottom:4px;">'+escapeHTML((cfg.empresa||'Asesorías Be Finance SpA')+' · Generado por '+(CURRENT_PROFILE?CURRENT_PROFILE.nombre:'(asesor)'))+'</div>' +
-    '<div style="font-size:10.5px; color:#6c757d; margin-bottom:10px;">Período: <strong style="color:#0a3d4a">'+escapeHTML(tituloRango)+'</strong> · Filtro: <strong>'+escapeHTML(asesNomFiltro)+'</strong> · Generado el '+fmtTimestamp(new Date())+'</div>' +
+    '<h1 style="font-family:Inter,sans-serif; font-size:17px; color:#0f3a5e; margin:10px 0 2px; font-weight:700;">Reporte Ejecutivo · Equipo Comercial</h1>' +
+    '<div style="font-size:10.5px; color:#6c757d; margin-bottom:10px;">Período: <strong style="color:#0f3a5e">'+escapeHTML(tituloRango)+'</strong> · Filtro: <strong>'+escapeHTML(asesNomFiltro)+'</strong> · Generado el '+fmtTimestamp(new Date())+'</div>' +
     resumenPDF +
     progresoPDF +
     kpiHTML +
@@ -7022,8 +7282,8 @@ function descargarReportePDF(){
 
   // === KPI cards (4): Prospectos · Sims · NV · Contratos ===
   const kpiHTML = '<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:12px 0 14px;">' +
-    '<div style="border:1px solid #e5e7eb; border-radius:8px; padding:10px 12px; background:#fafcfd"><div style="font-size:9px; color:#6c757d; text-transform:uppercase; letter-spacing:0.6px; font-weight:600">Prospectos</div><div style="font-size:26px; font-weight:800; color:#0a3d4a; margin-top:2px">'+prospectosPDF+'</div><div style="font-size:9.5px; color:#6c757d; margin-top:2px">'+(rechazos>0 ? rechazos+' rechazo'+(rechazos===1?'':'s')+' · Efectividad '+efecPDF+'%' : 'leads totales')+'</div></div>' +
-    '<div style="border:1px solid #e5e7eb; border-radius:8px; padding:10px 12px; background:#fafcfd"><div style="font-size:9px; color:#6c757d; text-transform:uppercase; letter-spacing:0.6px; font-weight:600">Simulaciones</div><div style="font-size:26px; font-weight:800; color:#2aa07f; margin-top:2px">'+simuladosPDF+'</div><div style="font-size:9.5px; color:#6c757d; margin-top:2px">'+pctPDF(simuladosPDF,prospectosPDF)+'% conversión desde prospectos</div></div>' +
+    '<div style="border:1px solid #e5e7eb; border-radius:8px; padding:10px 12px; background:#fafcfd"><div style="font-size:9px; color:#6c757d; text-transform:uppercase; letter-spacing:0.6px; font-weight:600">Prospectos</div><div style="font-size:26px; font-weight:800; color:#0f3a5e; margin-top:2px">'+prospectosPDF+'</div><div style="font-size:9.5px; color:#6c757d; margin-top:2px">'+(rechazos>0 ? rechazos+' rechazo'+(rechazos===1?'':'s')+' · Efectividad '+efecPDF+'%' : 'leads totales')+'</div></div>' +
+    '<div style="border:1px solid #e5e7eb; border-radius:8px; padding:10px 12px; background:#fafcfd"><div style="font-size:9px; color:#6c757d; text-transform:uppercase; letter-spacing:0.6px; font-weight:600">Simulaciones</div><div style="font-size:26px; font-weight:800; color:#1761a3; margin-top:2px">'+simuladosPDF+'</div><div style="font-size:9.5px; color:#6c757d; margin-top:2px">'+pctPDF(simuladosPDF,prospectosPDF)+'% conversión desde prospectos</div></div>' +
     '<div style="border:1px solid #e5e7eb; border-radius:8px; padding:10px 12px; background:#fafcfd"><div style="font-size:9px; color:#6c757d; text-transform:uppercase; letter-spacing:0.6px; font-weight:600">Notas de Venta</div><div style="font-size:26px; font-weight:800; color:#1a6aa0; margin-top:2px">'+notasVPDF+'</div><div style="font-size:9.5px; color:#6c757d; margin-top:2px">'+pctPDF(notasVPDF,prospectosPDF)+'% · '+pctPDF(notasVPDF,simuladosPDF)+'% desde sims</div></div>' +
     '<div style="border:1px solid #e5e7eb; border-radius:8px; padding:10px 12px; background:#fafcfd"><div style="font-size:9px; color:#6c757d; text-transform:uppercase; letter-spacing:0.6px; font-weight:600">Tasa de cierre</div><div style="font-size:26px; font-weight:800; color:#a05c10; margin-top:2px">'+cierrePDF+'%</div><div style="font-size:9.5px; color:#6c757d; margin-top:2px">'+contratosPDF+' contrato'+(contratosPDF===1?'':'s')+' enviados</div></div>' +
   '</div>';
@@ -7033,8 +7293,8 @@ function descargarReportePDF(){
     { lbl:'Prospecto',  val:prospectosPDF,  color:'#94a4af', pct:null },
     { lbl:'Contacto',   val:contactadosPDF, color:'#1a6aa0', pct:pctPDF(contactadosPDF,prospectosPDF) },
     { lbl:'Simulación', val:simuladosPDF,   color:'#a05c10', pct:pctPDF(simuladosPDF,prospectosPDF) },
-    { lbl:'Nota Venta', val:notasVPDF,      color:'#2aa07f', pct:pctPDF(notasVPDF,prospectosPDF) },
-    { lbl:'Contrato',   val:contratosPDF,   color:'#0a3d4a', pct:pctPDF(contratosPDF,prospectosPDF) }
+    { lbl:'Nota Venta', val:notasVPDF,      color:'#1761a3', pct:pctPDF(notasVPDF,prospectosPDF) },
+    { lbl:'Contrato',   val:contratosPDF,   color:'#0f3a5e', pct:pctPDF(contratosPDF,prospectosPDF) }
   ];
   let embudoHTMLpdf = '<div style="margin-bottom:14px;"><div style="font-size:9.5px; color:#6c757d; text-transform:uppercase; letter-spacing:0.5px; font-weight:600; margin-bottom:6px;">📊 Embudo de conversión</div><div style="display:flex; gap:4px; align-items:stretch;">';
   embudoSteps.forEach((s,i) => {
@@ -7094,12 +7354,12 @@ function descargarReportePDF(){
       });
       bloquesHTML +=
         '<div style="margin-bottom:14px; border:1px solid #e5e7eb; border-radius:8px; overflow:hidden;">' +
-        '<div style="background:#0a3d4a; color:#fff; padding:8px 12px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">' +
+        '<div style="background:#0f3a5e; color:#fff; padding:8px 12px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">' +
         '<div style="font-size:12px; font-weight:700; letter-spacing:0.4px; text-transform:uppercase">👤 '+escapeHTML(a.nombre)+' · Asesor</div>' +
-        '<div style="font-size:10px; color:#aed4cd; font-weight:500">'+escapeHTML(headerInfo)+'</div>' +
+        '<div style="font-size:10px; color:#b6cee1; font-weight:500">'+escapeHTML(headerInfo)+'</div>' +
         '</div>' +
         '<table style="width:100%; border-collapse:collapse; font-size:10.5px;">'+
-        '<thead><tr style="background:#f3f6f8; color:#0a3d4a;"><th style="padding:5px 8px; text-align:center; font-size:9px; text-transform:uppercase; letter-spacing:0.4px; font-weight:700; width:30px">#</th><th style="padding:5px 8px; text-align:left; font-size:9px; text-transform:uppercase; letter-spacing:0.4px; font-weight:700; width:110px">Estado</th><th style="padding:5px 8px; text-align:left; font-size:9px; text-transform:uppercase; letter-spacing:0.4px; font-weight:700">Cliente</th><th style="padding:5px 8px; text-align:left; font-size:9px; text-transform:uppercase; letter-spacing:0.4px; font-weight:700">Detalle / Observación</th></tr></thead>'+
+        '<thead><tr style="background:#f3f6f8; color:#0f3a5e;"><th style="padding:5px 8px; text-align:center; font-size:9px; text-transform:uppercase; letter-spacing:0.4px; font-weight:700; width:30px">#</th><th style="padding:5px 8px; text-align:left; font-size:9px; text-transform:uppercase; letter-spacing:0.4px; font-weight:700; width:110px">Estado</th><th style="padding:5px 8px; text-align:left; font-size:9px; text-transform:uppercase; letter-spacing:0.4px; font-weight:700">Cliente</th><th style="padding:5px 8px; text-align:left; font-size:9px; text-transform:uppercase; letter-spacing:0.4px; font-weight:700">Detalle / Observación</th></tr></thead>'+
         '<tbody>'+rows+'</tbody></table></div>';
     });
   }
@@ -7119,7 +7379,7 @@ function descargarReportePDF(){
   let notasHTML = '';
   if(notasDia.length){
     notasHTML = '<div style="margin-top:6px; background:#fafcfd; border:1px solid #e5e7eb; border-radius:8px; padding:12px 14px;">' +
-      notasDia.map(n => '<div style="padding:5px 0; font-size:10.5px; line-height:1.5;"><strong style="color:#0a3d4a">'+escapeHTML(n.t)+':</strong> <span style="color:#3a4a55">'+escapeHTML(n.d)+'</span></div>').join('') +
+      notasDia.map(n => '<div style="padding:5px 0; font-size:10.5px; line-height:1.5;"><strong style="color:#0f3a5e">'+escapeHTML(n.t)+':</strong> <span style="color:#3a4a55">'+escapeHTML(n.d)+'</span></div>').join('') +
     '</div>';
   }
 
@@ -7131,12 +7391,12 @@ function descargarReportePDF(){
 
   const cuerpo =
     pdfHeader(cfg, 'Reporte Diario · '+tituloRango, idCot) +
-    '<h1 style="font-family:Inter,sans-serif; font-size:18px; color:#0a3d4a; margin:14px 0 4px; font-weight:700;">'+escapeHTML(tituloDoc)+'</h1>' +
-    '<div style="font-size:10.5px; color:#6c757d; margin-bottom:6px;">Período: <strong style="color:#0a3d4a">'+escapeHTML(tituloRango)+'</strong> · Filtro asesor: <strong>'+escapeHTML(asesNomFiltro)+'</strong> · Generado el '+fmtTimestamp(new Date())+'</div>' +
+    '<h1 style="font-family:Inter,sans-serif; font-size:18px; color:#0f3a5e; margin:14px 0 4px; font-weight:700;">'+escapeHTML(tituloDoc)+'</h1>' +
+    '<div style="font-size:10.5px; color:#6c757d; margin-bottom:6px;">Período: <strong style="color:#0f3a5e">'+escapeHTML(tituloRango)+'</strong> · Filtro asesor: <strong>'+escapeHTML(asesNomFiltro)+'</strong> · Generado el '+fmtTimestamp(new Date())+'</div>' +
     kpiHTML +
     embudoHTMLpdf +
     bloquesHTML +
-    (notasHTML ? '<h2 style="font-family:Inter,sans-serif; font-size:13px; color:#0a3d4a; margin:18px 0 6px; font-weight:700;">📌 Notas del día</h2>' + notasHTML : '') +
+    (notasHTML ? '<h2 style="font-family:Inter,sans-serif; font-size:13px; color:#0f3a5e; margin:18px 0 6px; font-weight:700;">📌 Notas del día</h2>' + notasHTML : '') +
     '<div style="font-size:9.5px; color:#6c757d; margin-top:18px; padding:10px 12px; background:#fafcfd; border:1px solid #e5e7eb; border-radius:6px; line-height:1.5;"><strong>Cómo se calculan los indicadores:</strong> Efectividad = (Actividades − Rechazos) / Total Actividades. Tasa de Cierre = Contratos enviados / Total Actividades. UF simulado considera el monto financiado de las simulaciones del período.</div>' +
     ''; // Sin disclaimer en reportes — solo aparece en PDFs de simulación
 
@@ -7342,7 +7602,7 @@ function descargarPDFLider(){
   const kpiBox = (lbl, val, sub) =>
     '<div style="border:1px solid #e5e7eb; border-radius:8px; padding:14px 16px; flex:1;">' +
       '<div style="font-size:9.5px; color:#6c757d; text-transform:uppercase; letter-spacing:0.7px; font-weight:600;">'+lbl+'</div>' +
-      '<div style="font-size:22px; font-weight:700; color:#0a3d4a; margin-top:3px; font-variant-numeric:tabular-nums;">'+val+'</div>' +
+      '<div style="font-size:22px; font-weight:700; color:#0f3a5e; margin-top:3px; font-variant-numeric:tabular-nums;">'+val+'</div>' +
       (sub ? '<div style="font-size:10px; color:#6c757d; margin-top:2px">'+sub+'</div>' : '') +
     '</div>';
   const kpiHTML = '<div style="display:flex; gap:10px; margin:10px 0 16px;">' +
@@ -7353,23 +7613,23 @@ function descargarPDFLider(){
   '</div>';
 
   const maxC = Math.max(1, ...d.funnel.map(f=>f.count));
-  let funnelHTML = '<h3 style="font-size:11px; font-weight:700; color:#0a3d4a; text-transform:uppercase; letter-spacing:0.8px; margin:14px 0 8px;">Embudo de Conversión</h3>' +
+  let funnelHTML = '<h3 style="font-size:11px; font-weight:700; color:#0f3a5e; text-transform:uppercase; letter-spacing:0.8px; margin:14px 0 8px;">Embudo de Conversión</h3>' +
     '<table style="width:100%; border-collapse:collapse; font-size:10.5px; background:#fff;">';
   d.funnel.forEach(f=>{
     const w = (f.count/maxC*100).toFixed(0);
     const convDisp = f.convPct==null ? '—' : fmtPct(f.convPct,0).replace(',00','');
     funnelHTML += '<tr>' +
-      '<td style="padding:5px 8px; width:130px; font-weight:600; color:#0a3d4a;"><span style="display:inline-block; width:8px; height:8px; background:'+f.etapa.color+'; border-radius:50%; margin-right:5px"></span>'+f.etapa.label+'</td>' +
+      '<td style="padding:5px 8px; width:130px; font-weight:600; color:#0f3a5e;"><span style="display:inline-block; width:8px; height:8px; background:'+f.etapa.color+'; border-radius:50%; margin-right:5px"></span>'+f.etapa.label+'</td>' +
       '<td style="padding:5px 8px;"><div style="background:#f3f6f8; height:16px; border-radius:3px; overflow:hidden;"><div style="width:'+w+'%; height:100%; background:'+f.etapa.color+';"></div></div></td>' +
-      '<td style="padding:5px 8px; width:50px; text-align:right; font-weight:700; color:#0a3d4a;">'+f.count+'</td>' +
+      '<td style="padding:5px 8px; width:50px; text-align:right; font-weight:700; color:#0f3a5e;">'+f.count+'</td>' +
       '<td style="padding:5px 8px; width:50px; text-align:right; color:#6c757d;">'+convDisp+'</td>' +
     '</tr>';
   });
   funnelHTML += '</table>';
 
-  let tablaHTML = '<h3 style="font-size:11px; font-weight:700; color:#0a3d4a; text-transform:uppercase; letter-spacing:0.8px; margin:18px 0 8px;">Conversión por Asesor</h3>' +
+  let tablaHTML = '<h3 style="font-size:11px; font-weight:700; color:#0f3a5e; text-transform:uppercase; letter-spacing:0.8px; margin:18px 0 8px;">Conversión por Asesor</h3>' +
     '<table style="width:100%; border-collapse:collapse; font-size:10.5px; margin-top:6px;">' +
-    '<thead><tr style="background:#0a3d4a; color:#fff;">' +
+    '<thead><tr style="background:#0f3a5e; color:#fff;">' +
       '<th style="padding:7px 9px; text-align:left">ASESOR</th>' +
       '<th style="padding:7px 9px; text-align:right">SIMS</th>' +
       '<th style="padding:7px 9px; text-align:right">NOTAS</th>' +
@@ -7390,7 +7650,7 @@ function descargarPDFLider(){
       '<td style="padding:7px 9px; text-align:right; font-variant-numeric:tabular-nums;">'+fmtUF(r.uf)+'</td>' +
     '</tr>';
   });
-  tablaHTML += '<tr style="background:#eef5f3; font-weight:700; color:#0a3d4a;">' +
+  tablaHTML += '<tr style="background:#eef4fb; font-weight:700; color:#0f3a5e;">' +
     '<td style="padding:8px 9px;">TOTAL EQUIPO</td>' +
     '<td style="padding:8px 9px; text-align:right">'+d.totals.sims+'</td>' +
     '<td style="padding:8px 9px; text-align:right">'+d.totals.notas+'</td>' +
@@ -7400,7 +7660,7 @@ function descargarPDFLider(){
     '<td style="padding:8px 9px; text-align:right">'+fmtUF(d.totals.uf)+'</td>' +
   '</tr></tbody></table>';
 
-  let insightsHTML = '<h3 style="font-size:11px; font-weight:700; color:#0a3d4a; text-transform:uppercase; letter-spacing:0.8px; margin:18px 0 8px;">Insights</h3>';
+  let insightsHTML = '<h3 style="font-size:11px; font-weight:700; color:#0f3a5e; text-transform:uppercase; letter-spacing:0.8px; margin:18px 0 8px;">Insights</h3>';
   const top = d.porAsesor.find(r=>r.uf>0);
   const validConvs = d.funnel.filter(f=>f.convPct!=null && f.convPct>0);
   const minConv = validConvs.length ? Math.min(...validConvs.map(f=>f.convPct)) : null;
