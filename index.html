@@ -1963,6 +1963,14 @@ function guardarConfig(){
   document.getElementById('cfg-status').style.display='flex';
   setTimeout(()=>{document.getElementById('cfg-status').style.display='none';},3500);
   aplicarAsesorEnFormularios();
+  // Sincronizar el nombre del PERFIL (lo usan reportes, ficha y notas), no solo la firma de PDF
+  if(data.nombre && fbReady() && CURRENT_USER){
+    fbDb.collection('users').doc(CURRENT_USER.uid).update({ nombre: data.nombre }).then(function(){
+      if(CURRENT_PROFILE) CURRENT_PROFILE.nombre = data.nombre;
+      var u = (typeof USERS_CACHE!=='undefined') ? USERS_CACHE.find(function(x){ return x.id===CURRENT_USER.uid; }) : null;
+      if(u) u.nombre = data.nombre;
+    }).catch(function(e){ console.warn('sync nombre perfil:', e); });
+  }
 }
 function limpiarConfig(){
   if(!confirm('¿Eliminar los datos del asesor?')) return;
