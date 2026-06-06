@@ -456,11 +456,14 @@ if(FIREBASE_OK){
   table.t-leaseback td.lbl { color:#1a2530; }
   table.t-leaseback td.pct { text-align:center; color:#4a5a65; font-variant-numeric:tabular-nums; }
   table.t-leaseback td.num { text-align:right; font-variant-numeric:tabular-nums; color:#1a2530; font-weight:500; letter-spacing:-0.1px; }
-  table.t-leaseback tr.row-teal td { background:#1761a3; color:#fff; font-weight:600; }
-  table.t-leaseback tr.row-teal td.pct { color:rgba(255,255,255,0.85); }
-  table.t-leaseback tr.row-deep-green td { background:#14568a; color:#fff; font-weight:700; }
+  table.t-leaseback tr.row-teal td { background:#eef3f9; color:#0f3a5e; font-weight:700; border-bottom:1px solid #dde7f1; }
+  table.t-leaseback tr.row-teal td.lbl { box-shadow:inset 3px 0 0 #1761a3; }
+  table.t-leaseback tr.row-teal td.pct { color:#5a7794; }
+  table.t-leaseback tr.row-teal td.num { color:#0f3a5e; }
+  table.t-leaseback tr.row-deep-green td { background:#0f3a5e; color:#fff; font-weight:700; padding-top:13px; padding-bottom:13px; }
+  table.t-leaseback tr.row-deep-green td.lbl { box-shadow:inset 4px 0 0 #f2632e; }
   table.t-leaseback tr.row-deep-green td.pct { color:rgba(255,255,255,0.85); }
-  table.t-leaseback tr.row-section-divider td { background:#0f3a5e; color:#fff; padding:7px 16px; font-size:9.5px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; }
+  table.t-leaseback tr.row-section-divider td { background:#fff; color:#90a4b6; padding:12px 16px 5px; font-size:9px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; border-bottom:2px solid #0f3a5e; }
   table.t-leaseback tr.row-subhead td { background:#eef4fb; color:var(--teal); font-size:10.5px; font-weight:700; padding:9px 16px; letter-spacing:0.8px; text-transform:uppercase; }
   table.t-leaseback tr.row-split td.lbl { padding-left:32px; color:#3a4a55; font-size:12px; font-style:italic; }
   table.t-leaseback tr:last-child td { border-bottom:none; }
@@ -2596,22 +2599,22 @@ function descargarPDFLeaseback(){
         const color = opts.color || '#1a2530';
         const bg = opts.bg || '';
         const fs = opts.fontSize || '';
-        const style = 'padding:'+pad+'; border-bottom:1px solid #e8eef1; text-align:'+align+'; color:'+color+'; '+fontw+(bg?' background:'+bg+';':'')+(fs?' font-size:'+fs+';':'');
+        const style = 'padding:'+pad+'; border-bottom:1px solid #e8eef1; text-align:'+align+'; color:'+color+'; '+fontw+(bg?' background:'+bg+';':'')+(fs?' font-size:'+fs+';':'')+(opts.extra?' '+opts.extra:'');
         return '<td style="'+style+'">'+(txt==null?'—':txt)+'</td>';
       };
       const rowPlain = (lbl, pct, clp, uf) =>
         '<tr>' + cell(lbl) + cell(pct,{align:'center'}) + cell(clp,{align:'right'}) + cell(uf,{align:'right'}) + '</tr>';
       const rowTeal = (lbl, pct, clp, uf) =>
-        '<tr>' + cell(lbl,{bold:true,color:'#fff',bg:'#1761a3'}) + cell(pct,{align:'center',color:'#fff',bg:'#1761a3'}) + cell(clp,{align:'right',color:'#fff',bg:'#1761a3',bold:true}) + cell(uf,{align:'right',color:'#fff',bg:'#1761a3',bold:true}) + '</tr>';
+        '<tr>' + cell(lbl,{bold:true,color:'#0f3a5e',bg:'#eef3f9',extra:'border-left:3px solid #1761a3;'}) + cell(pct,{align:'center',color:'#5a7794',bg:'#eef3f9'}) + cell(clp,{align:'right',color:'#0f3a5e',bg:'#eef3f9',bold:true}) + cell(uf,{align:'right',color:'#0f3a5e',bg:'#eef3f9',bold:true}) + '</tr>';
       const rowGreen = (lbl, pct, clp, uf) =>
-        '<tr>' + cell(lbl,{bold:true,color:'#fff',bg:'#14568a'}) + cell(pct,{align:'center',color:'#fff',bg:'#14568a'}) + cell(clp,{align:'right',color:'#fff',bg:'#14568a',bold:true}) + cell(uf,{align:'right',color:'#fff',bg:'#14568a',bold:true}) + '</tr>';
+        '<tr>' + cell(lbl,{bold:true,color:'#fff',bg:'#0f3a5e',extra:'border-left:4px solid #f2632e;'}) + cell(pct,{align:'center',color:'#fff',bg:'#0f3a5e'}) + cell(clp,{align:'right',color:'#fff',bg:'#0f3a5e',bold:true}) + cell(uf,{align:'right',color:'#fff',bg:'#0f3a5e',bold:true}) + '</tr>';
       const rowSplit = (lbl, clp, uf) =>
         '<tr><td style="padding:7px 14px 7px 32px; border-bottom:1px solid #e8eef1; color:#3a4a55; font-size:10px; font-style:italic;">'+lbl+'</td>' +
         '<td style="padding:7px 14px; border-bottom:1px solid #e8eef1; text-align:center; color:#94a4af;">—</td>' +
         '<td style="padding:7px 14px; border-bottom:1px solid #e8eef1; text-align:right; color:#3a4a55; font-style:italic;">'+clp+'</td>' +
         '<td style="padding:7px 14px; border-bottom:1px solid #e8eef1; text-align:right; color:#3a4a55; font-style:italic;">'+uf+'</td></tr>';
       const rowDivider = () =>
-        '<tr><td colspan="4" style="background:#0f3a5e; padding:5px 14px; color:#fff; font-size:9px; letter-spacing:1.2px; text-transform:uppercase; font-weight:700;">&nbsp;</td></tr>';
+        '<tr><td colspan="4" style="background:#fff; border-bottom:2px solid #0f3a5e; padding:9px 14px 3px;">&nbsp;</td></tr>';
       const rowSubhead = (lbl) =>
         '<tr><td colspan="4" style="background:#eef4fb; padding:7px 14px; color:#0f3a5e; font-size:9.5px; letter-spacing:1.2px; text-transform:uppercase; font-weight:700;">'+lbl+'</td></tr>';
       let body = '';
