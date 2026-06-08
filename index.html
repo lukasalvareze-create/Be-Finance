@@ -578,7 +578,7 @@ if(FIREBASE_OK){
           </div>
           <div class="form-grid" style="margin-top:14px">
             <div class="form-group"><label>Plazo (meses)</label><select id="qlb-plazo" onchange="runSimLeasebackRapido()"><option value="12">12 meses</option><option value="24">24 meses</option></select></div>
-            <div class="form-group"><label>Fee Be Finance (%)</label><input type="number" id="qlb-fee-l4b" step="0.1" value="3" oninput="runSimLeasebackRapido()"><span class="hint">1,5% pre + 1,5% otorgam.</span></div>
+            <div class="form-group"><label>Fee Be Finance (%)</label><input type="number" id="qlb-fee-l4b" step="0.1" value="6" oninput="runSimLeasebackRapido()"><span class="hint">% sobre el valor de recompra (editable).</span></div>
           </div>
           <div class="form-grid" style="margin-top:14px">
             <div class="form-group"><label>Gastos operacionales (%)</label><input type="number" id="qlb-gastos-op" step="0.1" value="2" oninput="runSimLeasebackRapido()"></div>
@@ -710,7 +710,7 @@ if(FIREBASE_OK){
           <div class="form-grid-3">
             <div class="form-group"><label>% Compraventa (LTV)</label><input type="number" id="lb-pct-cv" step="0.5" value="55"><span class="hint">Rango: 50%–60%.</span></div>
             <div class="form-group"><label>Tasa mensual (%)</label><input type="number" id="lb-tasa" step="0.05" value="1.4"><span class="hint">~16,8% anual.</span></div>
-            <div class="form-group"><label>Fee Be Finance (%)</label><input type="number" id="lb-fee-l4b" step="0.1" value="3"><span class="hint">1,5% pre + 1,5% otorgam.</span></div>
+            <div class="form-group"><label>Fee Be Finance (%)</label><input type="number" id="lb-fee-l4b" step="0.1" value="6"><span class="hint">% sobre el valor de recompra (editable).</span></div>
             <div class="form-group"><label>Gastos operacionales (%)</label><input type="number" id="lb-gastos-op" step="0.1" value="2"></div>
             <div class="form-group"><label>Operación inicial (UF)</label><input type="number" id="lb-notaria" step="1" value="100"><span class="hint">Pago al inicio · tasación, estudio títulos, notaría y CBR.</span></div>
           </div>
@@ -733,7 +733,7 @@ if(FIREBASE_OK){
       <div class="lb-section-title">Simulación de Leaseback Inmobiliario</div>
       <table class="t-leaseback">
         <thead>
-          <tr><th class="lbl">DESGLOSE</th><th class="pct">PORCENTAJE</th><th class="num">PESOS</th><th class="num">UF</th></tr>
+          <tr><th class="lbl">DESGLOSE</th><th class="pct">PORCENTAJE</th><th class="num">UF</th><th class="num">PESOS</th></tr>
         </thead>
         <tbody id="lb-tabla-desglose"></tbody>
       </table>
@@ -2027,7 +2027,7 @@ function runSimLeasebackRapido(){
   const pctCV=parseFloat(document.getElementById('qlb-pct-cv').value)||55;
   const tasaMensual=parseFloat(document.getElementById('qlb-tasa').value)||1.4;
   const plazo=parseInt(document.getElementById('qlb-plazo').value)||12;
-  const feeL4B=parseFloat(document.getElementById('qlb-fee-l4b').value)||3;
+  const feeL4B=parseFloat(document.getElementById('qlb-fee-l4b').value)||6;
   const feeFondo=0; // Fee Fondo eliminado — no se considera
   const gastosOp=parseFloat(document.getElementById('qlb-gastos-op').value)||2;
   const operacionInicialUF=parseFloat(document.getElementById('qlb-notaria').value)||100; // antes 'notaria': ahora 100 UF al inicio
@@ -2142,7 +2142,7 @@ function calcularLeasebackCompleto(){
   const plazo=parseInt(document.getElementById('lb-plazo').value)||12;
   const pctCV=parseFloat(document.getElementById('lb-pct-cv').value)||55;
   const tasaMensual=parseFloat(document.getElementById('lb-tasa').value)||1.4;
-  const feeL4B=parseFloat(document.getElementById('lb-fee-l4b').value)||3;
+  const feeL4B=parseFloat(document.getElementById('lb-fee-l4b').value)||6;
   const feeFondo=0; // Fee Fondo eliminado — no se considera
   const gastosOp=parseFloat(document.getElementById('lb-gastos-op').value)||2;
   const operacionInicialUF=parseFloat(document.getElementById('lb-notaria').value)||100; // 100 UF al inicio (antes era 2.690.000 CLP fijo notaría/CBR)
@@ -2184,10 +2184,10 @@ function calcularLeasebackCompleto(){
   document.getElementById('lb-res-plazo').textContent=plazo+' meses';
   // === Tabla 3 secciones ===
   const tasaAnual=tasaMensual*12;
-  const rTeal=(lbl,pct,clp,uf)=>`<tr class="row-teal"><td class="lbl">${lbl}</td><td class="pct">${pct}</td><td class="num">${clp}</td><td class="num">${uf}</td></tr>`;
-  const rGreen=(lbl,pct,clp,uf)=>`<tr class="row-deep-green"><td class="lbl">${lbl}</td><td class="pct">${pct}</td><td class="num">${clp}</td><td class="num">${uf}</td></tr>`;
-  const rPlain=(lbl,pct,clp,uf)=>`<tr><td class="lbl">${lbl}</td><td class="pct">${pct}</td><td class="num">${clp}</td><td class="num">${uf}</td></tr>`;
-  const rSplit=(lbl,clp,uf)=>`<tr class="row-split"><td class="lbl">${lbl}</td><td class="pct">—</td><td class="num">${clp}</td><td class="num">${uf}</td></tr>`;
+  const rTeal=(lbl,pct,clp,uf)=>`<tr class="row-teal"><td class="lbl">${lbl}</td><td class="pct">${pct}</td><td class="num">${uf}</td><td class="num">${clp}</td></tr>`;
+  const rGreen=(lbl,pct,clp,uf)=>`<tr class="row-deep-green"><td class="lbl">${lbl}</td><td class="pct">${pct}</td><td class="num">${uf}</td><td class="num">${clp}</td></tr>`;
+  const rPlain=(lbl,pct,clp,uf)=>`<tr><td class="lbl">${lbl}</td><td class="pct">${pct}</td><td class="num">${uf}</td><td class="num">${clp}</td></tr>`;
+  const rSplit=(lbl,clp,uf)=>`<tr class="row-split"><td class="lbl">${lbl}</td><td class="pct">—</td><td class="num">${uf}</td><td class="num">${clp}</td></tr>`;
   const rDivider=()=>`<tr class="row-section-divider"><td colspan="4"> </td></tr>`;
   const rSubhead=(lbl)=>`<tr class="row-subhead"><td colspan="4">${lbl}</td></tr>`;
   let h='';
@@ -2612,16 +2612,16 @@ function descargarPDFLeaseback(){
         return '<td style="'+style+'">'+(txt==null?'—':txt)+'</td>';
       };
       const rowPlain = (lbl, pct, clp, uf) =>
-        '<tr>' + cell(lbl) + cell(pct,{align:'center'}) + cell(clp,{align:'right'}) + cell(uf,{align:'right'}) + '</tr>';
+        '<tr>' + cell(lbl) + cell(pct,{align:'center'}) + cell(uf,{align:'right'}) + cell(clp,{align:'right'}) + '</tr>';
       const rowTeal = (lbl, pct, clp, uf) =>
-        '<tr>' + cell(lbl,{bold:true,color:'#0f3a5e',bg:'#eef3f9',extra:'border-left:3px solid #1761a3;'}) + cell(pct,{align:'center',color:'#5a7794',bg:'#eef3f9'}) + cell(clp,{align:'right',color:'#0f3a5e',bg:'#eef3f9',bold:true}) + cell(uf,{align:'right',color:'#0f3a5e',bg:'#eef3f9',bold:true}) + '</tr>';
+        '<tr>' + cell(lbl,{bold:true,color:'#0f3a5e',bg:'#eef3f9',extra:'border-left:3px solid #1761a3;'}) + cell(pct,{align:'center',color:'#5a7794',bg:'#eef3f9'}) + cell(uf,{align:'right',color:'#0f3a5e',bg:'#eef3f9',bold:true}) + cell(clp,{align:'right',color:'#0f3a5e',bg:'#eef3f9',bold:true}) + '</tr>';
       const rowGreen = (lbl, pct, clp, uf) =>
-        '<tr>' + cell(lbl,{bold:true,color:'#fff',bg:'#0f3a5e',extra:'border-left:4px solid #f2632e;'}) + cell(pct,{align:'center',color:'#fff',bg:'#0f3a5e'}) + cell(clp,{align:'right',color:'#fff',bg:'#0f3a5e',bold:true}) + cell(uf,{align:'right',color:'#fff',bg:'#0f3a5e',bold:true}) + '</tr>';
+        '<tr>' + cell(lbl,{bold:true,color:'#fff',bg:'#0f3a5e',extra:'border-left:4px solid #f2632e;'}) + cell(pct,{align:'center',color:'#fff',bg:'#0f3a5e'}) + cell(uf,{align:'right',color:'#fff',bg:'#0f3a5e',bold:true}) + cell(clp,{align:'right',color:'#fff',bg:'#0f3a5e',bold:true}) + '</tr>';
       const rowSplit = (lbl, clp, uf) =>
         '<tr><td style="padding:7px 14px 7px 32px; border-bottom:1px solid #e8eef1; color:#3a4a55; font-size:10px; font-style:italic;">'+lbl+'</td>' +
         '<td style="padding:7px 14px; border-bottom:1px solid #e8eef1; text-align:center; color:#94a4af;">—</td>' +
-        '<td style="padding:7px 14px; border-bottom:1px solid #e8eef1; text-align:right; color:#3a4a55; font-style:italic;">'+clp+'</td>' +
-        '<td style="padding:7px 14px; border-bottom:1px solid #e8eef1; text-align:right; color:#3a4a55; font-style:italic;">'+uf+'</td></tr>';
+        '<td style="padding:7px 14px; border-bottom:1px solid #e8eef1; text-align:right; color:#3a4a55; font-style:italic;">'+uf+'</td>' +
+        '<td style="padding:7px 14px; border-bottom:1px solid #e8eef1; text-align:right; color:#3a4a55; font-style:italic;">'+clp+'</td></tr>';
       const rowDivider = () =>
         '<tr><td colspan="4" style="background:#fff; border-bottom:2px solid #0f3a5e; padding:9px 14px 3px;">&nbsp;</td></tr>';
       const rowSubhead = (lbl) =>
@@ -2650,8 +2650,8 @@ function descargarPDFLeaseback(){
              '<thead><tr style="background:#0f3a5e; color:#fff;">'+
              '<th style="padding:9px 14px; text-align:left; font-weight:600; font-size:9.5px; letter-spacing:0.8px;">DESGLOSE</th>'+
              '<th style="padding:9px 14px; text-align:center; font-weight:600; font-size:9.5px; letter-spacing:0.8px; width:90px;">PORCENTAJE</th>'+
-             '<th style="padding:9px 14px; text-align:right; font-weight:600; font-size:9.5px; letter-spacing:0.8px; width:120px;">PESOS</th>'+
              '<th style="padding:9px 14px; text-align:right; font-weight:600; font-size:9.5px; letter-spacing:0.8px; width:80px;">UF</th>'+
+             '<th style="padding:9px 14px; text-align:right; font-weight:600; font-size:9.5px; letter-spacing:0.8px; width:120px;">PESOS</th>'+
              '</tr></thead><tbody>'+body+'</tbody></table>';
     })() +
     // === Cómo funciona el leaseback ===
@@ -2708,7 +2708,7 @@ function precargarNotaDesdeSimulacion(origen){
       nombre:LB_DATA.nombre, rut:LB_DATA.rut, tipo:LB_DATA.tipo, email:LB_DATA.email, telefono:LB_DATA.telefono,
       valor:LB_DATA.valor, monto:LB_DATA.compraventa, plazo:LB_DATA.plazo+' meses',
       tasa:fmtPct(LB_DATA.tasaMensual,2)+' mensual ('+fmtPct(LB_DATA.tasaMensual*12,2)+' anual)',
-      fee:LB_DATA.feeL4BUF, feePct:fmtPct(LB_DATA.feeL4B,1),
+      fee:LB_DATA.feeL4BUF, feePct:fmtPct(LB_DATA.feeL4B,1), operacionInicial:LB_DATA.operacionInicialUF,
       direccion:LB_DATA.direccion, comuna:LB_DATA.comuna,
       producto:'leaseback', tipoProp:tipoPropMap[LB_DATA.tipoPropiedad]||'otro'
     };
@@ -2734,6 +2734,7 @@ function precargarNotaDesdeSimulacion(origen){
   document.getElementById('nv-fee-uf').value = datos.fee ? Math.round(datos.fee*100)/100 : '';
   document.getElementById('nv-fee-clp').value = datos.fee ? fmtCLP(datos.fee*UF_VALOR) : '';
   document.getElementById('nv-fee-pct').value = datos.feePct || '';
+  if(datos.operacionInicial!=null){ var oiEl=document.getElementById('nv-gastos-notariales-uf'); if(oiEl) oiEl.value=Math.round(datos.operacionInicial*100)/100; }
   document.getElementById('nv-asesor-nombre').value = cfg.nombre || '';
   document.getElementById('nv-asesor-contacto').value = ((cfg.email||'')+(cfg.telefono?' · '+cfg.telefono:'')).trim();
   // Auto-calcular honorarios + fee + pagos al pre-cargar
@@ -2760,7 +2761,7 @@ function limpiarNotaVenta(){
   // Restaurar valores default editados (descripciones de pagos)
   const p1 = document.getElementById('nv-pago1-desc'); if(p1) p1.value = 'Operación inicial · al firmar contrato';
   const p2 = document.getElementById('nv-pago2-desc'); if(p2) p2.value = 'Fee de operación Be Finance (3%) · al desembolso';
-  const feePct = document.getElementById('nv-fee-pct'); if(feePct) feePct.value = '3';
+  const feePct = document.getElementById('nv-fee-pct'); if(feePct) feePct.value = '6';
   nvOnTipoPersonaChange();
   nvActualizarPagosCLP();
   document.getElementById('nv-aviso-vacio').style.display='flex';
@@ -2954,7 +2955,7 @@ function descargarNotaVenta(){
 
   // === BLOQUE HONORARIOS & PAGOS (con tabla prominente) ===
   let honorariosResumen = '<table style="width:100%; border-collapse:collapse;">' +
-    r('Fee Be Finance ('+(feePct||3)+'%)', feeUF>0 ? fmtUF(feeUF)+' · '+fmtCLP(feeUF*UF_VALOR) : '—') +
+    r('Fee Be Finance ('+(feePct||6)+'%)', feeUF>0 ? fmtUF(feeUF)+' · '+fmtCLP(feeUF*UF_VALOR) : '—') +
     (gnUF>0 ? r('Operación inicial', fmtUF(gnUF)+' · '+fmtCLP(gnUF*UF_VALOR)) : '') +
   '</table>';
 
@@ -5521,11 +5522,17 @@ async function crearContratoDesdeNV(clienteId){
       return ufBase * UF_VALOR;
     })(),
     montoLiteral: '',
+    inmueble: {
+      tipo: campos['nv-tipo-propiedad'] || '',
+      direccion: campos['nv-prop-direccion'] || '',
+      comuna: campos['nv-prop-comuna'] || '',
+      rol: campos['nv-rol'] || ''
+    },
     honorariosPreEvalUF: 0,
     gastosOperacionalesUF: 0,
-    gastosNotarialesUF: parseFloat(campos['nv-gastos-notariales-uf']) || 66.4,
-    pago3Pct: 1.5,
-    pago4Pct: 1.5,
+    gastosNotarialesUF: parseFloat(campos['nv-gastos-notariales-uf']) || 100,
+    pago3Pct: (parseFloat(campos['nv-fee-pct']) || 6)/2,
+    pago4Pct: (parseFloat(campos['nv-fee-pct']) || 6)/2,
     observacionesAdmin: '',
     createdAt: nowTs(),
     updatedAt: nowTs(),
@@ -5833,6 +5840,28 @@ async function guardarCambiosContrato(){ /* obsoleto — el modal ya no tiene ca
 
 /* Genera el HTML completo del contrato a partir del objeto cto
    Plantilla V2 — basada en Contrato_TIPO_V2.docx (justificado, hoja carta) */
+function numeroALetras(n){
+  n=Math.round(Math.abs(n||0));
+  if(n===0) return 'cero';
+  var UNI=['','uno','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce','trece','catorce','quince','dieciséis','diecisiete','dieciocho','diecinueve','veinte','veintiuno','veintidós','veintitrés','veinticuatro','veinticinco','veintiséis','veintisiete','veintiocho','veintinueve'];
+  var DEC=['','','','treinta','cuarenta','cincuenta','sesenta','setenta','ochenta','noventa'];
+  var CEN=['','ciento','doscientos','trescientos','cuatrocientos','quinientos','seiscientos','setecientos','ochocientos','novecientos'];
+  function seccion(num){
+    if(num===100) return 'cien';
+    var t='', c=Math.floor(num/100), d=num%100;
+    if(c>0) t+=CEN[c]+' ';
+    if(d<30) t+=UNI[d];
+    else { var de=Math.floor(d/10), u=d%10; t+=DEC[de]; if(u>0) t+=' y '+UNI[u]; }
+    return t.trim();
+  }
+  var partes=[], millones=Math.floor(n/1000000), miles=Math.floor((n%1000000)/1000), resto=n%1000;
+  if(millones>0) partes.push(millones===1?'un millón':seccion(millones)+' millones');
+  if(miles>0) partes.push(miles===1?'mil':seccion(miles)+' mil');
+  if(resto>0) partes.push(seccion(resto));
+  var txt=partes.join(' ').replace(/\s+/g,' ').trim();
+  txt=txt.replace(/veintiuno (mil|millones)/g,'veintiún $1').replace(/\buno (mil|millones)/g,'un $1');
+  return txt;
+}
 function generarHTMLContrato(cto){
   const c = cto.cliente || {};
   const esPJ = c.tipoPersona === 'juridica';
@@ -5840,7 +5869,7 @@ function generarHTMLContrato(cto){
   // Monto principal CLP fijado al momento de la NV (no recalcula con UF actual)
   const montoCLP_num = cto.montoNumeralCLP || ((cto.montoNumeralUF||0) * UF_VALOR);
   const montoCLP = fmtCLP(montoCLP_num);
-  const montoLiteralTxt = cto.montoLiteral || '[MONTO LITERAL]';
+  const montoLiteralTxt = cto.montoLiteral || numeroALetras(Math.round(montoCLP_num));
 
   // Datos cliente
   const fechaContrato = cto.fechaContrato || fmtFechaLiteral(new Date());
@@ -5902,6 +5931,7 @@ function generarHTMLContrato(cto){
 
     '<h3>CLÁUSULA PRIMERA. OBJETO DEL CONTRATO:</h3>' +
     '<p>BE FINANCE se obliga, por cuenta del Cliente, a prestar servicios de asesoría y gestión especializada con el objeto de identificar, estructurar, postular y facilitar la obtención de un Leaseback y/o Levantamiento de Capital, otorgado por una entidad especializada, cuyo monto meta objetivo ascienda la suma aproximada de <strong>'+montoCLP+'</strong> (<strong>'+escapeHTML(montoLiteralTxt)+' pesos chilenos</strong>).</p>' +
+    '<p>Para efectos de la presente gestión, El Cliente declara ofrecer en respaldo de la operación el inmueble ubicado en <strong>'+escapeHTML((cto.inmueble&&cto.inmueble.direccion)||'[DIRECCIÓN DEL INMUEBLE]')+'</strong>, comuna de <strong>'+escapeHTML((cto.inmueble&&cto.inmueble.comuna)||'[COMUNA]')+'</strong>'+((cto.inmueble&&cto.inmueble.rol)?', Rol de Avalúo N° <strong>'+escapeHTML(cto.inmueble.rol)+'</strong>':'')+'.</p>' +
     '<p>El presente contrato no constituye una obligación de resultado, sino un compromiso profesional de medios y diligencia calificada conforme al estándar de la industria financiera.</p>' +
 
     '<h3>CLÁUSULA SEGUNDA. HONORARIOS Y FORMA DE PAGO:</h3>' +
@@ -5944,7 +5974,7 @@ function generarHTMLContrato(cto){
     '<p><em>Irrevocabilidad:</em> Una vez que la entidad financiera haya aprobado formalmente el financiamiento objeto de este contrato, el presente mandato se volverá irrevocable, no pudiendo el Cliente revocarlo ni impedir el cobro de los honorarios establecidos en la Cláusula Segunda, habida consideración de que dicha aprobación será consecuencia directa de la gestión de BE FINANCE.</p>' +
 
     '<h3>CLÁUSULA QUINTA. NO CAPTACIÓN DIRECTA:</h3>' +
-    '<p>Por el presente instrumento y mientras el presente Contrato se encuentre vigente, El Cliente se obliga a no contactar directamente, ni por interpuesta persona, a las instituciones o inversionistas que BE FINANCE le presente o identifique en el marco de este contrato, con el propósito de cerrar la operación sin la intervención de BE FINANCE. El incumplimiento de esta obligación facultará a BE FINANCE para exigir el pago íntegro del honorario de gestión (Pago 3) como si la operación hubiera sido obtenida con su intermediación.</p>' +
+    '<p>Por el presente instrumento y mientras el presente Contrato se encuentre vigente, El Cliente se obliga a no contactar directamente, ni por interpuesta persona, a las instituciones o inversionistas que BE FINANCE le presente o identifique en el marco de este contrato, con el propósito de cerrar la operación sin la intervención de BE FINANCE. El incumplimiento de esta obligación facultará a BE FINANCE para exigir el pago íntegro del honorario de gestión (Pago 2) como si la operación hubiera sido obtenida con su intermediación.</p>' +
 
     '<h3>CLÁUSULA SEXTA. OBLIGACIONES DEL PRESTADOR:</h3>' +
     '<p>Son obligaciones de BE FINANCE:</p>' +
@@ -5974,7 +6004,7 @@ function generarHTMLContrato(cto){
 
     '<h3>CLÁUSULA DÉCIMA. PLAZO DE VIGENCIA:</h3>' +
     '<p>El presente contrato tendrá una vigencia de ciento ochenta (180) días corridos, contados desde la fecha de su firma. Este plazo podrá ser prorrogado por mutuo acuerdo expreso entre las partes, mediante documento escrito y firmado.</p>' +
-    '<p>No obstante lo anterior, una vez que el financiamiento sea formalmente aprobado por la entidad financiera, las obligaciones de pago del Cliente (Pago 3) y el mandato otorgado a BE FINANCE no podrán ser revocados, subsistiendo hasta el completo pago de los honorarios pactados.</p>' +
+    '<p>No obstante lo anterior, una vez que el financiamiento sea formalmente aprobado por la entidad financiera, las obligaciones de pago del Cliente (Pago 2) y el mandato otorgado a BE FINANCE no podrán ser revocados, subsistiendo hasta el completo pago de los honorarios pactados.</p>' +
 
     '<h3>CLÁUSULA UNDÉCIMA. LEY APLICABLE Y RESOLUCIÓN DE CONTROVERSIAS:</h3>' +
     '<p>El presente contrato se rige por las leyes de la República de Chile. Para todos los efectos legales derivados de este contrato, las partes fijan su domicilio en la ciudad de Santiago.</p>' +
