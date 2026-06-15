@@ -578,7 +578,7 @@ if(FIREBASE_OK){
           </div>
           <div class="form-grid" style="margin-top:14px">
             <div class="form-group"><label>Plazo (meses)</label><select id="qlb-plazo" onchange="runSimLeasebackRapido()"><option value="12">12 meses</option><option value="24">24 meses</option></select></div>
-            <div class="form-group"><label>Fee Be Finance (%)</label><input type="number" id="qlb-fee-l4b" step="0.1" value="6" oninput="runSimLeasebackRapido()"><span class="hint">% sobre el valor de recompra (editable).</span></div>
+            <div class="form-group"><label>Fee Be Finance (%)</label><input type="number" id="qlb-fee-l4b" step="0.1" value="6" oninput="runSimLeasebackRapido()"><span class="hint">% sobre el valor de compraventa (editable).</span></div>
           </div>
           <div class="form-grid" style="margin-top:14px">
             <div class="form-group"><label>Gastos operacionales (%)</label><input type="number" id="qlb-gastos-op" step="0.1" value="2" oninput="runSimLeasebackRapido()"></div>
@@ -710,7 +710,7 @@ if(FIREBASE_OK){
           <div class="form-grid-3">
             <div class="form-group"><label>% Compraventa (LTV)</label><input type="number" id="lb-pct-cv" step="0.5" value="55"><span class="hint">Rango: 50%–60%.</span></div>
             <div class="form-group"><label>Tasa mensual (%)</label><input type="number" id="lb-tasa" step="0.05" value="1.4"><span class="hint">~16,8% anual.</span></div>
-            <div class="form-group"><label>Fee Be Finance (%)</label><input type="number" id="lb-fee-l4b" step="0.1" value="6"><span class="hint">% sobre el valor de recompra (editable).</span></div>
+            <div class="form-group"><label>Fee Be Finance (%)</label><input type="number" id="lb-fee-l4b" step="0.1" value="6"><span class="hint">% sobre el valor de compraventa (editable).</span></div>
             <div class="form-group"><label>Gastos operacionales (%)</label><input type="number" id="lb-gastos-op" step="0.1" value="2"></div>
             <div class="form-group"><label>Operación inicial (UF)</label><input type="number" id="lb-notaria" step="1" value="100"><span class="hint">Pago al inicio · tasación, estudio títulos, notaría y CBR.</span></div>
           </div>
@@ -907,7 +907,7 @@ if(FIREBASE_OK){
           <div class="form-grid-3">
             <div class="form-group"><label>Producto <span class="req">*</span></label><select id="nv-producto"><option value="hipotecario">Crédito Hipotecario</option><option value="leaseback">Leaseback Inmobiliario</option><option value="estructuracion">Estructuración hipotecaria</option><option value="levantamiento">Levantamiento de capital</option><option value="factoring">Factoring internacional</option><option value="bridge">Bridge loan internacional</option><option value="otro">Otro</option></select></div>
             <div class="form-group"><label>Tipo propiedad</label><select id="nv-tipo-propiedad"><option value="casa">Casa</option><option value="departamento">Departamento</option><option value="parcela">Parcela / rural</option><option value="comercial">Local comercial</option><option value="bodega">Bodega / industrial</option><option value="oficina">Oficina</option><option value="terreno">Terreno</option><option value="otro">Otro</option></select></div>
-            <div class="form-group"><label>Rol de avalúo</label><input type="text" id="nv-rol" placeholder="Ej: 1234-567"></div>
+            <div class="form-group"><label>Rol de avalúo <span class="req">*</span></label><input type="text" id="nv-rol" placeholder="Ej: 1234-567"></div>
           </div>
           <div class="form-grid-3" style="margin-top:14px">
             <div class="form-group"><label>Dirección propiedad</label><input type="text" id="nv-prop-direccion" placeholder="Calle, número"></div>
@@ -935,13 +935,13 @@ if(FIREBASE_OK){
         <div class="form-card-header"><span class="h-icon">💰</span><h3>3. Honorarios y desglose de pagos</h3><div class="green-dot"></div></div>
         <div class="form-body">
           <div style="background:var(--green-bg); border-left:3px solid var(--green); padding:10px 14px; border-radius:4px; margin-bottom:14px; font-size:11.5px; color:var(--teal); line-height:1.5;">
-            <strong>💡 Auto-cálculo:</strong> El cliente paga la operación inicial al firmar el contrato; el Fee Be Finance (3%) se descuenta al desembolso. Todos los campos son <strong>editables</strong> para casos especiales.
+            <strong>💡 Auto-cálculo:</strong> El cliente paga la operación inicial al firmar el contrato; el Fee Be Finance (6%) se descuenta al desembolso. Todos los campos son <strong>editables</strong> para casos especiales.
           </div>
           <div class="form-grid-3">
             <div class="form-group"><label>Operación inicial (UF)</label><input type="number" id="nv-gastos-notariales-uf" step="0.01" oninput="nvOnInputUF()" placeholder="100"></div>
           </div>
           <div class="form-grid-3" style="margin-top:14px">
-            <div class="form-group"><label>Fee Be Finance (% sobre operación)</label><input type="number" id="nv-fee-pct" step="0.1" value="3" oninput="nvOnInputUF()"><span class="hint">Default 3%.</span></div>
+            <div class="form-group"><label>Fee Be Finance (% sobre operación)</label><input type="number" id="nv-fee-pct" step="0.1" value="6" oninput="nvOnInputUF()"><span class="hint">Default 6%.</span></div>
             <div class="form-group"><label>Fee Be Finance (UF) <span class="req">*</span></label><input type="number" id="nv-fee-uf" step="0.01" oninput="nvOnInputUFFee()"></div>
             <div class="form-group"><label>Fee Be Finance (CLP)</label><input type="text" id="nv-fee-clp" readonly style="background:var(--green-bg); color:var(--teal); font-weight:600;"></div>
           </div>
@@ -959,7 +959,7 @@ if(FIREBASE_OK){
               </tr>
               <tr>
                 <td><strong>2</strong></td>
-                <td><input type="text" id="nv-pago2-desc" value="Fee de operación Be Finance (3%) · al desembolso" style="border:1px solid var(--border-l); padding:5px 8px; border-radius:4px; font-size:12px; width:100%; font-family:inherit"></td>
+                <td><input type="text" id="nv-pago2-desc" value="Fee de operación Be Finance (6%) · al desembolso" style="border:1px solid var(--border-l); padding:5px 8px; border-radius:4px; font-size:12px; width:100%; font-family:inherit"></td>
                 <td><input type="number" id="nv-pago2-uf" step="0.01" oninput="nvOnPagoChange()" style="border:1px solid var(--border-l); padding:5px 8px; border-radius:4px; font-size:12px; width:100%; text-align:right; font-variant-numeric:tabular-nums; font-family:inherit"></td>
                 <td><input type="text" id="nv-pago2-clp" readonly style="background:var(--green-bg); color:var(--teal); font-weight:600; border:1px solid var(--border-l); padding:5px 8px; border-radius:4px; font-size:12px; width:100%; text-align:right; font-variant-numeric:tabular-nums; font-family:inherit"></td>
               </tr>
@@ -1955,7 +1955,7 @@ function guardarConfig(){
     cargo:document.getElementById('cfg-cargo').value.trim()||'Asesor de Crédito Hipotecario',
     email:document.getElementById('cfg-email').value.trim(),
     telefono:document.getElementById('cfg-telefono').value.trim(),
-    empresa:document.getElementById('cfg-empresa').value.trim()||'Asesorías Be Finance SpA',
+    empresa:document.getElementById('cfg-empresa').value.trim()||'SAV Asesorías Inmobiliarias SpA (Be Finance)',
     empresaRUT:document.getElementById('cfg-empresa-rut').value.trim()||'78.302.775-5',
     empresaDir:document.getElementById('cfg-empresa-dir').value.trim(),
     empresaWeb:document.getElementById('cfg-empresa-web').value.trim()||'www.befinance.cl'
@@ -2036,7 +2036,7 @@ function runSimLeasebackRapido(){
   const feeL4BUF=compraventa*(feeL4B/100);
   const feeFondoUF=compraventa*(feeFondo/100);
   const gastosOpUF=compraventa*(gastosOp/100);
-  const operacionLeasebackUF=feeL4BUF+feeFondoUF; // 6% combinado (3% + 3%)
+  const operacionLeasebackUF=feeL4BUF+feeFondoUF; // Fee Be Finance: único 6% sobre el valor de compraventa (feeFondo=0)
   // Compat:
   const notariaCLP=operacionInicialUF*UF_VALOR;
   const notariaUF=operacionInicialUF;
@@ -2152,7 +2152,7 @@ function calcularLeasebackCompleto(){
   const feeFondoUF=compraventa*(feeFondo/100);
   const gastosOpUF=compraventa*(gastosOp/100);
   const notariaUF=operacionInicialUF; // compat — antes era CLP/UF, ahora ya viene en UF
-  const operacionLeasebackUF=feeL4BUF+feeFondoUF; // 6% combinado (3% Estructuración + 3% Fee Estructuración)
+  const operacionLeasebackUF=feeL4BUF+feeFondoUF; // Fee Be Finance: único 6% sobre el valor de compraventa (feeFondo=0)
   const i=tasaMensual/100;
   // === FÓRMULA OFICIAL Be Finance (interés simple) ===
   // El capital no se amortiza durante el plazo; vuelve íntegro como recompra.
@@ -2160,7 +2160,7 @@ function calcularLeasebackCompleto(){
   const cuota=compraventa*i;                        // 1 cuota mensual de interés (referencial)
   const prepagoRenta=cuota*plazo;                   // Prepago total de rentas (descuento upfront)
   // Bucket A — descontado del giro del fondo (al desembolso):
-  // Incluye Prepago Renta + Gastos Operativos (2%) + Operación Leaseback (3%+3% = feeL4B+feeFondo) + Deuda
+  // Incluye Prepago Renta + Gastos Operativos (2%) + Fee Be Finance (6% = feeL4B, feeFondo=0) + Deuda
   const gastosOpFondo=prepagoRenta+gastosOpUF+feeL4BUF+feeFondoUF+deuda;
   const capitalEntregado=compraventa-gastosOpFondo;
   const valorRecompra=compraventa;
@@ -2381,7 +2381,7 @@ function generarPDFLegacy(htmlContent, titulo, opts){
   //  - Evita problemas con bloqueador de popups.
   //  - UX prácticamente idéntica: el dialog de impresión se abre solo.
   const fullHtml = '<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>' + titulo + '</title>' +
-    '<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">' +
+    '<link href="https://fonts.googleapis.com/css2?family=Jura:wght@500;600;700&family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">' +
     '<style>' +
     '@page { size: ' + pageSize + '; margin: 12mm 14mm; }' +
     '* { box-sizing:border-box; margin:0; padding:0; }' +
@@ -2416,22 +2416,22 @@ function generarPDFLegacy(htmlContent, titulo, opts){
 
 /* === PDF HEADERS COMUNES === */
 function pdfHeader(cfg, titulo, idCot){
-  return '<div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 0 14px 0; border-bottom:2px solid #0f3a5e;">' +
+  return '<div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 0 14px 0; border-bottom:2px solid #0A2233;">' +
     '<div><img src="'+BF_PDF_LOGO+'" style="height:54px; display:block;"></div>' +
     '<div style="text-align:right; font-size:10px; color:#3a4a55;">' +
-    '<div style="font-weight:600; color:#0f3a5e; font-size:11px;">' + titulo + '</div>' +
+    '<div style="font-weight:600; color:#0A2233; font-size:11px;">' + titulo + '</div>' +
     '<div style="margin-top:4px;">ID COT: <strong>' + idCot + '</strong></div>' +
     '<div>Fecha: ' + fmtFecha() + ' · Vigente hasta: ' + addDias(5) + '</div>' +
     '<div>Valor UF referencial: ' + fmtCLP(UF_VALOR) + '</div></div></div>';
 }
 function pdfFooter(cfg){
-  const empresa=cfg.empresa||'Asesorías Be Finance SpA';
+  const empresaLegal='SAV Asesorías Inmobiliarias SpA (Be Finance) · RUT 77.483.173-8';
   const web=cfg.empresaWeb||'www.befinance.cl';
   return '<div style="margin-top:30px; padding-top:14px; border-top:1px solid #d8e0e4;">' +
     '<p style="font-size:8.5px; color:#6a7a85; line-height:1.5; text-align:justify;">' +
     '<strong>Cláusula de responsabilidad y transparencia:</strong> La presente simulación tiene carácter informativo y no representa una oferta formal ni vinculante. ' +
-    empresa + ' actúa como intermediario en la gestión de créditos hipotecarios y operaciones de leaseback, sin representar a ninguna entidad financiera ni comprometer la aprobación del crédito. La tasa de interés, cuota y condiciones definitivas están sujetas a la evaluación crediticia del banco o fondo correspondiente. Las simulaciones están sujetas a la evaluación de entidades financieras debidamente autorizadas por la CMF, así como a modelos de financiamiento de fondos privados que operan conforme a la legislación civil y comercial vigente en Chile.</p>' +
-    '<div style="margin-top:12px; font-size:9px; color:#6a7a85; text-align:center;">' + empresa + ' · ' + web + ' · Simulación con carácter referencial</div></div>';
+    empresaLegal + ' actúa como intermediario en la gestión de créditos hipotecarios y operaciones de leaseback, sin representar a ninguna entidad financiera ni comprometer la aprobación del crédito. La tasa de interés, cuota y condiciones definitivas están sujetas a la evaluación crediticia del banco o fondo correspondiente. Las simulaciones están sujetas a la evaluación de entidades financieras debidamente autorizadas por la CMF, así como a modelos de financiamiento de fondos privados que operan conforme a la legislación civil y comercial vigente en Chile.</p>' +
+    '<div style="margin-top:12px; font-size:9px; color:#6a7a85; text-align:center;">Be Finance · ' + web + ' · Simulación con carácter referencial</div></div>';
 }
 function pdfFirma(cfg){
   if (!cfg.nombre) {
@@ -2442,9 +2442,9 @@ function pdfFirma(cfg){
   }
   return '<div style="margin-top:24px; font-size:11px; color:#1a2730; line-height:1.6;">' +
     '<p style="margin-top:14px;"><strong>Atentamente,</strong></p>' +
-    '<div style="margin-top:6px; padding:12px 16px; background:#e9f1f9; border-left:3px solid #1761a3; border-radius:4px;">' +
-    '<div style="font-size:13px; font-weight:700; color:#0f3a5e;">' + cfg.nombre + '</div>' +
-    '<div style="font-size:11px; color:#1a527e; margin-top:2px;">' + (cfg.cargo||'Asesor de Crédito Hipotecario') + '</div>' +
+    '<div style="margin-top:6px; padding:12px 16px; background:#eef1f5; border-left:3px solid #D6AA43; border-radius:4px;">' +
+    '<div style="font-size:13px; font-weight:700; color:#0A2233;">' + cfg.nombre + '</div>' +
+    '<div style="font-size:11px; color:#0A2233; margin-top:2px;">' + (cfg.cargo||'Asesor Be Finance') + '</div>' +
     '<div style="font-size:10.5px; color:#3a4a55; margin-top:6px;">' + (cfg.email||'') + ' · ' + (cfg.telefono||'') + '</div></div></div>';
 }
 function generarIdCot(){ return Math.floor(1000+Math.random()*9000); }
@@ -2465,22 +2465,22 @@ function descargarPDFHipotecario(){
   const segCesTxt  = d.tipo==='juridica' ? 'Seguro cesantía — no aplica'    : 'Seguro cesantía';
   const tablaNumeros =
     '<table style="width:100%; border-collapse:collapse; font-size:10.5px; margin-top:8px;">' +
-      '<thead><tr style="background:#f3f6f8;">' +
-        '<th style="' + tdL + ' font-weight:600; color:#0f3a5e; text-transform:uppercase; font-size:9.5px; letter-spacing:0.4px;">Concepto</th>' +
-        '<th style="' + tdN + ' font-weight:600; color:#0f3a5e; text-transform:uppercase; font-size:9.5px; letter-spacing:0.4px; width:90px;">UF</th>' +
-        '<th style="' + tdN + ' font-weight:600; color:#0f3a5e; text-transform:uppercase; font-size:9.5px; letter-spacing:0.4px; width:120px;">CLP</th>' +
+      '<thead><tr style="background:#eef1f5;">' +
+        '<th style="' + tdL + ' font-weight:600; color:#0A2233; text-transform:uppercase; font-size:9.5px; letter-spacing:0.4px;">Concepto</th>' +
+        '<th style="' + tdN + ' font-weight:600; color:#0A2233; text-transform:uppercase; font-size:9.5px; letter-spacing:0.4px; width:90px;">UF</th>' +
+        '<th style="' + tdN + ' font-weight:600; color:#0A2233; text-transform:uppercase; font-size:9.5px; letter-spacing:0.4px; width:120px;">CLP</th>' +
       '</tr></thead><tbody>' +
       '<tr><td style="' + tdL + '">Valor del inmueble (referencial)</td><td style="' + tdN + '">' + fmtNum(d.valor) + '</td><td style="' + tdN + '">' + fmtCLP(d.valor*UF_VALOR) + '</td></tr>' +
       '<tr><td style="' + tdL + '">Pie aportado (' + fmtPct(d.pctPie,1) + ' del valor)</td><td style="' + tdN + '">' + fmtNum(d.pie) + '</td><td style="' + tdN + '">' + fmtCLP(d.pie*UF_VALOR) + '</td></tr>' +
       '<tr><td style="' + tdL + '">Monto financiado (' + fmtPct(d.pctFin,1) + ' del valor)</td><td style="' + tdN + '">' + fmtNum(d.fin) + '</td><td style="' + tdN + '">' + fmtCLP(d.fin*UF_VALOR) + '</td></tr>' +
       (d.saldoLibre>=1 && d.pctSaldo>=0.05 ? '<tr><td style="' + tdL + ' color:#6a7a85; font-style:italic;">Saldo no requerido (' + fmtPct(d.pctSaldo,1) + ' — no se financia)</td><td style="' + tdN + ' color:#6a7a85;">' + fmtNum(d.saldoLibre) + '</td><td style="' + tdN + ' color:#6a7a85;">' + fmtCLP(d.saldoLibre*UF_VALOR) + '</td></tr>' : '') +
-      '<tr><td colspan="3" style="padding:4px 0; background:#f3f6f8;"></td></tr>' +
+      '<tr><td colspan="3" style="padding:4px 0; background:#eef1f5;"></td></tr>' +
       '<tr><td style="' + tdL + '">Cuota capital + interés (tasa ' + d.tipoTasa + ' ' + fmtPct(d.tasa,2) + ')</td><td style="' + tdN + '">' + fmtNum(d.cuotaBase) + '</td><td style="' + tdN + '">' + fmtCLP(d.cuotaBase*UF_VALOR) + '</td></tr>' +
       '<tr><td style="' + tdL + '">(+) ' + segDesgTxt + '</td><td style="' + tdN + '">' + fmtNum(d.segDesg) + '</td><td style="' + tdN + '">' + fmtCLP(d.segDesg*UF_VALOR) + '</td></tr>' +
       '<tr><td style="' + tdL + '">(+) Seguro incendio y sismo</td><td style="' + tdN + '">' + fmtNum(d.segIncendio) + '</td><td style="' + tdN + '">' + fmtCLP(d.segIncendio*UF_VALOR) + '</td></tr>' +
       '<tr><td style="' + tdL + '">(+) ' + segCesTxt + '</td><td style="' + tdN + '">' + fmtNum(d.segCesantia) + '</td><td style="' + tdN + '">' + fmtCLP(d.segCesantia*UF_VALOR) + '</td></tr>' +
-      '<tr style="background:#e9f1f9;"><td style="padding:9px 12px; font-weight:700; color:#0f3a5e;">Cuota mensual total al cliente</td><td style="padding:9px 12px; text-align:right; font-weight:700; color:#0f3a5e; font-variant-numeric:tabular-nums;">' + fmtNum(d.cuotaTotal) + '</td><td style="padding:9px 12px; text-align:right; font-weight:700; color:#0f3a5e; font-variant-numeric:tabular-nums;">' + fmtCLP(d.cuotaTotal*UF_VALOR) + '</td></tr>' +
-      '<tr><td style="' + tdL + ' font-weight:600; color:#0f3a5e;">CAE estimado <span style="color:#6a7a85; font-weight:400;">(incluye intereses + seguros)</span></td><td colspan="2" style="' + tdN + ' font-weight:700; color:#0f3a5e;">' + fmtPct(d.cae,2) + '</td></tr>' +
+      '<tr style="background:#eef1f5;"><td style="padding:9px 12px; font-weight:700; color:#0A2233;">Cuota mensual total al cliente</td><td style="padding:9px 12px; text-align:right; font-weight:700; color:#0A2233; font-variant-numeric:tabular-nums;">' + fmtNum(d.cuotaTotal) + '</td><td style="padding:9px 12px; text-align:right; font-weight:700; color:#0A2233; font-variant-numeric:tabular-nums;">' + fmtCLP(d.cuotaTotal*UF_VALOR) + '</td></tr>' +
+      '<tr><td style="' + tdL + ' font-weight:600; color:#0A2233;">CAE estimado <span style="color:#6a7a85; font-weight:400;">(incluye intereses + seguros)</span></td><td colspan="2" style="' + tdN + ' font-weight:700; color:#0A2233;">' + fmtPct(d.cae,2) + '</td></tr>' +
       '<tr><td style="' + tdL + '">Total a pagar en ' + d.plazo + ' años (sin seguros)</td><td style="' + tdN + '">' + fmtNum(d.totalPago) + '</td><td style="' + tdN + '">' + fmtCLP(d.totalPago*UF_VALOR) + '</td></tr>' +
       '<tr><td style="' + tdL + '">Costo financiero (intereses)</td><td style="' + tdN + '">' + fmtNum(d.interes) + '</td><td style="' + tdN + '">' + fmtCLP(d.interes*UF_VALOR) + '</td></tr>' +
       '<tr><td style="' + tdL + '"><strong>Honorarios Be Finance</strong> (' + fmtPct(d.honorariosPct,1) + ' del financiamiento, al otorgamiento)</td><td style="' + tdN + '"><strong>' + fmtNum(d.honorariosUF) + '</strong></td><td style="' + tdN + '"><strong>' + fmtCLP(d.honorariosUF*UF_VALOR) + '</strong></td></tr>' +
@@ -2499,23 +2499,23 @@ function descargarPDFHipotecario(){
 
   const html =
     pdfHeader(cfg, 'Simulación de Crédito Hipotecario', idCot) +
-    '<h1 style="font-family:\'Playfair Display\',serif; font-size:22px; color:#0f3a5e; margin:20px 0 6px;">Simulación de Crédito Hipotecario</h1>' +
+    '<h1 style="font-family:\'Jura\',sans-serif; font-size:22px; color:#0A2233; margin:20px 0 6px;">Simulación de Crédito Hipotecario</h1>' +
     '<div style="font-size:11px; color:#6a7a85; margin-bottom:16px; font-style:italic;">Financiamiento simple, rápido y confiable.</div>' +
     '<p style="font-size:11.5px; line-height:1.6; text-align:justify; margin-bottom:14px;">' +
-    'Estimado/a <strong>' + d.nombre + '</strong>' + (d.rut ? ' / RUT ' + d.rut : '') + ', le presentamos la simulación referencial gestionada por <strong>' + (cfg.empresa||'Asesorías Be Finance SpA') + '</strong> sobre un inmueble valorado en <strong>' + fmtUF(d.valor) + '</strong> (' + fmtCLP(d.valor*UF_VALOR) + '). Como <strong>' + tipoTxt + '</strong>, solicita un financiamiento de <strong>' + fmtUF(d.fin) + '</strong> (' + fmtCLP(d.fin*UF_VALOR) + ', equivalente al ' + fmtPct(d.pctFin,1) + ' del valor del inmueble)' + (d.pie>0 ? ', con un pie de <strong>' + fmtUF(d.pie) + '</strong> (' + fmtPct(d.pctPie,1) + ')' : ', sin pie') + (d.saldoLibre>=1 && d.pctSaldo>=0.05 ? '. El saldo de <strong>' + fmtUF(d.saldoLibre) + '</strong> (' + fmtPct(d.pctSaldo,1) + ') no se financia ni se aporta como pie' : '') + '. El financiamiento se estructura a <strong>' + d.plazo + ' años</strong> con tasa ' + tipoTasaTxt.toLowerCase() + ' del <strong>' + fmtPct(d.tasa,2) + '</strong> (CAE ' + fmtPct(d.cae,2) + ').</p>' +
+    'Estimado/a <strong>' + d.nombre + '</strong>' + (d.rut ? ' / RUT ' + d.rut : '') + ', le presentamos la simulación referencial gestionada por <strong>' + (cfg.empresa||'SAV Asesorías Inmobiliarias SpA (Be Finance)') + '</strong> sobre un inmueble valorado en <strong>' + fmtUF(d.valor) + '</strong> (' + fmtCLP(d.valor*UF_VALOR) + '). Como <strong>' + tipoTxt + '</strong>, solicita un financiamiento de <strong>' + fmtUF(d.fin) + '</strong> (' + fmtCLP(d.fin*UF_VALOR) + ', equivalente al ' + fmtPct(d.pctFin,1) + ' del valor del inmueble)' + (d.pie>0 ? ', con un pie de <strong>' + fmtUF(d.pie) + '</strong> (' + fmtPct(d.pctPie,1) + ')' : ', sin pie') + (d.saldoLibre>=1 && d.pctSaldo>=0.05 ? '. El saldo de <strong>' + fmtUF(d.saldoLibre) + '</strong> (' + fmtPct(d.pctSaldo,1) + ') no se financia ni se aporta como pie' : '') + '. El financiamiento se estructura a <strong>' + d.plazo + ' años</strong> con tasa ' + tipoTasaTxt.toLowerCase() + ' del <strong>' + fmtPct(d.tasa,2) + '</strong> (CAE ' + fmtPct(d.cae,2) + ').</p>' +
     '<div style="display:flex; gap:14px; margin:14px 0 18px;">' +
-      '<div style="flex:1; background:linear-gradient(135deg,#0f3a5e,#1a527e); color:#fff; padding:16px 20px; border-radius:10px;">' +
+      '<div style="flex:1; background:linear-gradient(135deg,#0A2233,#0A2233); color:#fff; padding:16px 20px; border-radius:10px;">' +
         '<div style="font-size:10px; opacity:0.7; text-transform:uppercase; letter-spacing:1px; font-weight:500;">Cuota mensual estimada</div>' +
         '<div style="font-size:24px; font-weight:700; margin-top:4px; font-variant-numeric:tabular-nums;">' + fmtUF(d.cuotaTotal) + '</div>' +
         '<div style="font-size:10px; opacity:0.7; margin-top:2px;">Capital + interés + seguros</div>' +
       '</div>' +
-      '<div style="flex:1; background:#e9f1f9; color:#0f3a5e; padding:16px 20px; border-radius:10px;">' +
-        '<div style="font-size:10px; color:#1a527e; text-transform:uppercase; letter-spacing:1px; font-weight:600;">Equivalente en CLP</div>' +
+      '<div style="flex:1; background:#eef1f5; color:#0A2233; padding:16px 20px; border-radius:10px;">' +
+        '<div style="font-size:10px; color:#0A2233; text-transform:uppercase; letter-spacing:1px; font-weight:600;">Equivalente en CLP</div>' +
         '<div style="font-size:24px; font-weight:700; margin-top:4px; font-variant-numeric:tabular-nums;">' + fmtCLP(d.cuotaTotal*UF_VALOR) + '</div>' +
         '<div style="font-size:10px; color:#6a7a85; margin-top:2px;">al valor UF vigente</div>' +
       '</div>' +
     '</div>' +
-    '<h2 style="font-size:11px; font-weight:700; color:#0f3a5e; text-transform:uppercase; letter-spacing:0.8px; margin:14px 0 4px;">Desglose numérico de la operación</h2>' +
+    '<h2 style="font-size:11px; font-weight:700; color:#0A2233; text-transform:uppercase; letter-spacing:0.8px; margin:14px 0 4px;">Desglose numérico de la operación</h2>' +
     tablaNumeros +
     '<p style="font-size:10px; color:#6a7a85; margin-top:8px; font-style:italic;">La cuota incluye los seguros aplicables a su tipo de persona. Los <strong>honorarios Be Finance</strong> se descuentan al momento del desembolso.</p>' +
     '<p style="font-size:11px; line-height:1.6; text-align:justify; margin-top:14px;">Esta propuesta es válida hasta el <strong>' + addDias(5) + '</strong>. Quedamos atentos para avanzar con la solicitud formal o aclarar cualquier consulta.</p>' +
@@ -2539,14 +2539,14 @@ function descargarPDFLeaseback(){
   // Cell helpers para tabla cliente estilo Esteban
   const fieldRow = (label, value) =>
     '<tr>' +
-    '<td style="padding:7px 12px; background:#f3f6f8; color:#0f3a5e; font-weight:600; font-size:10.5px; letter-spacing:0.4px; text-transform:uppercase; border-bottom:1px solid #e8eef1; width:42%;">' + label + '</td>' +
+    '<td style="padding:7px 12px; background:#eef1f5; color:#0A2233; font-weight:600; font-size:10.5px; letter-spacing:0.4px; text-transform:uppercase; border-bottom:1px solid #e8eef1; width:42%;">' + label + '</td>' +
     '<td style="padding:7px 12px; font-size:11.5px; color:#1a2530; border-bottom:1px solid #e8eef1;">' + value + '</td>' +
     '</tr>';
   // Fila de tabla numérica
   const tRow = (concepto, uf, clp, opts) => {
     opts = opts || {};
     const bg = opts.bg ? ' style="background:'+opts.bg+';"' : '';
-    const w = opts.bold ? 'font-weight:700; color:#0f3a5e;' : '';
+    const w = opts.bold ? 'font-weight:700; color:#0A2233;' : '';
     return '<tr'+bg+'>' +
       '<td style="padding:'+(opts.bold?'11px':'8px')+' 12px; border-bottom:1px solid #e8eef1; '+w+'">' + concepto + '</td>' +
       '<td style="padding:'+(opts.bold?'11px':'8px')+' 12px; border-bottom:1px solid #e8eef1; text-align:right; '+w+'">' + (uf||'') + '</td>' +
@@ -2558,7 +2558,7 @@ function descargarPDFLeaseback(){
 
   const html =
     pdfHeader(cfg, 'Simulación de Leaseback Inmobiliario', idCot) +
-    '<h1 style="font-family:\'Playfair Display\',serif; font-size:22px; color:#0f3a5e; margin:18px 0 4px;">Simulación de Leaseback Inmobiliario</h1>' +
+    '<h1 style="font-family:\'Jura\',sans-serif; font-size:22px; color:#0A2233; margin:18px 0 4px;">Simulación de Leaseback Inmobiliario</h1>' +
     '<div style="font-size:11px; color:#6a7a85; margin-bottom:14px; font-style:italic;">Liquidez inmediata sobre propiedad libre de gravamen · Recompra al final del plazo.</div>' +
     // === FICHA DE LA OPERACIÓN (estilo Esteban) ===
     '<table style="width:100%; border-collapse:collapse; border:1px solid #d8e0e4; border-radius:6px; overflow:hidden; margin-bottom:14px;">' +
@@ -2576,90 +2576,47 @@ function descargarPDFLeaseback(){
     fieldRow('Ejecutivo', escapeHTML(ejecutivoTxt)) +
     '</table>' +
     // === Texto de 3 líneas (voz Be Finance) ===
-    '<p style="font-size:11px; line-height:1.55; text-align:justify; color:#3a4a55; margin-bottom:16px;">La presente operación corresponde a una estructura de <strong>financiamiento privado con respaldo inmobiliario</strong>, en virtud de la cual <strong>' + escapeHTML(cfg.empresa||'Asesorías Be Finance SpA') + '</strong> evalúa, diseña y coordina una solución a la medida del perfil del cliente y de las condiciones particulares del inmueble objeto del análisis. Los valores informados son aproximados y referenciales: la aprobación queda sujeta a evaluación legal, financiera y comercial.</p>' +
+    '<p style="font-size:11px; line-height:1.55; text-align:justify; color:#3a4a55; margin-bottom:16px;">La presente operación corresponde a una estructura de <strong>financiamiento privado con respaldo inmobiliario</strong>, en virtud de la cual <strong>' + 'Be Finance' + '</strong> evalúa, diseña y coordina una solución a la medida del perfil del cliente y de las condiciones particulares del inmueble objeto del análisis. Los valores informados son aproximados y referenciales: la aprobación queda sujeta a evaluación legal, financiera y comercial.</p>' +
     // === SIMULACIÓN DE LEASEBACK INMOBILIARIO — tabla oficial 3 secciones ===
-    '<h2 style="font-size:11px; font-weight:700; color:#0f3a5e; text-transform:uppercase; letter-spacing:0.8px; margin:14px 0 8px;">Simulación de Leaseback Inmobiliario</h2>' +
+    '<h2 style="font-size:11px; font-weight:700; color:#0A2233; text-transform:uppercase; letter-spacing:0.8px; margin:14px 0 8px;">Flujo de tu operación</h2>' +
     (function(){
-      const tasaAnual = (d.tasaMensual||0) * 12;
-      const prepagoRenta = (d.prepagoRenta != null) ? d.prepagoRenta : interesesAnticipUF;
-      // Si la sim guardada NO tiene v2 marca, recalcular incluyendo gastosOpUF (regla nueva)
-      const _v2 = (d.gastosOpFondoV2 === true) || (d.operacionInicialUF != null);
-      const gastosOpFondo = _v2
-        ? (prepagoRenta + (d.gastosOpUF||0) + (d.feeL4BUF||0) + (d.feeFondoUF||0) + (d.deuda||0))
-        : ((d.gastosOpFondo != null) ? d.gastosOpFondo : (prepagoRenta + (d.feeL4BUF||0) + (d.feeFondoUF||0) + (d.deuda||0)));
-      const capitalEntregado = _v2
-        ? (d.compraventa - gastosOpFondo)
-        : ((d.capitalEntregado != null) ? d.capitalEntregado : (d.compraventa - gastosOpFondo));
-      const valorRecompra = (d.valorRecompra != null) ? d.valorRecompra : d.compraventa;
-      // Compatibilidad: operación inicial (nuevo) o notaría (sims antiguas)
-      const operacionInicialUF = (d.operacionInicialUF != null) ? d.operacionInicialUF
-                                 : (d.notariaUF != null ? d.notariaUF
-                                 : (d.notariaCLP ? (d.notariaCLP / UF_VALOR) : 100));
-      const operacionLeasebackUF = (d.operacionLeasebackUF != null) ? d.operacionLeasebackUF
-                                   : ((d.feeL4BUF||0) + (d.feeFondoUF||0));
-      const totalFeePct = (d.feeL4B||0) + (d.feeFondo||0);
-      const gastosOpCliente = operacionInicialUF; // solo operación inicial al firmar
-      const gastosOpClienteCLP = gastosOpCliente * UF_VALOR;
-      const cell = (txt, opts) => {
-        opts = opts || {};
-        const pad = opts.bold ? '10px 14px' : '8px 14px';
-        const fontw = opts.bold ? 'font-weight:700;' : '';
-        const align = opts.align || 'left';
-        const color = opts.color || '#1a2530';
-        const bg = opts.bg || '';
-        const fs = opts.fontSize || '';
-        const style = 'padding:'+pad+'; border-bottom:1px solid #e8eef1; text-align:'+align+'; color:'+color+'; '+fontw+(bg?' background:'+bg+';':'')+(fs?' font-size:'+fs+';':'')+(opts.extra?' '+opts.extra:'');
-        return '<td style="'+style+'">'+(txt==null?'—':txt)+'</td>';
-      };
-      const rowPlain = (lbl, pct, clp, uf) =>
-        '<tr>' + cell(lbl) + cell(pct,{align:'center'}) + cell(uf,{align:'right'}) + cell(clp,{align:'right'}) + '</tr>';
-      const rowTeal = (lbl, pct, clp, uf) =>
-        '<tr>' + cell(lbl,{bold:true,color:'#0f3a5e',bg:'#eef3f9',extra:'border-left:3px solid #1761a3;'}) + cell(pct,{align:'center',color:'#5a7794',bg:'#eef3f9'}) + cell(uf,{align:'right',color:'#0f3a5e',bg:'#eef3f9',bold:true}) + cell(clp,{align:'right',color:'#0f3a5e',bg:'#eef3f9',bold:true}) + '</tr>';
-      const rowGreen = (lbl, pct, clp, uf) =>
-        '<tr>' + cell(lbl,{bold:true,color:'#fff',bg:'#0f3a5e',extra:'border-left:4px solid #f2632e;'}) + cell(pct,{align:'center',color:'#fff',bg:'#0f3a5e'}) + cell(uf,{align:'right',color:'#fff',bg:'#0f3a5e',bold:true}) + cell(clp,{align:'right',color:'#fff',bg:'#0f3a5e',bold:true}) + '</tr>';
-      const rowSplit = (lbl, clp, uf) =>
-        '<tr><td style="padding:7px 14px 7px 32px; border-bottom:1px solid #e8eef1; color:#3a4a55; font-size:10px; font-style:italic;">'+lbl+'</td>' +
-        '<td style="padding:7px 14px; border-bottom:1px solid #e8eef1; text-align:center; color:#94a4af;">—</td>' +
-        '<td style="padding:7px 14px; border-bottom:1px solid #e8eef1; text-align:right; color:#3a4a55; font-style:italic;">'+uf+'</td>' +
-        '<td style="padding:7px 14px; border-bottom:1px solid #e8eef1; text-align:right; color:#3a4a55; font-style:italic;">'+clp+'</td></tr>';
-      const rowDivider = () =>
-        '<tr><td colspan="4" style="background:#fff; border-bottom:2px solid #0f3a5e; padding:9px 14px 3px;">&nbsp;</td></tr>';
-      const rowSubhead = (lbl) =>
-        '<tr><td colspan="4" style="background:#eef4fb; padding:7px 14px; color:#0f3a5e; font-size:9.5px; letter-spacing:1.2px; text-transform:uppercase; font-weight:700;">'+lbl+'</td></tr>';
-      let body = '';
-      // SECCIÓN 1 — Datos generales
-      body += rowTeal('Valor Tasación Comercial','—', fmtCLP(d.valor*UF_VALOR), fmtNum(d.valor,1));
-      body += rowPlain('Plazo Operación', d.plazo+' Meses','—','—');
-      body += rowTeal('Valor Compraventa', fmtPct(d.pctCV,1), fmtCLP(d.compraventa*UF_VALOR), fmtNum(d.compraventa,1));
-      body += rowPlain('Tasa Renta Mensual', fmtPct(d.tasaMensual,2),'—','—');
-      body += rowPlain('Tasa Renta Anual', fmtPct(tasaAnual,2),'—','—');
-      body += rowDivider();
-      // SECCIÓN 2 — Desglose del giro del fondo
-      body += rowPlain('Desglose (giro bruto)','—', fmtCLP(d.compraventa*UF_VALOR), fmtNum(d.compraventa,1));
-      body += rowPlain('Prepago de Renta','—', fmtCLP(prepagoRenta*UF_VALOR), fmtNum(prepagoRenta,1));
-      body += rowPlain('Gastos Operativos', fmtPct(d.gastosOp,1), fmtCLP((d.gastosOpUF||0)*UF_VALOR), fmtNum(d.gastosOpUF||0,1));
-      body += rowPlain('Operación Leaseback', fmtPct(totalFeePct,1), fmtCLP(operacionLeasebackUF*UF_VALOR), fmtNum(operacionLeasebackUF,1));
-      if((d.deuda||0)>0) body += rowPlain('Deuda actual liquidada','—', fmtCLP(d.deuda*UF_VALOR), fmtNum(d.deuda,1));
-      body += rowTeal('Deducciones totales','—', fmtCLP(gastosOpFondo*UF_VALOR), fmtNum(gastosOpFondo,1));
-      body += rowGreen('Capital Entregado al Cliente','—', fmtCLP(capitalEntregado*UF_VALOR), fmtNum(capitalEntregado,1));
-      body += rowTeal('Valor Recompra','—', fmtCLP(valorRecompra*UF_VALOR), fmtNum(valorRecompra,1));
-      // SECCIÓN 3 — Cobros al cliente (solo operación inicial)
-      body += rowSubhead('Cobros al cliente · al firmar contrato');
-      body += rowSplit('Operación inicial · cubre tasación, estudio de títulos, notaría y CBR', fmtCLP(operacionInicialUF*UF_VALOR), fmtNum(operacionInicialUF,1));
-      return '<table style="width:100%; border-collapse:collapse; font-size:10.5px; border-radius:6px; overflow:hidden;">'+
-             '<thead><tr style="background:#0f3a5e; color:#fff;">'+
-             '<th style="padding:9px 14px; text-align:left; font-weight:600; font-size:9.5px; letter-spacing:0.8px;">DESGLOSE</th>'+
-             '<th style="padding:9px 14px; text-align:center; font-weight:600; font-size:9.5px; letter-spacing:0.8px; width:90px;">PORCENTAJE</th>'+
-             '<th style="padding:9px 14px; text-align:right; font-weight:600; font-size:9.5px; letter-spacing:0.8px; width:80px;">UF</th>'+
-             '<th style="padding:9px 14px; text-align:right; font-weight:600; font-size:9.5px; letter-spacing:0.8px; width:120px;">PESOS</th>'+
-             '</tr></thead><tbody>'+body+'</tbody></table>';
+      var prepago = (d.prepagoRenta!=null)?d.prepagoRenta:((d.cuota||0)*(d.plazo||0));
+      var feeUF = (d.feeL4BUF||0)+(d.feeFondoUF||0);
+      var gOp = d.gastosOpUF||0;
+      var deuda = d.deuda||0;
+      var opIni = (d.operacionInicialUF!=null)?d.operacionInicialUF:(d.notariaUF!=null?d.notariaUF:100);
+      var totalDesc = prepago+feeUF+gOp+deuda;
+      var liquido = (d.dineroNeto!=null)?d.dineroNeto:(d.compraventa-totalDesc);
+      var recompra = (d.valorRecompra!=null)?d.valorRecompra:d.compraventa;
+      var par = function(v){ return fmtUF(v)+' · '+fmtCLP(v*UF_VALOR); };
+      var moment = function(n,txt,bg){ return '<div style="background:'+bg+'; color:#fff; padding:8px 14px; font-size:9.5px; font-weight:700; letter-spacing:1px; text-transform:uppercase; border-radius:5px 5px 0 0; margin-top:4px;">'+n+' &middot; '+txt+'</div>'; };
+      var tOpen = '<table style="width:100%; border-collapse:collapse; font-size:11px; border:1px solid #e2e8ec; border-top:0; border-radius:0 0 5px 5px; overflow:hidden; margin-bottom:14px;">';
+      var rowN = function(lbl,val,opts){ opts=opts||{}; var lc=opts.minus?'#3a4a55':'#1a2530'; var bg=opts.sub?' background:#f6f8fa;':''; var fw=opts.sub?'font-weight:700; color:#0A2233;':''; return '<tr><td style="padding:8px 14px; border-bottom:1px solid #e8eef1;'+bg+' color:'+lc+'; '+fw+'">'+lbl+'</td><td style="padding:8px 14px; border-bottom:1px solid #e8eef1; text-align:right; white-space:nowrap;'+bg+fw+'">'+val+'</td></tr>'; };
+      var h='';
+      h += moment('1','Al firmar el contrato','#3a4a55');
+      h += tOpen + rowN('Operación inicial', par(opIni)) + '</table>';
+      h += moment('2','Al desembolso (se descuentan del capital)','#0A2233');
+      h += tOpen + rowN('Capital de la operación', par(d.compraventa));
+      h += rowN('&minus; Prepago de renta &middot; intereses de los '+(d.plazo||0)+' meses', par(prepago), {minus:true});
+      h += rowN('&minus; Operación Leaseback ('+fmtPct(d.feeL4B||0,1)+')', par(feeUF), {minus:true});
+      h += rowN('&minus; Gastos operacionales ('+fmtPct(d.gastosOp||0,1)+')', par(gOp), {minus:true});
+      if(deuda>0) h += rowN('&minus; Deuda actual sobre la propiedad', par(deuda), {minus:true});
+      h += rowN('Total descuentos', par(totalDesc), {sub:true}) + '</table>';
+      h += '<div style="display:flex; align-items:baseline; gap:10px; border:1px solid #d8e0e4; border-left:3px solid #D6AA43; border-radius:5px; padding:11px 15px; margin-bottom:4px;">' +
+           '<span style="font-size:10px; color:#6a7a85; text-transform:uppercase; letter-spacing:0.6px;">Recibes Líquido</span>' +
+           '<span style="font-size:16px; font-weight:700; color:#0A2233;">'+fmtUF(liquido)+'</span>' +
+           '<span style="font-size:11.5px; color:#3a4a55;">· '+fmtCLP(liquido*UF_VALOR)+'</span></div>';
+      h += '<h2 style="font-size:11px; font-weight:700; color:#0A2233; text-transform:uppercase; letter-spacing:0.8px; margin:18px 0 8px;">Al cierre del plazo</h2>';
+      h += '<table style="width:100%; border-collapse:collapse; font-size:11px; border:1px solid #e2e8ec; border-radius:5px; overflow:hidden;">' +
+           rowN('Valor recompra de propiedad', par(recompra), {sub:true}) + '</table>';
+      return h;
     })() +
     // === Cómo funciona el leaseback ===
-    '<h2 style="font-size:11px; font-weight:700; color:#0f3a5e; text-transform:uppercase; letter-spacing:0.8px; margin:18px 0 8px;">¿Cómo funciona el leaseback?</h2>' +
+    '<h2 style="font-size:11px; font-weight:700; color:#0A2233; text-transform:uppercase; letter-spacing:0.8px; margin:18px 0 8px;">¿Cómo funciona el leaseback?</h2>' +
     '<p style="font-size:11px; line-height:1.6; text-align:justify;">El leaseback es una operación financiera mediante la cual el cliente vende temporalmente su propiedad al fondo. Los <strong>intereses del período se retienen anticipadamente</strong> del capital al momento del desembolso (junto con la estructuración y el fee del fondo), por lo que el cliente <strong>no paga cuota mensual</strong> durante la vigencia. El cliente desembolsa la <strong>operación inicial</strong> al firmar el contrato (tasación, estudio de títulos, notaría y CBR), y los <strong>gastos operativos</strong> se cobran al momento del desembolso de la operación. Al cierre del plazo, el cliente paga el <strong>valor recompra</strong> para restituir su titularidad.</p>' +
     // === Próximos pasos — 60 días + tasación ===
     '<div style="background:#fdf3e0; padding:12px 16px; border-left:3px solid #a05c10; border-radius:4px; margin-top:14px; font-size:10.5px; line-height:1.5;">' +
-    '<strong style="color:#a05c10;">Próximos pasos:</strong> ✓ Tasación profesional · ✓ Estudio de títulos · ✓ Aprobación del fondo · ✓ Firma de escritura · ✓ Desembolso. Tiempo estimado total: <strong>60 días</strong>, todo sujeto a tasación de la propiedad.</div>' +
+    '<strong style="color:#a05c10;">Próximos pasos:</strong> 1) Aprobación del fondo &middot; 2) Firma del contrato &middot; 3) Tasación &middot; 4) Estudio de títulos &middot; 5) Desembolso. Cuando el fondo aprueba la propiedad y el desembolso, te lo informamos para que tengas certeza de que la operación está asegurada; el desembolso se concreta una vez verificada la información y en orden. Tiempo estimado total: <strong>60 días</strong>, sujeto a tasación de la propiedad.</div>' +
     // === Nota de renovación ===
     '<p style="font-size:10px; color:#6a7a85; margin-top:14px; line-height:1.5;"><strong style="color:#a05c10;">*Renovable:</strong> el plazo de la operación es renovable al vencimiento sujeto a evaluación crediticia y comercial actualizada y al cumplimiento íntegro de las obligaciones contractuales del cliente durante el período inicial. <strong>La tasa aplicable a la renovación queda sujeta a la tasa de mercado vigente al día de cierre de la renovación.</strong> La renovación se formaliza mediante anexo al contrato.</p>' +
     '<p style="font-size:11px; line-height:1.6; text-align:justify; margin-top:10px;">No dude en contactarnos para aclarar cualquier consulta o avanzar con la solicitud formal. Agradecemos profundamente su confianza.</p>' +
@@ -2760,7 +2717,7 @@ function limpiarNotaVenta(){
   });
   // Restaurar valores default editados (descripciones de pagos)
   const p1 = document.getElementById('nv-pago1-desc'); if(p1) p1.value = 'Operación inicial · al firmar contrato';
-  const p2 = document.getElementById('nv-pago2-desc'); if(p2) p2.value = 'Fee de operación Be Finance (3%) · al desembolso';
+  const p2 = document.getElementById('nv-pago2-desc'); if(p2) p2.value = 'Fee de operación Be Finance (6%) · al desembolso';
   const feePct = document.getElementById('nv-fee-pct'); if(feePct) feePct.value = '6';
   nvOnTipoPersonaChange();
   nvActualizarPagosCLP();
@@ -2826,7 +2783,7 @@ function nvOnInputUF(){
   // Pago 1 = operación inicial (al firmar contrato)
   const p1 = document.getElementById('nv-pago1-uf');
   if(p1 && (!p1.dataset.touched || p1.value === '')) p1.value = gn>0 ? gn : '';
-  // Pago 2 = Fee Be Finance 3% (al desembolso)
+  // Pago 2 = Fee Be Finance 6% (al desembolso)
   const p2 = document.getElementById('nv-pago2-uf');
   if(p2 && (!p2.dataset.touched || p2.value === '')) p2.value = fee>0 ? fee : '';
   nvActualizarPagosCLP();
@@ -2902,6 +2859,7 @@ function descargarNotaVenta(){
   const getSel = id => { const el=document.getElementById(id); if(!el||!el.options) return ''; return el.options[el.selectedIndex]?el.options[el.selectedIndex].text:''; };
   if(!get('nv-nombre')){ alert('Falta el nombre del cliente.'); return; }
   if(!get('nv-rut')){ alert('Falta el RUT del cliente.'); return; }
+  if(!get('nv-rol')){ alert('El Rol de avalúo es obligatorio para emitir la Nota de Venta. Identifica la propiedad (define la operación).'); return; }
 
   const tipoPersona = get('nv-tipo-persona');
   const esPJ = tipoPersona === 'juridica';
@@ -4082,6 +4040,7 @@ async function guardarSimulacionActual(producto){
   }catch(e){ console.error('guardarSimulacion error:',e); alert('Error guardando simulación: '+(e.message||e)); }
 }
 
+function normRol(r){ return (r||'').toString().toLowerCase().replace(/\s+/g,'').replace(/\./g,''); }
 async function guardarNotaActual(){
   if(!fbReady()){ alert('Firebase no configurado.'); return; }
   if(!CURRENT_USER){ alert('Debes iniciar sesión.'); return; }
@@ -4090,11 +4049,17 @@ async function guardarNotaActual(){
   const cli = cliId ? CLIENTES_CACHE.find(c=>c.id===cliId) : null;
   const campos = {};
   ['nv-nombre','nv-rut','nv-tipo-persona','nv-giro','nv-rep-nombre','nv-rep-rut','nv-email','nv-telefono','nv-direccion','nv-comuna','nv-region','nv-rol','nv-tipo-propiedad','nv-prop-direccion','nv-prop-comuna','nv-prop-region','nv-valor-uf','nv-valor-clp','nv-prop-obs','nv-producto','nv-monto-uf','nv-monto-clp','nv-plazo','nv-tasa','nv-fecha-otorga','nv-honorarios-uf','nv-honorarios-clp','nv-fee-uf','nv-fee-clp','nv-fee-pct','nv-gastos-notariales-uf','nv-pago1-desc','nv-pago1-uf','nv-pago1-clp','nv-pago2-desc','nv-pago2-uf','nv-pago2-clp','nv-pago3-desc','nv-pago3-uf','nv-pago3-clp','nv-pago4-desc','nv-pago4-uf','nv-pago4-clp','nv-momento-cobro','nv-doc','nv-razon-facturacion','nv-contrato','nv-contrato-estado','nv-contrato-fecha','nv-anexos','nv-asesor-nombre','nv-asesor-contacto','nv-comision','nv-observaciones'].forEach(k=>{ campos[k]=get(k); });
+  const rolNV = (get('nv-rol')||'').trim();
+  if(!rolNV){ alert('El Rol de avalúo es obligatorio en la Nota de Venta. Define la operación (un rol = un negocio, no se repite).'); return; }
+  const _rolKey = normRol(rolNV);
+  const _dupNV = (typeof HISTORIAL_CACHE!=='undefined'?HISTORIAL_CACHE:[]).find(function(h){ return h._tipo==='nota_venta' && h.id!==_NV_EDITANDO_ID && normRol(h.rol || (h.campos&&h.campos['nv-rol']) || '')===_rolKey; });
+  if(_dupNV){ alert('Ya existe una Nota de Venta con el rol "'+rolNV+'" (cliente: '+(_dupNV.clienteNombre||'—')+').\n\nCada rol define una sola operación y no puede repetirse. Si es la misma operación, edita la Nota de Venta existente.'); return; }
   const doc = {
     asesorId: CURRENT_USER.uid,
     clienteId: cliId || null,
     clienteNombre: cli ? cli.nombre : (get('nv-nombre')||''),
     clienteRut: cli ? cli.rut : (get('nv-rut')||''),
+    rol: rolNV,
     montoUF: parseFloat(get('nv-monto-uf'))||0,
     feeUF: parseFloat(get('nv-fee-uf'))||0,
     producto: get('nv-producto'),
@@ -4507,6 +4472,12 @@ function setupKanbanDnD(){
   });
 }
 
+function _registrarEtapaAlcanzada(c, nuevaEtapa){
+  var arr = Array.isArray(c.etapasAlcanzadas) ? c.etapasAlcanzadas.slice() : [];
+  var ya = arr.indexOf(nuevaEtapa) !== -1;
+  if(!ya) arr.push(nuevaEtapa);
+  return { ya: ya, arr: arr };
+}
 async function moverEtapaCliente(cliId, nuevaEtapa, desdePipeline){
   if(!fbReady() || !CURRENT_USER) return;
   const c = CLIENTES_CACHE.find(x=>x.id===cliId);
@@ -4553,17 +4524,21 @@ async function moverEtapaCliente(cliId, nuevaEtapa, desdePipeline){
     razonRechazo = razon.trim();
   }
   // Actualización optimista del cache para feedback instantáneo
+  var _reg = _registrarEtapaAlcanzada(c, nuevaEtapa);
+  var _primeraVez = !_reg.ya;
   c.etapa = nuevaEtapa;
   c.updatedAt = nowTs();
-  c.etapaMovedAt = nowTs();
+  if(_primeraVez) c.etapaMovedAt = nowTs();
   c.etapaPrev = etapaPrev;
+  c.etapasAlcanzadas = _reg.arr;
   if(nuevaEtapa === 'rechazo') c.razonRechazo = razonRechazo;
   renderPipeline();
   try{
-    const patch = { etapa: nuevaEtapa, updatedAt: nowTs(), etapaMovedAt: nowTs(), etapaPrev: etapaPrev };
+    const patch = { etapa: nuevaEtapa, updatedAt: nowTs(), etapaPrev: etapaPrev, etapasAlcanzadas: _reg.arr };
+    if(_primeraVez) patch.etapaMovedAt = nowTs();
     if(nuevaEtapa === 'rechazo') patch.razonRechazo = razonRechazo;
     await fbDb.collection('clientes').doc(cliId).update(patch);
-    try{
+    if(_primeraVez){ try{
       await fbDb.collection('clientes').doc(cliId).collection('notas').add({
         tipo: 'etapa',
         texto: 'Etapa: '+etapaInfo(etapaPrev).label+' → '+etapaInfo(nuevaEtapa).label+' (drag-and-drop)',
@@ -4571,7 +4546,7 @@ async function moverEtapaCliente(cliId, nuevaEtapa, desdePipeline){
         asesorNombre: miNombre(),
         createdAt: nowTs()
       });
-    } catch(_){ /* nota es secundaria, no bloquear */ }
+    } catch(_){ /* nota es secundaria, no bloquear */ } }
     mostrarToastAutoCliente('Etapa actualizada: '+etapaInfo(nuevaEtapa).label, 'vinculado');
     // === AUTO-TRIGGER: si entra a Simulación desde pipeline, navegar al simulador con datos pre-llenados ===
     if(desdePipeline && nuevaEtapa === 'simulacion' && c.producto){
@@ -4962,20 +4937,23 @@ async function cambiarEtapaCliente(){
     return;
   }
   try{
-    await fbDb.collection('clientes').doc(CD_ID).update({
-      etapa: nuevaEtapa,
-      updatedAt: nowTs()
-    });
-    c.etapa = nuevaEtapa;
-    await fbDb.collection('clientes').doc(CD_ID).collection('notas').add({
-      tipo: 'etapa',
-      texto: 'Etapa: '+etapaInfo(etapaPrev).label+' → '+etapaInfo(nuevaEtapa).label,
-      asesorId: CURRENT_USER.uid,
-      asesorNombre: miNombre(),
-      createdAt: nowTs()
-    });
-    await cargarNotas(CD_ID);
-    renderTimeline(CD_ID);
+    var _reg = _registrarEtapaAlcanzada(c, nuevaEtapa);
+    var _primeraVez = !_reg.ya;
+    var _upd = { etapa: nuevaEtapa, updatedAt: nowTs(), etapasAlcanzadas: _reg.arr };
+    if(_primeraVez) _upd.etapaMovedAt = nowTs();
+    await fbDb.collection('clientes').doc(CD_ID).update(_upd);
+    c.etapa = nuevaEtapa; c.etapasAlcanzadas = _reg.arr; if(_primeraVez) c.etapaMovedAt = _upd.etapaMovedAt;
+    if(_primeraVez){
+      await fbDb.collection('clientes').doc(CD_ID).collection('notas').add({
+        tipo: 'etapa',
+        texto: 'Etapa: '+etapaInfo(etapaPrev).label+' → '+etapaInfo(nuevaEtapa).label,
+        asesorId: CURRENT_USER.uid,
+        asesorNombre: miNombre(),
+        createdAt: nowTs()
+      });
+      await cargarNotas(CD_ID);
+      renderTimeline(CD_ID);
+    }
   } catch(e){
     console.error(e); alert('No se pudo cambiar la etapa: '+e.message);
   }
@@ -5555,11 +5533,64 @@ async function crearContratoDesdeNV(clienteId){
   }
 }
 
+/* === RESYNC CONTRATO PENDIENTE (Ladrillo 1) ===
+   Mientras el contrato esté pendiente de aprobación (sin archivo subido),
+   se re-sincroniza con la última Nota de Venta de la misma operación (rol). */
+function _ultimaNVOperacion(clienteId, rol){
+  var nvs = (typeof HISTORIAL_CACHE!=='undefined'?HISTORIAL_CACHE:[])
+    .filter(function(h){ return h._tipo==='nota_venta' && h.clienteId===clienteId; })
+    .sort(function(a,b){ var ta=(a.fechaSort&&a.fechaSort.getTime)?a.fechaSort.getTime():0; var tb=(b.fechaSort&&b.fechaSort.getTime)?b.fechaSort.getTime():0; return tb-ta; });
+  if(!nvs.length) return null;
+  rol=(rol||'').trim();
+  if(rol){ var m=nvs.find(function(n){ return (((n.campos&&n.campos['nv-rol'])||'').trim())===rol; }); if(m) return m; }
+  return nvs[0];
+}
+function resyncContratoPendiente(cto){
+  try{
+    if(!cto || cto.estado!=='pendiente_aprobacion' || cto.archivoSubido) return;
+    var rol = (cto.inmueble && cto.inmueble.rol) || '';
+    var nv = _ultimaNVOperacion(cto.clienteId, rol);
+    if(!nv) return;
+    var campos = nv.campos || {};
+    var cli = (typeof CLIENTES_CACHE!=='undefined' ? CLIENTES_CACHE.find(function(x){return x.id===cto.clienteId;}) : null) || {};
+    var ctoCli = cto.cliente || {};
+    var feePct = parseFloat(campos['nv-fee-pct']) || 6;
+    var upd = {
+      nvId: nv.id || cto.nvId || '',
+      montoNumeralUF: parseFloat(campos['nv-monto-uf']) || nv.montoUF || cto.montoNumeralUF || 0,
+      gastosNotarialesUF: parseFloat(campos['nv-gastos-notariales-uf']) || cto.gastosNotarialesUF || 100,
+      pago3Pct: feePct/2,
+      pago4Pct: feePct/2,
+      inmueble: {
+        tipo: campos['nv-tipo-propiedad'] || (cto.inmueble&&cto.inmueble.tipo) || '',
+        direccion: campos['nv-prop-direccion'] || (cto.inmueble&&cto.inmueble.direccion) || '',
+        comuna: campos['nv-prop-comuna'] || (cto.inmueble&&cto.inmueble.comuna) || '',
+        rol: campos['nv-rol'] || rol || ''
+      },
+      cliente: Object.assign({}, ctoCli, {
+        nombre: cli.nombre || campos['nv-nombre'] || ctoCli.nombre || '',
+        rut: cli.rut || campos['nv-rut'] || ctoCli.rut || '',
+        giro: cli.giro || campos['nv-giro'] || ctoCli.giro || '',
+        email: cli.email || campos['nv-email'] || ctoCli.email || '',
+        telefono: cli.telefono || campos['nv-telefono'] || ctoCli.telefono || '',
+        direccion: cli.direccion || campos['nv-direccion'] || ctoCli.direccion || '',
+        comuna: cli.comuna || campos['nv-comuna'] || ctoCli.comuna || ''
+      })
+    };
+    var rawClp = campos['nv-monto-clp'] || '';
+    var numFromCLP = parseFloat((rawClp+'').replace(/[$.\s]/g,'').replace(',','.')) || 0;
+    upd.montoNumeralCLP = numFromCLP>0 ? numFromCLP : (upd.montoNumeralUF * UF_VALOR);
+    Object.assign(cto, upd);
+    if(fbReady() && cto.id){ fbDb.collection('contratos').doc(cto.id).update(upd).catch(function(e){ console.warn('resync contrato:', e); }); }
+  }catch(e){ console.warn('resyncContratoPendiente:', e); }
+}
+
 /* Abre el modal de contrato (asesor: solo lectura · admin: editable) */
 function abrirContratoModal(contratoId){
   const cto = CONTRATOS_CACHE.find(c => c.id === contratoId);
   if(!cto){ alert('Contrato no encontrado.'); return; }
   _CONTRATO_ACTIVO = cto;
+  resyncContratoPendiente(cto);
   const esAdminUser = esAdmin();
   const c = cto.cliente || {};
   const esPJ = c.tipoPersona === 'juridica';
@@ -7228,7 +7259,7 @@ function descargarReporteEjecutivoPDF(){
     tablaResHTML +
     conclHTMLpdf +
     notasHTML +
-    '<div style="font-size:8.5pt; color:#6c757d; margin-top:12px; padding:7px 10px; background:#fafcfd; border:1px solid #e5e7eb; border-radius:6px; line-height:1.4;"><strong>Cómo se calculan:</strong> Ingresos Be Finance = fee del 3% sobre monto financiado de las operaciones con etapa <strong>Cerrado</strong> (desembolso efectivo). Ticket promedio = Ingresos / operaciones cerradas. Tasa de cierre = Operaciones <strong>cerradas</strong> (etapa Cerrado) / Prospectos del período. Ciclo de ventas = días promedio desde createdAt hasta updatedAt de los clientes en Contrato. Comparativa: período inmediatamente anterior con misma duración.</div>' +
+    '<div style="font-size:8.5pt; color:#6c757d; margin-top:12px; padding:7px 10px; background:#fafcfd; border:1px solid #e5e7eb; border-radius:6px; line-height:1.4;"><strong>Cómo se calculan:</strong> Ingresos Be Finance = fee del 6% sobre el monto financiado (igual al valor de compraventa) de las operaciones con etapa <strong>Cerrado</strong> (desembolso efectivo). Ticket promedio = Ingresos / operaciones cerradas. Tasa de cierre = Operaciones <strong>cerradas</strong> (etapa Cerrado) / Prospectos del período. Ciclo de ventas = días promedio desde createdAt hasta updatedAt de los clientes en Contrato. Comparativa: período inmediatamente anterior con misma duración.</div>' +
     ''; // Sin disclaimer en reportes — solo aparece en PDFs de simulación
 
   generarPDF(cuerpo, 'Reporte_Ejecutivo_'+(rango==='dia'?fmtFecha(desde).replace(/\//g,'-'):'periodo'));
@@ -7383,7 +7414,7 @@ function descargarReportePDF(){
   const cfg = cargarConfig() || {};
   const idCot = generarIdCot();
   const tituloDoc = 'Reporte Diario · Equipo Comercial';
-  const subtituloDoc = (cfg.empresa||'Asesorías Be Finance SpA')+' · Generado por '+(CURRENT_PROFILE?CURRENT_PROFILE.nombre:'(asesor)')+' (Jefe de Ventas) · Para entrega a jefatura';
+  const subtituloDoc = (cfg.empresa||'SAV Asesorías Inmobiliarias SpA (Be Finance)')+' · Generado por '+(CURRENT_PROFILE?CURRENT_PROFILE.nombre:'(asesor)')+' (Jefe de Ventas) · Para entrega a jefatura';
 
   const cuerpo =
     pdfHeader(cfg, 'Reporte Diario · '+tituloRango, idCot) +
