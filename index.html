@@ -938,7 +938,7 @@ if(FIREBASE_OK){
             <strong>💡 Auto-cálculo:</strong> El cliente paga la operación inicial al firmar el contrato; el 30% valor comisión banca e inversiones se descuenta al desembolso. Todos los campos son <strong>editables</strong> para casos especiales.
           </div>
           <div class="form-grid-3">
-            <div class="form-group"><label>Operación inicial (UF)</label><input type="number" id="nv-gastos-notariales-uf" step="0.01" oninput="nvOnInputUF()" placeholder="100"></div>
+            <div class="form-group"><label>Operación inicial (UF)</label><input type="number" id="nv-gastos-notariales-uf" step="0.01" oninput="nvOnInputUF()" placeholder="100"></div><input type="hidden" id="nv-liquido-uf">
           </div>
           <div class="form-grid-3" style="margin-top:14px">
             <div class="form-group"><label>Fee Santa Luzmira (% sobre operación)</label><input type="number" id="nv-fee-pct" step="0.1" value="6" oninput="nvOnInputUF()"><span class="hint">Default 6%.</span></div>
@@ -2689,7 +2689,7 @@ function precargarNotaDesdeSimulacion(origen){
       nombre:LB_DATA.nombre, rut:LB_DATA.rut, tipo:LB_DATA.tipo, email:LB_DATA.email, telefono:LB_DATA.telefono,
       valor:LB_DATA.valor, monto:LB_DATA.compraventa, plazo:LB_DATA.plazo+' meses',
       tasa:fmtPct(LB_DATA.tasaMensual,2)+' mensual ('+fmtPct(LB_DATA.tasaMensual*12,2)+' anual)',
-      fee:LB_DATA.feeL4BUF, feePct:fmtPct(LB_DATA.feeL4B,1), operacionInicial:LB_DATA.operacionInicialUF,
+      fee:LB_DATA.feeL4BUF, feePct:fmtPct(LB_DATA.feeL4B,1), operacionInicial:LB_DATA.operacionInicialUF, liquido:LB_DATA.dineroNeto,
       direccion:LB_DATA.direccion, comuna:LB_DATA.comuna,
       producto:'leaseback', tipoProp:tipoPropMap[LB_DATA.tipoPropiedad]||'otro'
     };
@@ -2716,6 +2716,7 @@ function precargarNotaDesdeSimulacion(origen){
   document.getElementById('nv-fee-clp').value = datos.fee ? fmtCLP(datos.fee*UF_VALOR) : '';
   document.getElementById('nv-fee-pct').value = datos.feePct || '';
   if(datos.operacionInicial!=null){ var oiEl=document.getElementById('nv-gastos-notariales-uf'); if(oiEl) oiEl.value=Math.round(datos.operacionInicial*100)/100; }
+  { var lqEl=document.getElementById('nv-liquido-uf'); if(lqEl) lqEl.value=(datos.liquido!=null&&datos.liquido>0)?Math.round(datos.liquido*100)/100:''; }
   document.getElementById('nv-asesor-nombre').value = cfg.nombre || '';
   document.getElementById('nv-asesor-contacto').value = ((cfg.email||'')+(cfg.telefono?' · '+cfg.telefono:'')).trim();
   // Auto-calcular honorarios + fee + pagos al pre-cargar
@@ -2893,6 +2894,7 @@ function descargarNotaVenta(){
   const feePct  = parseFloat(get('nv-fee-pct'))||0;
   const honUF   = parseFloat(get('nv-honorarios-uf'))||0;
   const gnUF    = parseFloat(get('nv-gastos-notariales-uf'))||0;
+  const liquidoUF = parseFloat(get('nv-liquido-uf'))||0;
   const idNota  = generarIdCot();
   const fechaHoy = fmtFecha();
 
@@ -2931,6 +2933,7 @@ function descargarNotaVenta(){
                (get('nv-rol') ? r('Rol avalúo', get('nv-rol')) : '') +
                r('Valor inmueble', valorUF>0 ? fmtUF(valorUF)+' &nbsp; · &nbsp; '+fmtCLP(valorUF*UF_VALOR) : '—') +
                r('<strong style="color:#0A2233">Monto a financiar</strong>', montoUF>0 ? '<strong>'+fmtUF(montoUF)+' &nbsp; · &nbsp; '+fmtCLP(montoUF*UF_VALOR)+'</strong>' : '—') +
+               (liquidoUF>0 ? r('<strong style="color:#0A2233">Monto líquido al cliente</strong>', '<strong>'+fmtUF(liquidoUF)+' &nbsp; · &nbsp; '+fmtCLP(liquidoUF*UF_VALOR)+'</strong>') : '') +
                r('Plazo', get('nv-plazo')) +
                r('Tasa pactada', get('nv-tasa')) +
                (get('nv-fecha-otorga') ? r('Fecha otorgamiento', get('nv-fecha-otorga')) : '');
@@ -4072,7 +4075,7 @@ async function guardarNotaActual(){
   const cliId = CLIENTE_SELECCIONADO_SIM.nv;
   const cli = cliId ? CLIENTES_CACHE.find(c=>c.id===cliId) : null;
   const campos = {};
-  ['nv-nombre','nv-rut','nv-tipo-persona','nv-giro','nv-rep-nombre','nv-rep-rut','nv-email','nv-telefono','nv-direccion','nv-comuna','nv-region','nv-rol','nv-tipo-propiedad','nv-prop-direccion','nv-prop-comuna','nv-prop-region','nv-valor-uf','nv-valor-clp','nv-prop-obs','nv-producto','nv-monto-uf','nv-monto-clp','nv-plazo','nv-tasa','nv-fecha-otorga','nv-honorarios-uf','nv-honorarios-clp','nv-fee-uf','nv-fee-clp','nv-fee-pct','nv-gastos-notariales-uf','nv-pago1-desc','nv-pago1-uf','nv-pago1-clp','nv-pago2-desc','nv-pago2-uf','nv-pago2-clp','nv-pago3-desc','nv-pago3-uf','nv-pago3-clp','nv-pago4-desc','nv-pago4-uf','nv-pago4-clp','nv-momento-cobro','nv-doc','nv-razon-facturacion','nv-contrato','nv-contrato-estado','nv-contrato-fecha','nv-anexos','nv-asesor-nombre','nv-asesor-contacto','nv-comision','nv-observaciones'].forEach(k=>{ campos[k]=get(k); });
+  ['nv-nombre','nv-rut','nv-tipo-persona','nv-giro','nv-rep-nombre','nv-rep-rut','nv-email','nv-telefono','nv-direccion','nv-comuna','nv-region','nv-rol','nv-tipo-propiedad','nv-prop-direccion','nv-prop-comuna','nv-prop-region','nv-valor-uf','nv-valor-clp','nv-prop-obs','nv-producto','nv-monto-uf','nv-monto-clp','nv-liquido-uf','nv-plazo','nv-tasa','nv-fecha-otorga','nv-honorarios-uf','nv-honorarios-clp','nv-fee-uf','nv-fee-clp','nv-fee-pct','nv-gastos-notariales-uf','nv-pago1-desc','nv-pago1-uf','nv-pago1-clp','nv-pago2-desc','nv-pago2-uf','nv-pago2-clp','nv-pago3-desc','nv-pago3-uf','nv-pago3-clp','nv-pago4-desc','nv-pago4-uf','nv-pago4-clp','nv-momento-cobro','nv-doc','nv-razon-facturacion','nv-contrato','nv-contrato-estado','nv-contrato-fecha','nv-anexos','nv-asesor-nombre','nv-asesor-contacto','nv-comision','nv-observaciones'].forEach(k=>{ campos[k]=get(k); });
   const rolNV = (get('nv-rol')||'').trim();
   if(!rolNV){ alert('El Rol de avalúo es obligatorio en la Nota de Venta. Define la operación (un rol = un negocio, no se repite).'); return; }
   const _rolKey = normRol(rolNV);
@@ -4121,6 +4124,37 @@ async function guardarNotaActual(){
     await cargarHistorial();
     if(CD_ID===cliId && cliId){ await cargarNotas(cliId); renderTimeline(cliId); renderSimsCliente(cliId); }
   }catch(e){ console.error('guardarNota error:',e); alert('Error guardando nota: '+(e.message||e)); if(btn){ btn.disabled=false; btn.innerHTML='<span>💾</span> Guardar nota en historial'; } }
+}
+
+/* Auto-guarda una NV borrador la primera vez que se alimenta desde una simulación,
+   para que la información quede persistida (editable) aunque el asesor no guarde manualmente. */
+async function _autoGuardarNVDraft(cliId){
+  try{
+    if(!fbReady() || !CURRENT_USER || !cliId) return;
+    if(_NV_EDITANDO_ID) return; // ya enlazada a una NV existente
+    var prod=(document.getElementById('nv-producto')||{}).value||'';
+    var yaExiste=(typeof HISTORIAL_CACHE!=='undefined'?HISTORIAL_CACHE:[]).some(function(h){ return h._tipo==='nota_venta' && h.clienteId===cliId && (!prod || h.producto===prod); });
+    if(yaExiste) return;
+    var montoUF=parseFloat((document.getElementById('nv-monto-uf')||{}).value)||0;
+    if(montoUF<=0) return; // sin datos de operación aún
+    var get=function(id){ return (document.getElementById(id)||{}).value||''; };
+    var cli=(typeof CLIENTES_CACHE!=='undefined'?CLIENTES_CACHE.find(function(c){return c.id===cliId;}):null)||null;
+    var lista=(typeof _VCPDF_NV!=='undefined'?_VCPDF_NV:[]);
+    var campos={}; lista.forEach(function(k){ campos[k]=get(k); });
+    var doc={
+      asesorId:CURRENT_USER.uid, clienteId:cliId,
+      clienteNombre:(cli?cli.nombre:get('nv-nombre')), clienteRut:(cli?cli.rut:get('nv-rut')),
+      rol:(get('nv-rol')||'').trim(),
+      montoUF:montoUF, feeUF:parseFloat(get('nv-fee-uf'))||0,
+      producto:prod, ufValor:getNVUFActivo(),
+      campos:campos, estado:'borrador', autogenerada:true,
+      createdAt:nowTs(), updatedAt:nowTs()
+    };
+    var ref=await fbDb.collection('notasVenta').add(doc);
+    _NV_EDITANDO_ID=ref.id;
+    await cargarHistorial();
+    if(typeof mostrarToastAutoCliente==='function') mostrarToastAutoCliente('💾 Nota de Venta guardada automáticamente · editable', 'creado');
+  }catch(e){ console.warn('_autoGuardarNVDraft:', e); }
 }
 
 /* === EQUIPO === */
@@ -4627,6 +4661,12 @@ function navegarANotaVenta(cliId){
     const cliente = CLIENTES_CACHE.find(c => c.id === cliId);
     if(!cliente){ console.warn('navegarANotaVenta: cliente no encontrado', cliId); return; }
 
+    // === Si ya existe una NV guardada para este cliente/operación, cargarla (respeta lo que escribiste) en vez de re-precargar desde la simulación ===
+    var _nvExist = (typeof HISTORIAL_CACHE!=='undefined'?HISTORIAL_CACHE:[])
+      .filter(function(h){ return h._tipo==='nota_venta' && h.clienteId===cliId && (!cliente.producto || h.producto===cliente.producto); })
+      .sort(function(a,b){ var ta=(a.fechaSort&&a.fechaSort.getTime)?a.fechaSort.getTime():0; var tb=(b.fechaSort&&b.fechaSort.getTime)?b.fechaSort.getTime():0; return tb-ta; })[0];
+    if(_nvExist){ cargarNVEnFormulario(_nvExist); return; }
+
     // 1. Datos del cliente vía picker (dispara onClientePickerChange)
     const picker = document.getElementById('cp-nv');
     if(picker){
@@ -4687,6 +4727,7 @@ function navegarANotaVenta(cliId){
       document.getElementById('nv-fee-uf').value = honorariosUF ? Math.round(honorariosUF*100)/100 : '';
       document.getElementById('nv-fee-clp').value = honorariosUF ? fmtCLP(honorariosUF*UF_BASE) : '';
       document.getElementById('nv-fee-pct').value = honorariosPct ? fmtPct(honorariosPct,1) : '';
+      { var _lqElH=document.getElementById('nv-liquido-uf'); if(_lqElH) _lqElH.value=''; }
     } else {
       // leaseback
       const valorUF = inputs.valorUF || 0;
@@ -4708,6 +4749,7 @@ function navegarANotaVenta(cliId){
       document.getElementById('nv-fee-uf').value = feeL4BUF ? Math.round(feeL4BUF*100)/100 : '';
       document.getElementById('nv-fee-clp').value = feeL4BUF ? fmtCLP(feeL4BUF*UF_BASE) : '';
       document.getElementById('nv-fee-pct').value = feeL4B ? fmtPct(feeL4B,1) : '';
+      { var _lqEl=document.getElementById('nv-liquido-uf'); if(_lqEl){ var _lq=resultados.dineroNetoUF||0; _lqEl.value=_lq?Math.round(_lq*100)/100:''; } }
     }
 
     // Auto-ajustar honorarios + recalcular pagos
@@ -4723,6 +4765,7 @@ function navegarANotaVenta(cliId){
     document.getElementById('nv-fuente-tipo').textContent = (ultimaSim.producto==='hipotecario' ? 'Crédito Hipotecario' : 'Leaseback Inmobiliario') + ' · cargado desde historial' + ufLbl;
 
     mostrarToastAutoCliente('✓ Nota de Venta pre-llenada · CLPs fijados al UF de la simulación', 'creado');
+    _autoGuardarNVDraft(cliId);
   }, 200);
 }
 
@@ -5291,7 +5334,7 @@ function verSimEnSimulador(){
 }
 
 /* ===== VER COTIZACIÓN COMO PDF (directo, UF congelado del documento) ===== */
-var _VCPDF_NV=['nv-nombre','nv-rut','nv-tipo-persona','nv-giro','nv-rep-nombre','nv-rep-rut','nv-email','nv-telefono','nv-direccion','nv-comuna','nv-region','nv-rol','nv-tipo-propiedad','nv-prop-direccion','nv-prop-comuna','nv-prop-region','nv-valor-uf','nv-valor-clp','nv-prop-obs','nv-producto','nv-monto-uf','nv-monto-clp','nv-plazo','nv-tasa','nv-fecha-otorga','nv-honorarios-uf','nv-honorarios-clp','nv-fee-uf','nv-fee-clp','nv-fee-pct','nv-gastos-notariales-uf','nv-pago1-desc','nv-pago1-uf','nv-pago1-clp','nv-pago2-desc','nv-pago2-uf','nv-pago2-clp','nv-pago3-desc','nv-pago3-uf','nv-pago3-clp','nv-pago4-desc','nv-pago4-uf','nv-pago4-clp','nv-momento-cobro','nv-doc','nv-razon-facturacion','nv-contrato','nv-contrato-estado','nv-contrato-fecha','nv-anexos','nv-asesor-nombre','nv-asesor-contacto','nv-comision','nv-observaciones'];
+var _VCPDF_NV=['nv-nombre','nv-rut','nv-tipo-persona','nv-giro','nv-rep-nombre','nv-rep-rut','nv-email','nv-telefono','nv-direccion','nv-comuna','nv-region','nv-rol','nv-tipo-propiedad','nv-prop-direccion','nv-prop-comuna','nv-prop-region','nv-valor-uf','nv-valor-clp','nv-prop-obs','nv-producto','nv-monto-uf','nv-monto-clp','nv-liquido-uf','nv-plazo','nv-tasa','nv-fecha-otorga','nv-honorarios-uf','nv-honorarios-clp','nv-fee-uf','nv-fee-clp','nv-fee-pct','nv-gastos-notariales-uf','nv-pago1-desc','nv-pago1-uf','nv-pago1-clp','nv-pago2-desc','nv-pago2-uf','nv-pago2-clp','nv-pago3-desc','nv-pago3-uf','nv-pago3-clp','nv-pago4-desc','nv-pago4-uf','nv-pago4-clp','nv-momento-cobro','nv-doc','nv-razon-facturacion','nv-contrato','nv-contrato-estado','nv-contrato-fecha','nv-anexos','nv-asesor-nombre','nv-asesor-contacto','nv-comision','nv-observaciones'];
 function verCotizacionPDF(doc){
   if(!doc){ return; }
   var esNV = doc._tipo==='nota_venta';
