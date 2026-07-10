@@ -935,7 +935,7 @@ if(FIREBASE_OK){
         <div class="form-card-header"><span class="h-icon">💰</span><h3>3. Honorarios y desglose de pagos</h3><div class="green-dot"></div></div>
         <div class="form-body">
           <div style="background:var(--green-bg); border-left:3px solid var(--green); padding:10px 14px; border-radius:4px; margin-bottom:14px; font-size:11.5px; color:var(--teal); line-height:1.5;">
-            <strong>💡 Auto-cálculo:</strong> El cliente paga la operación inicial al firmar el contrato; el Fee Santa Luzmira (6%) se descuenta al desembolso. Todos los campos son <strong>editables</strong> para casos especiales.
+            <strong>💡 Auto-cálculo:</strong> El cliente paga la operación inicial al firmar el contrato; el 30% valor comisión banca e inversiones se descuenta al desembolso. Todos los campos son <strong>editables</strong> para casos especiales.
           </div>
           <div class="form-grid-3">
             <div class="form-group"><label>Operación inicial (UF)</label><input type="number" id="nv-gastos-notariales-uf" step="0.01" oninput="nvOnInputUF()" placeholder="100"></div>
@@ -959,7 +959,7 @@ if(FIREBASE_OK){
               </tr>
               <tr>
                 <td><strong>2</strong></td>
-                <td><input type="text" id="nv-pago2-desc" value="Fee de operación Santa Luzmira (6%) · al desembolso" style="border:1px solid var(--border-l); padding:5px 8px; border-radius:4px; font-size:12px; width:100%; font-family:inherit"></td>
+                <td><input type="text" id="nv-pago2-desc" value="30% valor comisión banca e inversiones" style="border:1px solid var(--border-l); padding:5px 8px; border-radius:4px; font-size:12px; width:100%; font-family:inherit"></td>
                 <td><input type="number" id="nv-pago2-uf" step="0.01" oninput="nvOnPagoChange()" style="border:1px solid var(--border-l); padding:5px 8px; border-radius:4px; font-size:12px; width:100%; text-align:right; font-variant-numeric:tabular-nums; font-family:inherit"></td>
                 <td><input type="text" id="nv-pago2-clp" readonly style="background:var(--green-bg); color:var(--teal); font-weight:600; border:1px solid var(--border-l); padding:5px 8px; border-radius:4px; font-size:12px; width:100%; text-align:right; font-variant-numeric:tabular-nums; font-family:inherit"></td>
               </tr>
@@ -2746,7 +2746,7 @@ function limpiarNotaVenta(){
   });
   // Restaurar valores default editados (descripciones de pagos)
   const p1 = document.getElementById('nv-pago1-desc'); if(p1) p1.value = 'Operación inicial · al firmar contrato';
-  const p2 = document.getElementById('nv-pago2-desc'); if(p2) p2.value = 'Fee de operación Santa Luzmira (6%) · al desembolso';
+  const p2 = document.getElementById('nv-pago2-desc'); if(p2) p2.value = '30% valor comisión banca e inversiones';
   const feePct = document.getElementById('nv-fee-pct'); if(feePct) feePct.value = '6';
   nvOnTipoPersonaChange();
   nvActualizarPagosCLP();
@@ -2942,7 +2942,7 @@ function descargarNotaVenta(){
 
   // === BLOQUE HONORARIOS & PAGOS (con tabla prominente) ===
   let honorariosResumen = '<table style="width:100%; border-collapse:collapse;">' +
-    r('Fee Santa Luzmira ('+(feePct||6)+'%)', feeUF>0 ? fmtUF(feeUF)+' · '+fmtCLP(feeUF*UF_VALOR) : '—') +
+    r('30% valor comisión banca e inversiones', feeUF>0 ? fmtUF(feeUF)+' · '+fmtCLP(feeUF*UF_VALOR) : '—') +
     (gnUF>0 ? r('Operación inicial', fmtUF(gnUF)+' · '+fmtCLP(gnUF*UF_VALOR)) : '') +
   '</table>';
 
@@ -6057,38 +6057,31 @@ function generarHTMLContrato(cto){
   const c = cto.cliente || {};
   const esPJ = c.tipoPersona === 'juridica';
 
-  // Monto principal CLP fijado al momento de la NV (no recalcula con UF actual)
-  const montoCLP_num = cto.montoNumeralCLP || ((cto.montoNumeralUF||0) * UF_VALOR);
-  const montoCLP = fmtCLP(montoCLP_num);
-  const montoLiteralTxt = cto.montoLiteral || numeroALetras(Math.round(montoCLP_num));
-
-  // Datos cliente
+  // Datos del Cliente (desde la Nota de Venta)
   const fechaContrato = cto.fechaContrato || fmtFechaLiteral(new Date());
-  const nombreCliente = escapeHTML(c.nombre || (esPJ?'[RAZÓN SOCIAL]':'[NOMBRE]'));
-  const rutCliente = escapeHTML(c.rut || '[RUT]');
-  const direccion = escapeHTML(c.direccion || '[DOMICILIO]');
+  const nombreCliente = escapeHTML(c.nombre || (esPJ?'[RAZÓN SOCIAL]':'[NOMBRE DEL CLIENTE]'));
+  const rutCliente = escapeHTML(c.rut || '[C.I. / RUT DEL CLIENTE]');
+  const direccion = escapeHTML(c.direccion || '[DOMICILIO DEL CLIENTE]');
   const comuna = escapeHTML(c.comuna || '[COMUNA]');
-  const email = escapeHTML(c.email || '[CORREO]');
-  const telefono = escapeHTML(c.telefono || '');
   const repNombre = escapeHTML(c.representanteNombre || '[NOMBRE REPRESENTANTE LEGAL]');
   const repRut = escapeHTML(c.representanteRut || '[RUT REPRESENTANTE]');
 
-  // Valores económicos
-  const honPreEval = (cto.honorariosPreEvalUF||0);
-  const honPreEvalLit = honPreEval===20 ? 'veinte unidades de fomento' : honPreEval+' unidades de fomento';
-  const gastosOp = (cto.gastosOperacionalesUF||0);
-  const gastosNot = (cto.gastosNotarialesUF||0); // labeled "Operación inicial" en el form
-  const pago3 = (cto.pago3Pct||1.5);
-  const pago4 = (cto.pago4Pct||1.5);
-  const totalFee = pago3 + pago4;
+  // Inmueble (desde la NV) — sin fojas: usamos dirección, comuna y rol
+  const inmDireccion = escapeHTML((cto.inmueble&&cto.inmueble.direccion) || '[DIRECCIÓN DEL INMUEBLE]');
+  const inmComuna = escapeHTML((cto.inmueble&&cto.inmueble.comuna) || '[COMUNA]');
+  const inmRol = (cto.inmueble&&cto.inmueble.rol) ? escapeHTML(cto.inmueble.rol) : '';
 
-  // Compareciente II — distinto para PN vs PJ
-  const tel = telefono ? ', número de teléfono <strong>'+telefono+'</strong>' : '';
-  const compareceII = esPJ
-    ? '<strong>'+nombreCliente+'</strong>, RUT N° <strong>'+rutCliente+'</strong>, sociedad constituida conforme a las leyes de la República de Chile, con domicilio en <strong>'+direccion+'</strong>, comuna de <strong>'+comuna+'</strong>, debidamente representada por <strong>'+repNombre+'</strong>, cédula de identidad N° <strong>'+repRut+'</strong>, correo electrónico <strong>'+email+'</strong>'+tel+' en adelante "El Cliente".'
-    : '<strong>'+nombreCliente+'</strong>, cédula de identidad N° <strong>'+rutCliente+'</strong>, con domicilio en <strong>'+direccion+'</strong>, comuna de <strong>'+comuna+'</strong>, correo electrónico <strong>'+email+'</strong>'+tel+' en adelante "El Cliente".';
+  // N° UF de la Operación Inicial (campo "Operación inicial" de la NV)
+  const opInicialUF = (cto.gastosNotarialesUF||0);
 
-  // Estilos justificados embebidos
+  // Compareciente — el Cliente (persona natural / jurídica)
+  const compareceCliente = esPJ
+    ? '<strong>'+nombreCliente+'</strong>, sociedad del giro de su denominación, Rol Único Tributario N° <strong>'+rutCliente+'</strong>, representada legalmente por don(ña) <strong>'+repNombre+'</strong>, cédula de identidad N° <strong>'+repRut+'</strong>, ambos domiciliados en <strong>'+direccion+'</strong>, comuna de <strong>'+comuna+'</strong>, en adelante "el Cliente"'
+    : 'don(ña) <strong>'+nombreCliente+'</strong>, cédula de identidad N° <strong>'+rutCliente+'</strong>, domiciliado(a) en <strong>'+direccion+'</strong>, comuna de <strong>'+comuna+'</strong>, en adelante "el Cliente"';
+
+  // Antecedentes del inmueble (Cláusula Primera) — adaptado a lo que tenemos en la NV
+  const antecedentesInmueble = 'El Cliente es propietario del inmueble ubicado en <strong>'+inmDireccion+'</strong>, comuna de <strong>'+inmComuna+'</strong>'+(inmRol?', Rol de Avalúo N° <strong>'+inmRol+'</strong>':'')+'. El Cliente ha encomendado a Santa Luzmira la gestión e intermediación necesaria para obtener financiamiento bajo la modalidad de <em>leaseback</em> respecto del referido inmueble (en adelante, "la Operación").';
+
   const styleBlock =
     '<style>' +
       '.contrato-wrap { font-family:Inter,Arial,sans-serif; font-size:11pt; line-height:1.6; color:#1a2730; text-align:justify; text-justify:inter-word; }' +
@@ -6097,128 +6090,55 @@ function generarHTMLContrato(cto){
       '.contrato-wrap h2 { font-size:12pt; font-weight:700; margin-bottom:18px; }' +
       '.contrato-wrap h3 { font-size:11pt; font-weight:700; color:#0A2233; margin:14px 0 6px; text-align:left; }' +
       '.contrato-wrap p { margin:0 0 8px; text-align:justify; }' +
-      '.contrato-wrap ul { margin:4px 0 10px 24px; padding:0; text-align:justify; }' +
-      '.contrato-wrap ul li { margin-bottom:4px; }' +
-      '.contrato-wrap .pago-item { padding-left:24px; text-align:justify; }' +
-      '.contrato-wrap .banco-block { padding-left:24px; text-align:left; margin:4px 0 10px; }' +
-      '.contrato-wrap .banco-block p { margin:1px 0; }' +
-      '.contrato-wrap .firmas { margin-top:40px; display:flex; gap:30px; text-align:center; }' +
+      '.contrato-wrap .firmas { margin-top:48px; display:flex; gap:30px; text-align:center; }' +
       '.contrato-wrap .firma-box { flex:1; border-top:1px solid #1a2730; padding-top:6px; }' +
       '.contrato-wrap .firma-box p { font-size:10pt; margin:2px 0; text-align:center; }' +
     '</style>';
 
   return styleBlock + '<div class="contrato-wrap">' +
     '<h1>CONTRATO DE PRESTACIÓN DE SERVICIOS DE</h1>' +
-    '<h1>GESTIÓN DE LEASEBACK</h1>' +
-    '<h2>Y/O LEVANTAMIENTO DE CAPITAL (FINANCIAMIENTO)</h2>' +
+    '<h2>INTERMEDIACIÓN Y RECONOCIMIENTO DE HONORARIOS</h2>' +
 
-    '<p>En Santiago de Chile, a <strong>'+escapeHTML(fechaContrato)+'</strong>, comparecen las siguientes partes:</p>' +
+    '<p>En Santiago de Chile, a <strong>'+escapeHTML(fechaContrato)+'</strong>, comparecen: por una parte, <strong>INVERSIONES SANTA LUZMIRA LIMITADA</strong>, sociedad del giro de su denominación, Rol Único Tributario N° <strong>76.186.633-8</strong>, representada legalmente por don <strong>ISAAC VENTURA</strong>, cédula nacional de identidad N° <strong>8.282.012-4</strong>, domiciliado para estos efectos en Avenida Kennedy N° 7900, oficina 301, comuna de Vitacura, Santiago, en adelante e indistintamente "<strong>Santa Luzmira</strong>" o "el Intermediario"; y, por la otra, '+compareceCliente+'; quienes, en conjunto, han acordado celebrar el siguiente contrato:</p>' +
 
-    '<p><strong>I.</strong> <strong>Inversiones Santa Luzmira Ltda.</strong>, RUT N° 76.186.633-8, sociedad legalmente constituida conforme a las leyes de la República de Chile, con domicilio en Av. Kennedy 7900, oficina 301, comuna de Vitacura, Santiago, debidamente representada por Isaac Ventura, cédula nacional de identidad N° 8.282.012-4, en su calidad de representante, correo electrónico contacto@befinance.cl en adelante "<strong>SANTA LUZMIRA</strong>" o "El Prestador".</p>' +
+    '<h3>PRIMERO: Antecedentes.</h3>' +
+    '<p>'+antecedentesInmueble+'</p>' +
 
-    '<p><strong>II.</strong> '+compareceII+'</p>' +
+    '<h3>SEGUNDO: Servicios prestados por el Intermediario.</h3>' +
+    '<p>Santa Luzmira ha desarrollado, por cuenta y en interés del Cliente, todas las gestiones requeridas para estructurar y concretar la Operación, incluyendo, de manera enunciativa y no taxativa: el estudio de los títulos de dominio; la obtención y revisión de certificados del Conservador de Bienes Raíces (dominio vigente, hipotecas, gravámenes, interdicciones y prohibiciones); la coordinación y asesoría con abogados; la gestión de tasaciones; la recopilación, preparación y revisión de antecedentes y documentación; y la presentación, gestión y negociación de la Operación ante la entidad financiera o fondo de inversión correspondiente.</p>' +
 
-    '<p>Ambas partes, en adelante conjuntamente referidas como "las Partes", han convenido en celebrar el presente Contrato de Prestación de Servicios de Gestión de Leaseback y/o Levantamiento de Capital, en adelante "el Contrato", el cual se regirá por las siguientes cláusulas:</p>' +
+    '<h3>TERCERO: Honorario por intermediación.</h3>' +
+    '<p>El honorario por los servicios de intermediación correspondientes a la presente Operación asciende a <strong>'+opInicialUF+'</strong> Unidades de Fomento (UF). Dicho monto será pagado a Santa Luzmira con cargo al monto bruto que la entidad financiera desembolse con ocasión de la Operación.</p>' +
 
-    '<h3>CLÁUSULA PRIMERA. OBJETO DEL CONTRATO:</h3>' +
-    '<p>SANTA LUZMIRA se obliga, por cuenta del Cliente, a prestar servicios de asesoría y gestión especializada con el objeto de identificar, estructurar, postular y facilitar la obtención de un Leaseback y/o Levantamiento de Capital, otorgado por una entidad especializada, cuyo monto meta objetivo ascienda la suma aproximada de <strong>'+montoCLP+'</strong> (<strong>'+escapeHTML(montoLiteralTxt)+' pesos chilenos</strong>).</p>' +
-    '<p>Para efectos de la presente gestión, El Cliente declara ofrecer en respaldo de la operación el inmueble ubicado en <strong>'+escapeHTML((cto.inmueble&&cto.inmueble.direccion)||'[DIRECCIÓN DEL INMUEBLE]')+'</strong>, comuna de <strong>'+escapeHTML((cto.inmueble&&cto.inmueble.comuna)||'[COMUNA]')+'</strong>'+((cto.inmueble&&cto.inmueble.rol)?', Rol de Avalúo N° <strong>'+escapeHTML(cto.inmueble.rol)+'</strong>':'')+'.</p>' +
-    '<p>El presente contrato no constituye una obligación de resultado, sino un compromiso profesional de medios y diligencia calificada conforme al estándar de la industria financiera.</p>' +
+    '<h3>CUARTO: Forma y oportunidad de pago.</h3>' +
+    '<p>El honorario indicado en la cláusula tercera se pagará a Santa Luzmira con cargo al producto de la Operación, al momento de su desembolso, mediante la emisión de un vale vista bancario tomado a nombre de Inversiones Santa Luzmira Limitada, RUT N° 76.186.633-8, o mediante transferencia electrónica a la cuenta de Isaac Ventura, RUT 8.282.012-4, Banco BCI, Cuenta Corriente N° 51250021, correo santaluzmira@gmail.com; el cual será cobrado directamente por Santa Luzmira. Para estos efectos, las partes otorgarán las instrucciones notariales que resulten necesarias.</p>' +
 
-    '<h3>CLÁUSULA SEGUNDA. HONORARIOS Y FORMA DE PAGO:</h3>' +
-    '<p>Como retribución por los servicios descritos en la cláusula anterior, El Cliente pagará a SANTA LUZMIRA un honorario equivalente a un <strong>'+totalFee.toFixed(1)+'%</strong> del valor de recompra / monto del crédito aprobado, por concepto de gestión y cierre de la operación, el cual se descontará al momento del desembolso de los fondos. Dicho monto constituye la única retribución de SANTA LUZMIRA bajo el presente contrato.</p>' +
-    '<p>Adicionalmente, y de forma separada a los honorarios antes señalados, el Cliente deberá solventar los gastos propios de la operación, los cuales no constituyen honorarios ni remuneración para SANTA LUZMIRA, sino desembolsos necesarios para la tramitación y formalización del financiamiento (gastos operacionales, notariales y de inscripción ante el Conservador de Bienes Raíces, entre otros).</p>' +
-    '<p>El pago de los honorarios y de los gastos de la operación se efectuará según el siguiente desglose:</p>' +
-    '<p class="pago-item"><strong>Pago 1</strong> - Operación inicial equivalente a '+gastosNot+' UF, por concepto de tasación, estudio de títulos, gastos notariales e inscripción ante el Conservador de Bienes Raíces, pagadera al momento de la firma del presente contrato, en calidad de habilitación del servicio para gestionar la obtención de los fondos.</p>' +'<p class="pago-item"><strong>Pago 2</strong> - Honorarios de gestión equivalentes al '+totalFee.toFixed(1)+'% del valor de recompra / monto del crédito aprobado, los cuales se descontarán del giro al momento del desembolso de los fondos, conjuntamente con los intereses, gastos operativos y la deuda que correspondan a la operación.</p>' +
-    '<p>Los honorarios de gestión se desglosan de la siguiente manera:</p>' +
-    '<ul>' +
-      '<li>Gestión ante entidades financieras y estructuración de la operación.</li>' +
-      '<li>Elaboración y presentación de antecedentes ante la entidad especializada.</li>' +
-      '<li>Coordinación de due diligence y tasaciones, si correspondiere.</li>' +
-      '<li>Seguimiento y cierre de la operación hasta firma de contratos definitivos.</li>' +
-    '</ul>' +
-    '<p>Los pagos deberán efectuarse mediante transferencia bancaria a las siguientes cuentas y se emitirán las facturas correspondientes conforme a la legislación tributaria vigente:</p>' +
-    '<div class="banco-block">' +
-      '<p><strong>Inversiones Santa Luzmira Ltda.</strong></p>' +
-      '<p>RUT: 76.186.633-8</p>' +
-      '<p>Banco: [POR CONFIRMAR]</p>' +
-      '<p>Tipo de cuenta: [POR CONFIRMAR]</p>' +
-      '<p>N° de cuenta: [POR CONFIRMAR]</p>' +
-      '<p>Mail: contacto@befinance.cl</p>' +
-    '</div>' +
+    '<h3>QUINTO: Documentación tributaria.</h3>' +
+    '<p>Santa Luzmira emitirá la correspondiente boleta o factura por concepto de los honorarios efectivamente percibidos en virtud del presente contrato, conforme a la normativa tributaria vigente.</p>' +
 
-    '<h3>CLÁUSULA TERCERA. INICIO DE GESTIÓN Y CONDICIONES DE DEVOLUCIÓN:</h3>' +
-    '<p>La prestación de los servicios contratados dará inicio una vez verificado el pago íntegro correspondiente al Pago 1, y siempre que el Cliente haya entregado de forma completa, veraz, suficiente y oportuna toda la documentación e información requerida para la correcta evaluación y tramitación de la solicitud ante SANTA LUZMIRA.</p>' +
-    '<p><em>Condiciones de devolución del Pago 1:</em> El Pago 1 tendrá carácter de no reembolsable, salvo en los siguientes casos excepcionales: (a) que SANTA LUZMIRA no inicie ningún trámite de gestión dentro de los 30 días hábiles siguientes a la recepción completa de la documentación del Cliente; o (b) que SANTA LUZMIRA incumpla gravemente sus obligaciones esenciales bajo el presente contrato. En ningún caso procederá la devolución si el Cliente desiste voluntariamente del proceso o no entrega la documentación requerida en forma oportuna.</p>' +
-    '<p>No procederá devolución alguna en caso de que el rechazo se origine, directa o indirectamente, por la entrega de información falsa, incompleta, inexacta, desactualizada o por omisiones relevantes atribuibles al Cliente o por desistimiento por parte de el Cliente.</p>' +
+    '<h3>SEXTO: Declaración del Cliente.</h3>' +
+    '<p>El Cliente declara que ha sido informado de manera previa, clara y suficiente respecto del honorario pactado, de su monto, de su naturaleza y de su forma de pago, manifestando su conformidad y aceptación libre y voluntaria con todo lo estipulado en este instrumento.</p>' +
 
-    '<h3>CLÁUSULA CUARTA. MANDATO:</h3>' +
-    '<p>Por el presente instrumento, El Cliente confiere a SANTA LUZMIRA un mandato especial y suficiente para que, en su nombre y representación, realice todas las gestiones necesarias para la obtención del financiamiento descrito en la Cláusula Primera. Este mandato comprende especialmente las siguientes facultades:</p>' +
-    '<ul>' +
-      '<li>Presentar, en nombre del Cliente, antecedentes, solicitudes, formularios y toda documentación requerida ante instituciones financieras, fondos de inversión privados, entidades bancarias y cualquier otro financista potencial.</li>' +
-      '<li>Solicitar, recibir y gestionar informes de tasación, estudios de títulos, carpetas de crédito y due diligence relacionados con la operación.</li>' +
-      '<li>Negociar con entidades financieras las condiciones generales del financiamiento, sujeto a aprobación final del Cliente.</li>' +
-      '<li>Coordinar y programar reuniones, visitas a inmuebles, y cualquier trámite operativo necesario para el éxito de la operación.</li>' +
-      '<li>En general, realizar todos los actos y gestiones de carácter no vinculante para el Cliente que sean necesarios para el avance del proceso de financiamiento.</li>' +
-    '</ul>' +
-    '<p><strong>El presente mandato no faculta a SANTA LUZMIRA para comprometer patrimonialmente al Cliente, suscribir contratos definitivos en su nombre, ni ejecutar actos jurídicos vinculantes sin su consentimiento expreso y por escrito.</strong></p>' +
-    '<p><em>Irrevocabilidad:</em> Una vez que la entidad financiera haya aprobado formalmente el financiamiento objeto de este contrato, el presente mandato se volverá irrevocable, no pudiendo el Cliente revocar el mandato ni impedir el cobro de los honorarios establecidos en la Cláusula Segunda, habida consideración de que dicha aprobación será consecuencia directa de la gestión de SANTA LUZMIRA.</p>' +
+    '<h3>SÉPTIMO: Vigencia.</h3>' +
+    '<p>El presente contrato regirá desde la fecha de su suscripción y mientras subsistan las obligaciones pendientes de cumplimiento, en especial el pago del honorario pactado.</p>' +
 
-    '<h3>CLÁUSULA QUINTA. NO CAPTACIÓN DIRECTA:</h3>' +
-    '<p>Por el presente instrumento y mientras el presente Contrato se encuentre vigente, El Cliente se obliga a no contactar directamente, ni por interpuesta persona, a las instituciones o inversionistas que SANTA LUZMIRA le presente o identifique en el marco de este contrato, con el propósito de cerrar la operación sin la intervención de SANTA LUZMIRA. El incumplimiento de esta obligación facultará a SANTA LUZMIRA para exigir el pago íntegro del honorario de gestión (Pago 2) como si la operación hubiera sido obtenida con su intermediación.</p>' +
+    '<h3>OCTAVO: Domicilio.</h3>' +
+    '<p>Para todos los efectos derivados del presente contrato, las partes fijan su domicilio en la ciudad y comuna de Santiago, sometiéndose a la competencia de sus tribunales ordinarios de justicia.</p>' +
 
-    '<h3>CLÁUSULA SEXTA. OBLIGACIONES DEL PRESTADOR:</h3>' +
-    '<p>Son obligaciones de SANTA LUZMIRA:</p>' +
-    '<ul>' +
-      '<li>Asesorar al Cliente en la recopilación, estructuración y presentación de la documentación requerida por la entidad financiera seleccionada.</li>' +
-      '<li>Actuar como intermediario estratégico entre El Cliente y la institución durante el proceso de análisis, evaluación, aprobación y firma del contrato.</li>' +
-      '<li>Mantener informado al Cliente respecto del avance del proceso.</li>' +
-      '<li>No comprometer en forma alguna la responsabilidad patrimonial del Cliente sin su consentimiento por escrito.</li>' +
-    '</ul>' +
-
-    '<h3>CLÁUSULA SÉPTIMA. OBLIGACIONES DEL CLIENTE:</h3>' +
-    '<p>El Cliente se compromete a:</p>' +
-    '<ul>' +
-      '<li>Proporcionar de manera oportuna, fidedigna y completa toda la información y documentación requerida para la tramitación de la línea de financiamiento.</li>' +
-      '<li>Cumplir con los pagos establecidos en la cláusula segunda.</li>' +
-      '<li>Firmar los contratos emitidos por la entidad aprobada en caso de aceptar la oferta de crédito.</li>' +
-      '<li>No revocar el mandato otorgado en la Cláusula Cuarta una vez que el financiamiento haya sido formalmente aprobado por la entidad financiera correspondiente.</li>' +
-    '</ul>' +
-
-    '<h3>CLÁUSULA OCTAVA. CONFIDENCIALIDAD:</h3>' +
-    '<p>Las Partes se obligan recíprocamente a guardar estricta confidencialidad respecto de toda información técnica, financiera, estratégica, contractual o comercial a la que tengan acceso como consecuencia del presente contrato, incluyendo sin limitación los términos de la relación con la entidad financiera, datos bancarios, estados financieros, planes comerciales, contratos, correspondencia y cualquier otro antecedente reservado.</p>' +
-    '<p>Esta obligación se mantendrá vigente durante la vigencia del contrato y por un plazo adicional de cinco (5) años contados desde su terminación, sea cual fuere la causa. El incumplimiento de esta cláusula dará derecho a la parte afectada a exigir el pago de una indemnización por todos los daños y perjuicios causados, sin perjuicio de las acciones legales que correspondan.</p>' +
-
-    '<h3>CLÁUSULA NOVENA. INCUMPLIMIENTO Y PENALIDADES:</h3>' +
-    '<p>El incumplimiento de las obligaciones establecidas en el presente Contrato hará responsable a la Parte infractora de los daños y perjuicios que tal incumplimiento pueda causar a la otra Parte.</p>' +
-    '<p>En particular, si El Cliente viola la cláusula de exclusividad o no captación directa (Cláusula Quinta), deberá pagar a SANTA LUZMIRA, a título de indemnización, una suma equivalente al '+totalFee.toFixed(1)+'% del monto del financiamiento objetivo señalado en la Cláusula Primera, con independencia de si la operación se concretó o no.</p>' +
-
-    '<h3>CLÁUSULA DÉCIMA. PLAZO DE VIGENCIA:</h3>' +
-    '<p>El presente contrato tendrá una vigencia de sesenta (60) días corridos, contados desde la fecha de su firma. Este plazo podrá ser prorrogado por mutuo acuerdo expreso entre las partes, mediante documento escrito y firmado.</p>' +
-    '<p>No obstante lo anterior, una vez que el financiamiento sea formalmente aprobado por la entidad financiera, las obligaciones de pago del Cliente (Pago 2) y el mandato otorgado a SANTA LUZMIRA no podrán ser revocados, subsistiendo hasta el completo pago de los honorarios pactados.</p>' +
-
-    '<h3>CLÁUSULA UNDÉCIMA. LEY APLICABLE Y RESOLUCIÓN DE CONTROVERSIAS:</h3>' +
-    '<p>El presente contrato se rige por las leyes de la República de Chile. Para todos los efectos legales derivados de este contrato, las partes fijan su domicilio en la ciudad de Santiago.</p>' +
-    '<p>Cualquier dificultad o controversia que se produzca entre las Partes respecto de la aplicación, interpretación, duración, validez, exigibilidad, cumplimiento, incumplimiento, nulidad, resolución, terminación, determinación de la procedencia y cuantía de las multas e indemnizaciones pactadas, o ejecución de los actos aquí pactados, será resuelta en única instancia por un árbitro arbitrador, designado de común acuerdo por las partes, y a falta de acuerdo, por el Centro de Arbitraje y Mediación de Santiago, a solicitud de cualquiera de ellas, de conformidad con su reglamento vigente al momento de solicitarse el arbitraje.</p>' +
-    '<p>En contra de las resoluciones del árbitro no procederá recurso alguno, con excepción de los que sean irrenunciables en conformidad con la ley.</p>' +
-
-    '<h3>CLÁUSULA DUODÉCIMA. INTEGRIDAD CONTRACTUAL:</h3>' +
-    '<p>Este contrato representa el acuerdo íntegro entre las partes y reemplaza cualquier otro entendimiento verbal o escrito anterior relacionado con el objeto aquí estipulado. Cualquier modificación deberá constar por escrito y ser firmada por ambas partes.</p>' +
-
-    '<p style="margin-top:20px;">Y en prueba de conformidad, firman las partes el presente contrato en dos ejemplares de igual tenor, quedando un ejemplar en poder de cada una de ellas.</p>' +
+    '<p style="margin-top:18px;">En comprobante de su conformidad, las partes firman el presente contrato en dos ejemplares de igual tenor y fecha, quedando uno en poder de cada parte.</p>' +
 
     '<div class="firmas">' +
       '<div class="firma-box">' +
         '<p>Firma: ___________________________________</p>' +
-        '<p><strong>Por: Inversiones Santa Luzmira Ltda.</strong></p>' +
+        '<p><strong>Inversiones Santa Luzmira Limitada</strong></p>' +
         '<p>Isaac Ventura</p>' +
         '<p>RUT: 8.282.012-4</p>' +
       '</div>' +
       '<div class="firma-box">' +
         '<p>Firma: ___________________________________</p>' +
-        '<p><strong>Por: '+nombreCliente+'</strong></p>' +
+        '<p><strong>'+nombreCliente+'</strong></p>' +
         '<p>RUT: '+rutCliente+'</p>' +
-        (esPJ ? '<p>'+repNombre+'</p><p>RUT N° '+repRut+'</p>' : '') +
+        (esPJ ? '<p>Rep.: '+repNombre+'</p><p>RUT N° '+repRut+'</p>' : '') +
       '</div>' +
     '</div>' +
 
