@@ -1854,31 +1854,26 @@ const DOCUMENTOS_JURIDICA = [
   { id:'cv', label:'Certificado dominio vigente CBR' }
 ];
 const VERIF_DOCS = [
-  { grupo:'Empresa', items:[
-    { id:'v_malla', label:'Malla societaria del grupo (socios + RUT)' },
-    { id:'v_balance', label:'Balances + declaraciones de renta (firmados rep. legal y contador)' },
-    { id:'v_carpeta', label:'Carpeta tributaria (36 últimos IVA / F29)' },
-    { id:'v_tgr', label:'Certificado de deuda TGR (+ convenios si aplica)' },
-    { id:'v_deuda', label:'Cuadro de deuda del grupo' },
-    { id:'v_obras', label:'Cuadro de obras actualizado (si aplica)' },
-    { id:'v_patrimonio', label:'Cuadro de patrimonio del grupo' },
-    { id:'v_cmf', label:'Deuda CMF de empresa y socios' },
-    { id:'v_flujo', label:'Flujo proyectado 12–24 meses' },
-    { id:'v_erut', label:'e-RUT de la empresa' },
-    { id:'v_destino', label:'Destino de los fondos y forma de pago' }
+  { grupo:'Parte 1 · Para la cotización', items:[
+    { id:'lb_tasacion', label:'Tasación (Tinsa o Transsa)' },
+    { id:'lb_cedula', label:'Cédula de identidad del dueño (copia ambos lados, vigente)' },
+    { id:'lb_deuda', label:'Certificado de Hipotecas y Gravámenes (¿la propiedad tiene deuda?)' }
   ]},
-  { grupo:'Socios', items:[
-    { id:'v_ci', label:'Cédula de identidad socios (ambos lados)' },
-    { id:'v_renta_s', label:'Declaración de renta socios (2 años) / liquidaciones' },
-    { id:'v_cotiz', label:'Certificado de cotizaciones' },
-    { id:'v_situacion', label:'Estado de situación con acreditación patrimonial' }
+  { grupo:'Parte 2 · Presentación de la propiedad', items:[
+    { id:'lb_dominio', label:'Certificado de Dominio Vigente (CBR)' },
+    { id:'lb_poder', label:'Poder Simple de representación (firmado por el propietario)' },
+    { id:'lb_escritura', label:'Escritura de compraventa anterior (título de adquisición)' },
+    { id:'lb_contrib', label:'Certificado de Contribuciones (TGR)' },
+    { id:'lb_numero', label:'Certificado de Número (Municipalidad / DOM)' },
+    { id:'lb_utilidad', label:'Certificado de no afectación a utilidad pública (Municipalidad)' },
+    { id:'lb_expropiacion', label:'Certificado de no expropiación (SERVIU)' },
+    { id:'lb_fotos', label:'Fotos y videos de la propiedad (interior y exterior)' }
   ]},
-  { grupo:'Legales', items:[
-    { id:'v_escritura', label:'Escritura de constitución y modificaciones vigentes' },
-    { id:'v_vigencia', label:'Certificado de vigencia de sociedad (< 30 días)' },
-    { id:'v_inicio', label:'Inicio de actividades SII' },
-    { id:'v_extracto', label:'Inscripción de extracto + publicación Diario Oficial' },
-    { id:'v_personeria', label:'Escritura de personería del representante legal' }
+  { grupo:'Si el propietario es empresa', items:[
+    { id:'lb_e_vigencia', label:'Certificado de Vigencia de la empresa (Registro de Comercio / RES)' },
+    { id:'lb_e_extracto', label:'Extracto o constitución de la sociedad (escritura vigente)' },
+    { id:'lb_e_estatuto', label:'Estatuto actualizado (poderes de representación)' },
+    { id:'lb_e_ci', label:'C.I. del o los representantes (copia ambos lados, vigente)' }
   ]}
 ];
 const FONDO_DOCS = [
@@ -5073,8 +5068,8 @@ function renderDocsChecklistV2(cliente){
   var drive=(cliente.fichaEmpresa&&cliente.fichaEmpresa.driveUrl)||'';
   var html='';
   if(drive) html+='<a class="doc-drive" href="'+escapeHTML(drive)+'" target="_blank" rel="noopener">\U0001F4C1 Abrir carpeta Drive del cliente</a>';
-  html+=renderDocGroup('\U0001F6E1️ Verificación (KYC / capacidad)', VERIF_DOCS, docs);
-  html+=renderDocGroup('\U0001F3E6 Presentación a fondo', FONDO_DOCS, docs);
+  html+=renderDocGroup('📄 Documentación · Leaseback', VERIF_DOCS, docs);
+  html+=renderDocGroup('🏦 Presentación a fondo', FONDO_DOCS, docs);
   cont.innerHTML=html;
 }
 async function setDocEstado(docId, estado){
