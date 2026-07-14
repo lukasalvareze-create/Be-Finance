@@ -4750,6 +4750,8 @@ function navegarANotaVenta(cliId){
       document.getElementById('nv-fee-clp').value = feeL4BUF ? fmtCLP(feeL4BUF*UF_BASE) : '';
       document.getElementById('nv-fee-pct').value = feeL4B ? fmtPct(feeL4B,1) : '';
       { var _lqEl=document.getElementById('nv-liquido-uf'); if(_lqEl){ var _lq=resultados.dineroNetoUF||0; _lqEl.value=_lq?Math.round(_lq*100)/100:''; } }
+      if(inputs.direccion){ var _pd=document.getElementById('nv-prop-direccion'); if(_pd) _pd.value=inputs.direccion; var _cd=document.getElementById('nv-direccion'); if(_cd && !_cd.value) _cd.value=inputs.direccion; }
+      if(inputs.comuna){ var _pc=document.getElementById('nv-prop-comuna'); if(_pc) _pc.value=inputs.comuna; var _cc=document.getElementById('nv-comuna'); if(_cc && !_cc.value) _cc.value=inputs.comuna; }
     }
 
     // Auto-ajustar honorarios + recalcular pagos
@@ -5664,6 +5666,7 @@ async function crearContratoDesdeNV(clienteId){
   }
 
   const campos = nv.campos || {};
+  var simIn = (HISTORIAL_CACHE||[]).filter(function(h){ return h._tipo==='simulacion' && h.clienteId===clienteId && (!cliente.producto || h.producto===cliente.producto); }).sort(function(a,b){ var ta=(a.fechaSort&&a.fechaSort.getTime)?a.fechaSort.getTime():0; var tb=(b.fechaSort&&b.fechaSort.getTime)?b.fechaSort.getTime():0; return tb-ta; })[0]; simIn=(simIn&&simIn.inputs)||{};
   const tipoPersona = cliente.tipoPersona || 'natural';
   const esPJ = tipoPersona === 'juridica';
 
@@ -5680,8 +5683,8 @@ async function crearContratoDesdeNV(clienteId){
       giro: cliente.giro || campos['nv-giro'] || '',
       email: cliente.email || campos['nv-email'] || '',
       telefono: cliente.telefono || campos['nv-telefono'] || '',
-      direccion: cliente.direccion || campos['nv-direccion'] || '',
-      comuna: cliente.comuna || campos['nv-comuna'] || '',
+      direccion: cliente.direccion || campos['nv-direccion'] || simIn.direccion || '',
+      comuna: cliente.comuna || campos['nv-comuna'] || simIn.comuna || '',
       region: campos['nv-region'] || 'Metropolitana',
       representanteNombre: esPJ ? (campos['nv-rep-nombre'] || '') : '',
       representanteRut: esPJ ? (campos['nv-rep-rut'] || '') : ''
@@ -5700,8 +5703,8 @@ async function crearContratoDesdeNV(clienteId){
     montoLiteral: '',
     inmueble: {
       tipo: campos['nv-tipo-propiedad'] || '',
-      direccion: campos['nv-prop-direccion'] || '',
-      comuna: campos['nv-prop-comuna'] || '',
+      direccion: campos['nv-prop-direccion'] || simIn.direccion || '',
+      comuna: campos['nv-prop-comuna'] || simIn.comuna || '',
       rol: campos['nv-rol'] || ''
     },
     honorariosPreEvalUF: 0,
@@ -5750,6 +5753,7 @@ function resyncContratoPendiente(cto){
     var nv = _ultimaNVOperacion(cto.clienteId, rol);
     if(!nv) return;
     var campos = nv.campos || {};
+    var simIn = (typeof HISTORIAL_CACHE!=='undefined'?HISTORIAL_CACHE:[]).filter(function(h){ return h._tipo==='simulacion' && h.clienteId===cto.clienteId; }).sort(function(a,b){ var ta=(a.fechaSort&&a.fechaSort.getTime)?a.fechaSort.getTime():0; var tb=(b.fechaSort&&b.fechaSort.getTime)?b.fechaSort.getTime():0; return tb-ta; })[0]; simIn=(simIn&&simIn.inputs)||{};
     var cli = (typeof CLIENTES_CACHE!=='undefined' ? CLIENTES_CACHE.find(function(x){return x.id===cto.clienteId;}) : null) || {};
     var ctoCli = cto.cliente || {};
     var feePct = parseFloat(campos['nv-fee-pct']) || 6;
@@ -5761,8 +5765,8 @@ function resyncContratoPendiente(cto){
       pago4Pct: feePct/2,
       inmueble: {
         tipo: campos['nv-tipo-propiedad'] || (cto.inmueble&&cto.inmueble.tipo) || '',
-        direccion: campos['nv-prop-direccion'] || (cto.inmueble&&cto.inmueble.direccion) || '',
-        comuna: campos['nv-prop-comuna'] || (cto.inmueble&&cto.inmueble.comuna) || '',
+        direccion: campos['nv-prop-direccion'] || (cto.inmueble&&cto.inmueble.direccion) || simIn.direccion || '',
+        comuna: campos['nv-prop-comuna'] || (cto.inmueble&&cto.inmueble.comuna) || simIn.comuna || '',
         rol: campos['nv-rol'] || rol || ''
       },
       cliente: Object.assign({}, ctoCli, {
@@ -5771,8 +5775,8 @@ function resyncContratoPendiente(cto){
         giro: cli.giro || campos['nv-giro'] || ctoCli.giro || '',
         email: cli.email || campos['nv-email'] || ctoCli.email || '',
         telefono: cli.telefono || campos['nv-telefono'] || ctoCli.telefono || '',
-        direccion: cli.direccion || campos['nv-direccion'] || ctoCli.direccion || '',
-        comuna: cli.comuna || campos['nv-comuna'] || ctoCli.comuna || ''
+        direccion: cli.direccion || campos['nv-direccion'] || ctoCli.direccion || simIn.direccion || '',
+        comuna: cli.comuna || campos['nv-comuna'] || ctoCli.comuna || simIn.comuna || ''
       })
     };
     var rawClp = campos['nv-monto-clp'] || '';
