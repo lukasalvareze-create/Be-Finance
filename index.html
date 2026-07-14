@@ -5852,6 +5852,23 @@ function abrirContratoModal(contratoId){
     '</table>'+
   '</div>';
 
+  // === Datos editables del contrato (admin) — asegura dirección/comuna aunque no vengan de la NV ===
+  if(esAdminUser){
+    var _inm = cto.inmueble || {};
+    var _iw = 'width:100%; padding:5px 7px; margin-top:2px; border:1px solid #e0d9c9; border-radius:5px; font-size:12px; font-family:inherit;';
+    body += '<div style="background:#fff8ec; border:1px solid #f0e0bf; border-radius:8px; padding:12px 14px; margin-bottom:14px;">'+
+      '<div style="font-size:11px; color:#8a6d1f; text-transform:uppercase; letter-spacing:0.5px; font-weight:600; margin-bottom:8px;">\u270F\uFE0F Datos editables del contrato</div>'+
+      '<div style="display:grid; grid-template-columns:1fr 1fr; gap:8px 10px;">'+
+        '<label style="font-size:11px; color:var(--muted);">Direcci\u00f3n del inmueble<input id="mct-inm-dir" value="'+escapeHTML(_inm.direccion||'')+'" style="'+_iw+'"></label>'+
+        '<label style="font-size:11px; color:var(--muted);">Comuna del inmueble<input id="mct-inm-com" value="'+escapeHTML(_inm.comuna||'')+'" style="'+_iw+'"></label>'+
+        '<label style="font-size:11px; color:var(--muted);">Rol de aval\u00fao<input id="mct-inm-rol" value="'+escapeHTML(_inm.rol||'')+'" style="'+_iw+'"></label>'+
+        '<label style="font-size:11px; color:var(--muted);">Domicilio del cliente<input id="mct-cli-dir" value="'+escapeHTML(c.direccion||'')+'" style="'+_iw+'"></label>'+
+        '<label style="font-size:11px; color:var(--muted);">Comuna del cliente<input id="mct-cli-com" value="'+escapeHTML(c.comuna||'')+'" style="'+_iw+'"></label>'+
+      '</div>'+
+      '<button class="btn" onclick="guardarDatosContrato()" style="margin-top:9px;"><span>\U0001F4BE</span> Guardar datos del contrato</button>'+
+    '</div>';
+  }
+
   // === Archivo subido (si existe) ===
   if(tieneArchivo){
     body += '<div style="background:#eef1f5; border:1px solid #b4cde2; border-radius:8px; padding:12px 14px; margin-bottom:14px;">'+
@@ -5870,7 +5887,9 @@ function abrirContratoModal(contratoId){
   let actions = '';
   if(esAdminUser){
     // Borrador auto-generado siempre disponible para admin
-    actions += '<button class="btn ghost" onclick="descargarBorradorContrato()"><span>📄</span> Descargar borrador</button>';
+    actions += '<button class="btn ghost" onclick="descargarContratoHonorariosWord()"><span>📄</span> Contrato honorarios (Word)</button>';
+    actions += '<button class="btn ghost" onclick="descargarPoderSimpleWord()"><span>📄</span> Poder simple (Word)</button>';
+    actions += '<button class="btn ghost" onclick="descargarBorradorContrato()"><span>📄</span> Borrador PDF</button>';
     if(tieneArchivo){
       actions += '<button class="btn ghost" onclick="descargarArchivoSubido()"><span>📥</span> Descargar archivo subido</button>';
       actions += '<button class="btn ghost" onclick="subirArchivoContrato()"><span>📤</span> Reemplazar archivo</button>';
@@ -5886,7 +5905,9 @@ function abrirContratoModal(contratoId){
       if(tieneArchivo){
         actions += '<button class="btn green" onclick="descargarArchivoSubido()"><span>📥</span> Descargar contrato final</button>';
       } else {
-        actions += '<button class="btn green" onclick="descargarBorradorContrato()"><span>📥</span> Descargar PDF</button>';
+        actions += '<button class="btn green" onclick="descargarContratoHonorariosWord()"><span>📥</span> Contrato honorarios (Word)</button>';
+        actions += '<button class="btn ghost" onclick="descargarPoderSimpleWord()"><span>📄</span> Poder simple (Word)</button>';
+        actions += '<button class="btn ghost" onclick="descargarBorradorContrato()"><span>📥</span> PDF</button>';
       }
     }
     // Si pendiente o archivo_subido sin aprobar, asesor solo ve el banner (sin botones de acción)
@@ -6185,6 +6206,70 @@ function generarHTMLContrato(cto){
     '</div>' +
 
     (cto.observacionesAdmin ? '<div style="margin-top:24px; padding:10px 12px; background:#fafcfd; border:1px solid #e5e7eb; border-radius:6px; font-size:9.5pt; color:#3a4a55; text-align:left;"><strong>Observaciones internas:</strong> '+escapeHTML(cto.observacionesAdmin)+'</div>' : '') +
+  '</div>';
+}
+
+/* === Datos editables del contrato (dirección/comuna/rol) === */
+async function guardarDatosContrato(){
+  if(!_CONTRATO_ACTIVO) return;
+  var cto=_CONTRATO_ACTIVO;
+  var g=function(id){ var e=document.getElementById(id); return e?(e.value||'').trim():''; };
+  cto.inmueble = Object.assign({}, cto.inmueble||{}, { direccion:g('mct-inm-dir'), comuna:g('mct-inm-com'), rol:g('mct-inm-rol') });
+  cto.cliente  = Object.assign({}, cto.cliente||{}, { direccion:g('mct-cli-dir'), comuna:g('mct-cli-com') });
+  try{
+    if(fbReady() && cto.id){ await fbDb.collection('contratos').doc(cto.id).update({ inmueble:cto.inmueble, cliente:cto.cliente, updatedAt:nowTs() }); }
+    if(typeof mostrarToastAutoCliente==='function') mostrarToastAutoCliente('✓ Datos del contrato guardados','creado');
+  }catch(e){ console.error('guardarDatosContrato:',e); alert('No se pudo guardar: '+(e.message||e)); }
+}
+
+/* === Exportar documentos a Word (.doc) desde el HTML justificado === */
+function _descargarWordDesdeHTML(inner, filename){
+  var head='<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>Documento</title></head><body>';
+  var foot='</body></html>';
+  var blob=new Blob(['﻿'+head+inner+foot], {type:'application/msword'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a'); a.href=url; a.download=filename; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 1500);
+}
+function descargarContratoHonorariosWord(){
+  if(!_CONTRATO_ACTIVO){ alert('Abre un contrato primero.'); return; }
+  var nom=(_CONTRATO_ACTIVO.cliente&&_CONTRATO_ACTIVO.cliente.nombre)||'cliente';
+  _descargarWordDesdeHTML(generarHTMLContrato(_CONTRATO_ACTIVO), 'Contrato honorarios - '+nom+'.doc');
+}
+function descargarPoderSimpleWord(){
+  if(!_CONTRATO_ACTIVO){ alert('Abre un contrato primero.'); return; }
+  var nom=(_CONTRATO_ACTIVO.cliente&&_CONTRATO_ACTIVO.cliente.nombre)||'cliente';
+  _descargarWordDesdeHTML(generarHTMLPoderSimple(_CONTRATO_ACTIVO), 'Poder simple - '+nom+'.doc');
+}
+function generarHTMLPoderSimple(cto){
+  const c = cto.cliente || {};
+  const fecha = cto.fechaContrato || fmtFechaLiteral(new Date());
+  const nombre = escapeHTML(c.nombre || '[NOMBRE DEL CLIENTE]');
+  const rut = escapeHTML(c.rut || '[C.I. DEL CLIENTE]');
+  const domParts = [c.direccion, c.comuna].filter(function(x){return x;}).join(', ');
+  const domicilio = escapeHTML(domParts || '[DOMICILIO DEL CLIENTE]');
+  const styleBlock =
+    '<style>' +
+      '.contrato-wrap { font-family:Inter,Arial,sans-serif; font-size:11pt; line-height:1.6; color:#1a2730; text-align:justify; text-justify:inter-word; }' +
+      '.contrato-wrap h1 { text-align:center; color:#0A2233; font-size:14pt; font-weight:800; margin:0 0 6px; }' +
+      '.contrato-wrap p { margin:0 0 10px; text-align:justify; }' +
+      '.contrato-wrap .firmas { margin-top:48px; text-align:center; }' +
+      '.contrato-wrap .firma-box { border-top:1px solid #1a2730; padding-top:6px; display:inline-block; min-width:60%; }' +
+      '.contrato-wrap .firma-box p { font-size:10pt; margin:2px 0; text-align:center; }' +
+    '</style>';
+  return styleBlock + '<div class="contrato-wrap">' +
+    '<h1>PODER SIMPLE</h1>' +
+    '<p style="margin-top:16px;">En Santiago, <strong>'+escapeHTML(fecha)+'</strong>.</p>' +
+    '<p>Yo, <strong>'+nombre+'</strong>, cédula de identidad N° <strong>'+rut+'</strong>, domiciliado(a) en <strong>'+domicilio+'</strong>, por la presente declaro que:</p>' +
+    '<p>Otorgo poder amplio y suficiente a <strong>Inversiones Santa Luzmira Limitada</strong>, RUT N° 76.186.633-8, quien actúa en calidad de broker o intermediario, para que en mi nombre y representación realice todas las gestiones, trámites y procedimientos necesarios relacionados con un modelo de financiamiento tipo leaseback, incluyendo pero no limitándose a la evaluación de mi propiedad, presentación de antecedentes, comunicaciones con entidades financieras, reuniones técnicas y cualquier otra actuación que resulte necesaria para el desarrollo del proceso.</p>' +
+    '<p>Asimismo, me comprometo a no gestionar directa ni indirectamente el mismo proceso con otras personas naturales o jurídicas mientras esté vigente esta autorización.</p>' +
+    '<p>Este poder tendrá una vigencia de sesenta (60) días contados desde la fecha de su firma, y podrá ser renovado por acuerdo entre las partes.</p>' +
+    '<div class="firmas"><div class="firma-box">' +
+      '<p>Firma: ___________________________________</p>' +
+      '<p><strong>'+nombre+'</strong></p>' +
+      '<p>RUT: '+rut+'</p>' +
+    '</div></div>' +
+    '<p style="margin-top:26px; font-size:9.5pt; color:#6a7a85; font-style:italic; text-align:center;">*Este documento debe venir acompañado de fotocopia de la cédula de identidad del cliente.*</p>' +
   '</div>';
 }
 
