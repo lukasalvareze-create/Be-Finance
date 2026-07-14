@@ -5815,42 +5815,7 @@ function abrirContratoModal(contratoId){
   document.getElementById('mct-titulo').textContent = titulo;
 
   let body = '';
-  // === Banner de estado ===
-  if(estado === 'pendiente_aprobacion' && !tieneArchivo){
-    body += '<div style="background:#fef3c7; border:1px solid #fde68a; border-radius:6px; padding:12px 14px; margin-bottom:14px; font-size:12.5px; color:#854d0e; line-height:1.5;">'+
-      (esAdminUser
-        ? '🔑 <strong>Modo administrador.</strong> Descarga el borrador, edítalo offline (Word/PDF) y súbelo de vuelta. Después marca como aprobado para que el asesor pueda descargar la versión final.'
-        : '⏳ Este contrato está <strong>esperando aprobación del administrador</strong>. Te avisaremos cuando esté listo para descargar.')+
-    '</div>';
-  } else if(estado === 'archivo_subido' || (estado === 'pendiente_aprobacion' && tieneArchivo)){
-    body += '<div style="background:#e0e7ff; border:1px solid #a5b4fc; border-radius:6px; padding:12px 14px; margin-bottom:14px; font-size:12.5px; color:#3730a3; line-height:1.5;">'+
-      (esAdminUser
-        ? '📤 <strong>Archivo subido</strong> · pendiente aprobar. Revísalo y haz click en <strong>Marcar como aprobado</strong> cuando esté listo.'
-        : '📤 El administrador subió el archivo y lo está revisando. Falta confirmar como aprobado.')+
-    '</div>';
-  } else if(estado === 'aprobado'){
-    body += '<div style="background:#e3eef9; border:1px solid #bcd6f0; border-radius:6px; padding:12px 14px; margin-bottom:14px; font-size:12.5px; color:#11537e; line-height:1.5;">'+
-      '✅ <strong>Aprobado</strong> por '+escapeHTML(cto.aprobadoNombre || 'administrador')+' el '+fmtTimestamp(cto.aprobadoAt)+'. Listo para descargar.'+
-    '</div>';
-  } else if(estado === 'descargado'){
-    body += '<div style="background:#dbeafe; border:1px solid #93c5fd; border-radius:6px; padding:12px 14px; margin-bottom:14px; font-size:12.5px; color:#1e40af; line-height:1.5;">'+
-      '📥 <strong>Descargado</strong> el '+fmtTimestamp(cto.descargadoAt)+'. Puedes volver a descargarlo cuando lo necesites.'+
-    '</div>';
-  }
-
-  // === Resumen del cliente / contrato (solo lectura) ===
-  const montoCLPnum = cto.montoNumeralCLP || ((cto.montoNumeralUF||0) * UF_VALOR);
-  body += '<div style="background:#fafcfd; border:1px solid var(--border-l); border-radius:8px; padding:14px 16px; margin-bottom:14px;">'+
-    '<div style="font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; font-weight:600; margin-bottom:8px;">📋 Resumen del contrato</div>'+
-    '<table style="width:100%; font-size:13px; border-collapse:collapse;">'+
-      '<tr><td style="padding:3px 0; color:var(--muted); width:140px;">Cliente:</td><td style="padding:3px 0;"><strong>'+escapeHTML(c.nombre||'—')+'</strong> · '+(esPJ?'PJ':'PN')+'</td></tr>'+
-      '<tr><td style="padding:3px 0; color:var(--muted);">RUT:</td><td style="padding:3px 0;">'+escapeHTML(c.rut||'—')+'</td></tr>'+
-      (esPJ ? '<tr><td style="padding:3px 0; color:var(--muted);">Representante:</td><td style="padding:3px 0;">'+escapeHTML(c.representanteNombre||'—')+' · '+escapeHTML(c.representanteRut||'—')+'</td></tr>' : '')+
-      '<tr><td style="padding:3px 0; color:var(--muted);">Monto:</td><td style="padding:3px 0;"><strong>'+fmtCLP(montoCLPnum)+'</strong> ('+((cto.montoNumeralUF||0).toFixed(1))+' UF ref.)</td></tr>'+
-      '<tr><td style="padding:3px 0; color:var(--muted);">Asesor:</td><td style="padding:3px 0;">'+escapeHTML(asesorNombrePorId(cto.asesorId))+'</td></tr>'+
-      '<tr><td style="padding:3px 0; color:var(--muted);">Creado:</td><td style="padding:3px 0;">'+fmtTimestamp(cto.createdAt)+'</td></tr>'+
-    '</table>'+
-  '</div>';
+  // === (Flujo simplificado: descarga directa, sin banners de subir/aprobar) ===
 
   // === Datos editables del contrato (admin) — asegura dirección/comuna aunque no vengan de la NV ===
   if(esAdminUser){
@@ -5885,33 +5850,8 @@ function abrirContratoModal(contratoId){
   // === Footer: botones dinámicos según estado + rol ===
   const actionsEl = document.getElementById('mct-actions');
   let actions = '';
-  if(esAdminUser){
-    // Borrador auto-generado siempre disponible para admin
-    actions += '<button class="btn ghost" onclick="descargarContratoHonorariosWord()"><span>📄</span> Contrato honorarios (Word)</button>';
-    actions += '<button class="btn ghost" onclick="descargarPoderSimpleWord()"><span>📄</span> Poder simple (Word)</button>';
-    actions += '<button class="btn ghost" onclick="descargarBorradorContrato()"><span>📄</span> Borrador PDF</button>';
-    if(tieneArchivo){
-      actions += '<button class="btn ghost" onclick="descargarArchivoSubido()"><span>📥</span> Descargar archivo subido</button>';
-      actions += '<button class="btn ghost" onclick="subirArchivoContrato()"><span>📤</span> Reemplazar archivo</button>';
-      if(estado === 'pendiente_aprobacion' || estado === 'archivo_subido'){
-        actions += '<button class="btn green" onclick="aprobarContrato()"><span>✅</span> Marcar como aprobado</button>';
-      }
-    } else {
-      actions += '<button class="btn green" onclick="subirArchivoContrato()"><span>📤</span> Subir archivo editado</button>';
-    }
-  } else {
-    // Asesor: solo descarga si está aprobado
-    if(estado === 'aprobado' || estado === 'descargado'){
-      if(tieneArchivo){
-        actions += '<button class="btn green" onclick="descargarArchivoSubido()"><span>📥</span> Descargar contrato final</button>';
-      } else {
-        actions += '<button class="btn green" onclick="descargarContratoHonorariosWord()"><span>📥</span> Contrato honorarios (Word)</button>';
-        actions += '<button class="btn ghost" onclick="descargarPoderSimpleWord()"><span>📄</span> Poder simple (Word)</button>';
-        actions += '<button class="btn ghost" onclick="descargarBorradorContrato()"><span>📥</span> PDF</button>';
-      }
-    }
-    // Si pendiente o archivo_subido sin aprobar, asesor solo ve el banner (sin botones de acción)
-  }
+  actions += '<button class="btn green" onclick="previsualizarDocumento(\'contrato\')"><span>📄</span> Contrato de honorarios</button>';
+  actions += '<button class="btn ghost" onclick="previsualizarDocumento(\'poder\')"><span>📄</span> Poder simple</button>';
   actionsEl.innerHTML = actions;
 
   document.getElementById('modal-contrato').classList.add('active');
@@ -6121,7 +6061,7 @@ function generarHTMLContrato(cto){
   const esPJ = c.tipoPersona === 'juridica';
 
   // Datos del Cliente (desde la Nota de Venta)
-  const fechaContrato = cto.fechaContrato || fmtFechaLiteral(new Date());
+  const fechaContrato = fmtFechaLiteral(new Date()); // fecha dinámica: se actualiza a la fecha de descarga
   const nombreCliente = escapeHTML(c.nombre || (esPJ?'[RAZÓN SOCIAL]':'[NOMBRE DEL CLIENTE]'));
   const rutCliente = escapeHTML(c.rut || '[C.I. / RUT DEL CLIENTE]');
   const direccion = escapeHTML(c.direccion || '[DOMICILIO DEL CLIENTE]');
@@ -6243,7 +6183,7 @@ function descargarPoderSimpleWord(){
 }
 function generarHTMLPoderSimple(cto){
   const c = cto.cliente || {};
-  const fecha = cto.fechaContrato || fmtFechaLiteral(new Date());
+  const fecha = fmtFechaLiteral(new Date()); // fecha dinámica
   const nombre = escapeHTML(c.nombre || '[NOMBRE DEL CLIENTE]');
   const rut = escapeHTML(c.rut || '[C.I. DEL CLIENTE]');
   const domParts = [c.direccion, c.comuna].filter(function(x){return x;}).join(', ');
@@ -6272,6 +6212,38 @@ function generarHTMLPoderSimple(cto){
     '<p style="margin-top:26px; font-size:9.5pt; color:#6a7a85; font-style:italic; text-align:center;">*Este documento debe venir acompañado de fotocopia de la cédula de identidad del cliente.*</p>' +
   '</div>';
 }
+
+/* === Vista previa de documentos (contrato / poder) antes de descargar === */
+function previsualizarDocumento(tipo){
+  if(!_CONTRATO_ACTIVO){ alert('Abre un contrato primero.'); return; }
+  var cto=_CONTRATO_ACTIVO;
+  var nom=(cto.cliente&&cto.cliente.nombre)||'cliente';
+  var html, titulo, filename;
+  if(tipo==='poder'){ html=generarHTMLPoderSimple(cto); titulo='Poder Simple'; filename='Poder simple - '+nom+'.doc'; }
+  else { html=generarHTMLContrato(cto); titulo='Contrato de Honorarios'; filename='Contrato honorarios - '+nom+'.doc'; }
+  var prev=document.getElementById('__docpreview__'); if(prev) prev.remove();
+  var ov=document.createElement('div');
+  ov.id='__docpreview__';
+  ov.style.cssText='position:fixed; inset:0; background:rgba(10,20,35,0.55); z-index:100000; display:flex; align-items:center; justify-content:center; padding:24px;';
+  ov.innerHTML=
+    '<div style="background:#fff; border-radius:12px; width:min(840px,96vw); max-height:92vh; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.3);">'+
+      '<div style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px; border-bottom:1px solid #e8eef1;">'+
+        '<strong style="font-size:15px; color:#0A2233;">Vista previa &middot; '+titulo+'</strong>'+
+        '<button onclick="cerrarDocPreview()" style="border:0; background:transparent; font-size:22px; cursor:pointer; color:#6a7a85; line-height:1;">&times;</button>'+
+      '</div>'+
+      '<div style="overflow:auto; background:#eef1f4; padding:22px; flex:1;">'+
+        '<div style="background:#fff; max-width:720px; margin:0 auto; padding:44px 52px; box-shadow:0 2px 12px rgba(0,0,0,0.08);">'+html+'</div>'+
+      '</div>'+
+      '<div style="display:flex; gap:10px; justify-content:flex-end; padding:12px 18px; border-top:1px solid #e8eef1;">'+
+        '<button class="btn ghost" onclick="cerrarDocPreview()">Cerrar</button>'+
+        '<button class="btn green" id="__docpreview_dl__"><span>📥</span> Descargar Word</button>'+
+      '</div>'+
+    '</div>';
+  document.body.appendChild(ov);
+  document.getElementById('__docpreview_dl__').onclick=function(){ _descargarWordDesdeHTML(html, filename); };
+  ov.addEventListener('click', function(e){ if(e.target===ov) cerrarDocPreview(); });
+}
+function cerrarDocPreview(){ var ov=document.getElementById('__docpreview__'); if(ov) ov.remove(); }
 
 function abrirTareaModal(clienteId){
   document.getElementById('mt-id').value = '';
