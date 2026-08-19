@@ -50,6 +50,56 @@ if(FIREBASE_OK){
     --shadow:0 4px 18px rgba(10,26,44,0.08);
     --shadow-lg:0 10px 36px rgba(10,26,44,0.14);
   }
+  /* ===== MODULO EVALUACION HIPOTECARIA ===== */
+  .ev-wrap{ display:grid; grid-template-columns:minmax(0,1fr) 372px; gap:18px; align-items:start; }
+  @media(max-width:1180px){ .ev-wrap{ grid-template-columns:1fr; } }
+  .ev-side{ position:sticky; top:14px; }
+  .ev-card{ background:var(--bg-card); border:1px solid var(--border-l); border-top:3px solid var(--green-l); border-radius:var(--radius); box-shadow:var(--shadow); margin-bottom:16px; overflow:hidden; }
+  .ev-card > h3{ margin:0; padding:12px 16px; font-size:13px; color:var(--teal); border-bottom:1px solid var(--border-l); background:#fafcfd; display:flex; align-items:center; gap:8px; }
+  .ev-card > h3 .sw{ margin-left:auto; font-size:11px; color:var(--muted); font-weight:500; display:flex; align-items:center; gap:6px; }
+  .ev-body{ padding:14px 16px; }
+  .ev-g{ display:grid; gap:12px; }
+  .ev-g3{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .ev-g2{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  @media(max-width:640px){ .ev-g3,.ev-g2{ grid-template-columns:1fr; } }
+  .ev-f label{ display:block; font-size:11px; color:var(--muted); margin-bottom:3px; font-weight:600; }
+  .ev-f input,.ev-f select{ width:100%; padding:7px 9px; border:1px solid var(--border); border-radius:7px; font-size:13px; font-family:inherit; color:var(--text); background:#fff; }
+  .ev-f .eq{ display:block; font-size:10.5px; color:var(--muted); margin-top:2px; font-variant-numeric:tabular-nums; }
+  table.ev-t{ width:100%; border-collapse:collapse; font-size:12.5px; }
+  table.ev-t th{ text-align:right; padding:6px 8px; font-size:10px; text-transform:uppercase; letter-spacing:.5px; color:var(--muted); border-bottom:1px solid var(--border); }
+  table.ev-t th:first-child{ text-align:left; }
+  table.ev-t td{ padding:4px 8px; border-bottom:1px solid var(--border-l); }
+  table.ev-t td:first-child{ color:var(--text-2); }
+  table.ev-t input{ width:100%; padding:5px 7px; border:1px solid var(--border); border-radius:6px; font-size:12.5px; font-family:inherit; text-align:right; font-variant-numeric:tabular-nums; background:#fff; color:var(--text); }
+  table.ev-t input.ev-calc{ background:var(--green-bg); border-color:transparent; font-weight:700; color:var(--teal); }
+  table.ev-t tr.ev-sub td{ background:#f7f9fb; font-size:10px; text-transform:uppercase; letter-spacing:.8px; color:var(--muted); font-weight:700; padding:7px 8px; }
+  .ev-cast{ display:block; font-size:9.5px; color:var(--muted); text-align:right; margin-top:1px; }
+  .ev-panel{ background:var(--teal); color:#fff; border-radius:var(--radius); box-shadow:var(--shadow-lg); overflow:hidden; }
+  .ev-vd{ padding:16px; text-align:center; border-bottom:1px solid rgba(255,255,255,.12); }
+  .ev-vd .lbl{ font-size:10px; letter-spacing:2px; text-transform:uppercase; opacity:.65; }
+  .ev-vd .big{ font-size:23px; font-weight:800; margin-top:4px; letter-spacing:.4px; }
+  .ev-vd.ok .big{ color:#7ee0a5; } .ev-vd.warn .big{ color:#ffcf70; } .ev-vd.bad .big{ color:#ff9c9c; }
+  .ev-div{ padding:14px 16px; border-bottom:1px solid rgba(255,255,255,.12); text-align:center; }
+  .ev-div .n{ font-size:25px; font-weight:800; color:var(--green-l); font-variant-numeric:tabular-nums; }
+  .ev-div .u{ font-size:12px; opacity:.8; margin-top:2px; }
+  .ev-div .b{ font-size:10.5px; opacity:.62; margin-top:5px; }
+  .ev-rows{ padding:6px 16px 12px; }
+  .ev-r{ display:flex; align-items:center; gap:8px; padding:6px 0; border-bottom:1px solid rgba(255,255,255,.08); font-size:12px; }
+  .ev-r:last-child{ border-bottom:0; }
+  .ev-r .k{ opacity:.78; } .ev-r .v{ margin-left:auto; font-weight:700; font-variant-numeric:tabular-nums; }
+  .ev-dot{ width:9px; height:9px; border-radius:50%; flex:0 0 9px; }
+  .ev-dot.ok{ background:#3fbf74; } .ev-dot.warn{ background:#e8b13c; } .ev-dot.bad{ background:#e05656; } .ev-dot.off{ background:#5b6b7a; }
+  .ev-max{ background:rgba(255,255,255,.06); padding:12px 16px; text-align:center; border-top:1px solid rgba(255,255,255,.12); }
+  .ev-max .n{ font-size:17px; font-weight:800; color:#fff; font-variant-numeric:tabular-nums; }
+  .ev-tips{ padding:0 16px 14px; }
+  .ev-tip{ background:rgba(255,255,255,.07); border-left:3px solid var(--green-l); border-radius:0 6px 6px 0; padding:8px 10px; font-size:11.5px; line-height:1.45; margin-top:8px; }
+  .ev-esc{ width:100%; border-collapse:collapse; font-size:12px; }
+  .ev-esc th,.ev-esc td{ padding:6px 8px; border-bottom:1px solid var(--border-l); text-align:right; font-variant-numeric:tabular-nums; }
+  .ev-esc th:first-child,.ev-esc td:first-child{ text-align:left; color:var(--muted); }
+  .ev-esc thead th{ background:var(--teal); color:#fff; font-size:10px; text-transform:uppercase; letter-spacing:.5px; }
+  .ev-hist{ font-size:12.5px; }
+  .ev-hist .it{ border:1px solid var(--border-l); border-radius:8px; padding:9px 11px; margin-bottom:7px; cursor:pointer; transition:.15s; }
+  .ev-hist .it:hover{ background:var(--green-bg); transform:translateX(2px); }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
 
@@ -483,7 +533,7 @@ if(FIREBASE_OK){
     <div class="login-err" id="login-err"></div>
     <div class="form-group">
       <label>Correo</label>
-      <input type="email" id="login-email" placeholder="asesor@befinance.cl" autocomplete="email">
+      <input type="email" id="login-email" placeholder="asesor@santaluzmira.cl" autocomplete="email">
     </div>
     <div class="form-group">
       <label>Contraseña</label>
@@ -521,6 +571,7 @@ if(FIREBASE_OK){
     <button class="nav-item" id="nav-sim-hipotecario" onclick="showView('sim-hipotecario')"><span class="icon">📋</span><span>Simulación Hipotecario</span></button>
     <div class="nav-label" style="margin-top:14px">Comercial</div>
     <button class="nav-item" onclick="showView('nota-venta')"><span class="icon">📝</span><span>Nota de Venta</span></button>
+    <button class="nav-item" onclick="showView('evaluacion')"><span class="icon">🏡</span><span>Evaluación Hipotecaria</span></button>
     <div class="nav-label" style="margin-top:14px">Herramientas</div>
     <button class="nav-item" onclick="showView('conversor')"><span class="icon">💱</span><span>Conversor UF / CLP</span></button>
     <div class="nav-label" style="margin-top:14px">Sistema</div>
@@ -1013,6 +1064,112 @@ if(FIREBASE_OK){
   </div>
 
   <!-- CONFIGURACIÓN -->
+  <!-- ===== EVALUACION HIPOTECARIA ===== -->
+  <div class="view" id="view-evaluacion">
+    <h1 class="section-title">Evaluación Hipotecaria</h1>
+    <p class="section-sub">Ficha de precalificación. Los resultados se recalculan en vivo a medida que escribes.</p>
+    <div class="ev-wrap">
+      <div class="ev-main">
+        <div class="ev-card"><h3><span>🗂️</span> Antecedentes de la solicitud</h3><div class="ev-body">
+          <div class="ev-g ev-g3">
+            <div class="ev-f"><label>Fecha</label><input type="date" id="ev-fecha"></div>
+            <div class="ev-f"><label>Valor UF</label><input type="text" id="ev-uf" inputmode="numeric" oninput="evCalc()"></div>
+            <div class="ev-f"><label>Destino del crédito</label><select id="ev-destino" onchange="evCalc()"><option value="compra">Compra</option><option value="refi">Refinanciamiento</option><option value="libre">Libre disponibilidad</option><option value="mixto">Mixto</option></select></div>
+          </div>
+          <div class="ev-g ev-g3" style="margin-top:12px">
+            <div class="ev-f"><label>Ejecutivo comercial</label><select id="ev-ejec-com"></select></div>
+            <div class="ev-f"><label>Ejecutivo riesgo crédito</label><select id="ev-ejec-riesgo"></select></div>
+            <div class="ev-f"><label>N° de solicitud</label><input type="text" id="ev-solicitud" placeholder="N° o enlace" oninput="evLinkSolicitud()"><a class="eq" id="ev-solicitud-link" target="_blank" rel="noopener" style="display:none">Abrir solicitud ↗</a></div>
+          </div>
+          <div class="ev-g ev-g2" style="margin-top:12px">
+            <div class="ev-f"><label>Cliente asociado (CRM)</label><select id="ev-cliente" onchange="evOnCliente()"><option value="">— Sin asociar —</option></select></div>
+            <div class="ev-f"><label>Nombre en la ficha</label><input type="text" id="ev-nombre" placeholder="Nombre del solicitante"></div>
+          </div>
+        </div></div>
+        <div class="ev-card"><h3><span>💰</span> Antecedentes financieros<span class="sw"><input type="checkbox" id="ev-sw-cod" checked onchange="evCalc()"> Incluir codeudor</span></h3><div class="ev-body">
+          <table class="ev-t"><thead><tr><th></th><th>Deudor</th><th class="colC">Codeudor</th><th>Total</th></tr></thead><tbody>
+            <tr class="ev-sub"><td colspan="4">Ingresos</td></tr>
+<tr><td>Sueldo</td><td><input type="text" id="ev-i-sue-d" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td class="colC"><input type="text" id="ev-i-sue-c" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td></td></tr>
+<tr><td>Retiros</td><td><input type="text" id="ev-i-ret-d" inputmode="numeric" placeholder="" oninput="evCalc()"><span class="ev-cast" id="ev-i-ret-d-h"></span></td><td class="colC"><input type="text" id="ev-i-ret-c" inputmode="numeric" placeholder="" oninput="evCalc()"><span class="ev-cast" id="ev-i-ret-c-h"></span></td><td></td></tr>
+            <tr><td>Arriendo futuro</td><td><input type="text" id="ev-i-fut-d" inputmode="numeric" placeholder="" oninput="evCalc()"><span class="ev-cast" id="ev-i-fut-d-h"></span></td><td class="colC"><input type="text" id="ev-i-fut-c" inputmode="numeric" placeholder="" oninput="evCalc()"><span class="ev-cast" id="ev-i-fut-c-h"></span></td><td></td></tr>
+            <tr><td>Arriendo real</td><td><input type="text" id="ev-i-real-d" inputmode="numeric" placeholder="" oninput="evCalc()"><span class="ev-cast" id="ev-i-real-d-h"></span></td><td class="colC"><input type="text" id="ev-i-real-c" inputmode="numeric" placeholder="" oninput="evCalc()"><span class="ev-cast" id="ev-i-real-c-h"></span></td><td></td></tr>
+<tr><td><strong>Total ingresos</strong></td><td><input class="ev-calc" id="ev-t-ing-d" readonly></td><td class="colC"><input class="ev-calc" id="ev-t-ing-c" readonly></td><td><input class="ev-calc" id="ev-t-ing-t" readonly></td></tr>
+            <tr class="ev-sub"><td colspan="4">Gastos</td></tr>
+<tr><td>Dividendo actual</td><td><input type="text" id="ev-g-div-d" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td class="colC"><input type="text" id="ev-g-div-c" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td></td></tr>
+<tr><td>Cuota préstamo empresa</td><td><input type="text" id="ev-g-emp-d" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td class="colC"><input type="text" id="ev-g-emp-c" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td></td></tr>
+<tr><td>Cuota CAE</td><td><input type="text" id="ev-g-cae-d" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td class="colC"><input type="text" id="ev-g-cae-c" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td></td></tr>
+<tr><td>Cuota créditos rotativos</td><td><input type="text" id="ev-g-rot-d" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td class="colC"><input type="text" id="ev-g-rot-c" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td></td></tr>
+            <tr><td><input type="text" id="ev-g-otro-lbl" placeholder="Otro gasto…" style="text-align:left"></td><td><input type="text" id="ev-g-otro-d" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td class="colC"><input type="text" id="ev-g-otro-c" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td></td></tr>
+<tr><td><strong>Total gastos</strong></td><td><input class="ev-calc" id="ev-t-gas-d" readonly></td><td class="colC"><input class="ev-calc" id="ev-t-gas-c" readonly></td><td><input class="ev-calc" id="ev-t-gas-t" readonly></td></tr>
+<tr><td><strong>Ingreso líquido</strong></td><td><input class="ev-calc" id="ev-t-liq-d" readonly></td><td class="colC"><input class="ev-calc" id="ev-t-liq-c" readonly></td><td><input class="ev-calc" id="ev-t-liq-t" readonly></td></tr>
+          </tbody></table>
+          <div class="ev-g ev-g3" style="margin-top:12px"><div class="ev-f"><label>Renta en UF · deudor</label><input class="ev-calc" id="ev-ruf-d" readonly style="width:100%;padding:7px 9px;border-radius:7px;border:1px solid transparent;background:var(--green-bg);font-weight:700;color:var(--teal)"></div><div class="ev-f colC"><label>Renta en UF · codeudor</label><input class="ev-calc" id="ev-ruf-c" readonly style="width:100%;padding:7px 9px;border-radius:7px;border:1px solid transparent;background:var(--green-bg);font-weight:700;color:var(--teal)"></div><div class="ev-f"><label>Renta en UF · familiar</label><input class="ev-calc" id="ev-ruf-t" readonly style="width:100%;padding:7px 9px;border-radius:7px;border:1px solid transparent;background:var(--green-bg);font-weight:700;color:var(--teal)"></div></div>
+        </div></div>
+        <div class="ev-card"><h3><span>🏠</span> Propiedad y crédito</h3><div class="ev-body">
+          <div class="ev-g ev-g3">
+            <div class="ev-f"><label>Valor de la propiedad (UF)</label><input type="text" id="ev-valprop" inputmode="numeric" oninput="evCalc()"><span class="eq" id="ev-valprop-eq"></span></div>
+            <div class="ev-f"><label>Valor de tasación (UF)</label><input type="text" id="ev-tasac" inputmode="numeric" oninput="evCalc()"><span class="eq" id="ev-tasac-eq"></span></div>
+            <div class="ev-f"><label>Monto del crédito (UF)</label><input type="text" id="ev-credito" inputmode="numeric" oninput="evCalc()"><span class="eq" id="ev-credito-eq"></span></div>
+          </div>
+          <div class="ev-g ev-g3" style="margin-top:12px">
+            <div class="ev-f"><label>Plazo (años)</label><input type="text" id="ev-plazo" inputmode="numeric" oninput="evCalc()"></div>
+            <div class="ev-f"><label>Tasa anual (%)</label><input type="text" id="ev-tasa" inputmode="decimal" oninput="evCalc()"></div>
+            <div class="ev-f"><label>Superficie (m²) · opcional</label><input type="text" id="ev-sup" inputmode="numeric" oninput="evCalc()"></div>
+          </div>
+          <div class="ev-g ev-g3" style="margin-top:12px">
+            <div class="ev-f"><label>Edad del titular</label><input type="text" id="ev-edad-d" inputmode="numeric" oninput="evCalc()"></div>
+            <div class="ev-f colC"><label>Edad del codeudor</label><input type="text" id="ev-edad-c" inputmode="numeric" oninput="evCalc()"></div>
+            <div class="ev-f"><label>Pie resultante</label><input class="ev-calc" id="ev-pie" readonly style="width:100%;padding:7px 9px;border-radius:7px;border:1px solid transparent;background:var(--green-bg);font-weight:700;color:var(--teal)"></div>
+          </div>
+          <div id="ev-ffgg-box" style="display:none; margin-top:12px" class="ev-g ev-g2">
+            <div class="ev-f"><label>Deuda hipotecaria a refinanciar (UF)</label><input type="text" id="ev-refi" inputmode="numeric" oninput="evCalc()"></div>
+            <div class="ev-f"><label>Gastos operacionales (UF)</label><input type="text" id="ev-gop" inputmode="numeric" oninput="evCalc()"></div>
+          </div>
+          <div id="ev-ffgg-res" style="display:none; margin-top:10px; font-size:12px; color:var(--text-2); background:var(--green-bg); padding:9px 11px; border-radius:8px;"></div>
+        </div></div>
+        <div class="ev-card"><h3><span>📊</span> Estado de situación</h3><div class="ev-body">
+          <table class="ev-t"><thead><tr><th></th><th>Deudor</th><th class="colC">Codeudor</th><th>Total</th></tr></thead><tbody>
+            <tr class="ev-sub"><td colspan="4">Activos</td></tr>
+<tr><td>Pie</td><td><input type="text" id="ev-a-pie-d" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td class="colC"><input type="text" id="ev-a-pie-c" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td></td></tr>
+<tr><td>Bien raíz</td><td><input type="text" id="ev-a-br-d" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td class="colC"><input type="text" id="ev-a-br-c" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td></td></tr>
+            <tr><td><input type="text" id="ev-a-ot1-lbl" placeholder="Otro activo…" style="text-align:left"></td><td><input type="text" id="ev-a-ot1-d" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td class="colC"><input type="text" id="ev-a-ot1-c" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td></td></tr>
+            <tr><td><input type="text" id="ev-a-ot2-lbl" placeholder="Otro activo…" style="text-align:left"></td><td><input type="text" id="ev-a-ot2-d" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td class="colC"><input type="text" id="ev-a-ot2-c" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td></td></tr>
+<tr><td><strong>Total activos</strong></td><td><input class="ev-calc" id="ev-t-act-d" readonly></td><td class="colC"><input class="ev-calc" id="ev-t-act-c" readonly></td><td><input class="ev-calc" id="ev-t-act-t" readonly></td></tr>
+            <tr class="ev-sub"><td colspan="4">Pasivos</td></tr>
+<tr><td>Hipotecario</td><td><input type="text" id="ev-x-hip-d" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td class="colC"><input type="text" id="ev-x-hip-c" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td></td></tr>
+<tr><td>Crédito de consumo</td><td><input type="text" id="ev-x-con-d" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td class="colC"><input type="text" id="ev-x-con-c" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td></td></tr>
+<tr><td>Crédito CAE</td><td><input type="text" id="ev-x-cae-d" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td class="colC"><input type="text" id="ev-x-cae-c" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td></td></tr>
+<tr><td>Deuda rotativos (TC/LC)</td><td><input type="text" id="ev-x-rot-d" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td class="colC"><input type="text" id="ev-x-rot-c" inputmode="numeric" placeholder="" oninput="evCalc()"></td><td></td></tr>
+<tr><td><strong>Total pasivos</strong></td><td><input class="ev-calc" id="ev-t-pas-d" readonly></td><td class="colC"><input class="ev-calc" id="ev-t-pas-c" readonly></td><td><input class="ev-calc" id="ev-t-pas-t" readonly></td></tr>
+<tr><td><strong>Patrimonio</strong></td><td><input class="ev-calc" id="ev-t-pat-d" readonly></td><td class="colC"><input class="ev-calc" id="ev-t-pat-c" readonly></td><td><input class="ev-calc" id="ev-t-pat-t" readonly></td></tr>
+          </tbody></table>
+        </div></div>
+        <div class="ev-card"><h3><span>📈</span> Escenarios de financiamiento</h3><div class="ev-body" style="padding:0"><table class="ev-esc" id="ev-esc"></table></div></div>
+      </div>
+      <aside class="ev-side">
+        <div class="ev-panel">
+          <div class="ev-vd" id="ev-vd"><div class="lbl">Veredicto</div><div class="big" id="ev-vd-txt">—</div></div>
+          <div class="ev-div"><div class="lbl" style="font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.65">Dividendo mensual</div><div class="n" id="ev-div-clp">$0</div><div class="u" id="ev-div-uf">0 UF</div><div class="b" id="ev-div-brk"></div></div>
+          <div class="ev-rows" id="ev-rows"></div>
+          <div class="ev-max"><div class="lbl" style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;opacity:.65">Crédito máximo que soporta</div><div class="n" id="ev-cmax">—</div></div>
+          <div class="ev-tips" id="ev-tips"></div>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:12px">
+          <button class="btn green" onclick="evGuardar()" style="flex:1"><span>💾</span> Guardar</button>
+          <button class="btn" onclick="evPDF()" style="flex:1"><span>📄</span> PDF</button>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px">
+          <button class="btn ghost" onclick="evExcel()" style="flex:1"><span>📊</span> Excel</button>
+          <button class="btn ghost" onclick="evCopiarResumen()" style="flex:1"><span>📋</span> Copiar resumen</button>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px">
+          <button class="btn ghost" onclick="evDuplicar()" style="flex:1"><span>⧉</span> Duplicar escenario</button>
+          <button class="btn ghost" onclick="evLimpiar()" style="flex:1"><span>✕</span> Limpiar</button>
+        </div>
+        <div class="ev-card" style="margin-top:14px"><h3><span>🕓</span> Evaluaciones del cliente</h3><div class="ev-body ev-hist" id="ev-hist"><div style="font-size:12px;color:var(--muted)">Asocia un cliente para ver su historial.</div></div></div>
+      </aside>
+    </div>
+  </div>
   <div class="view" id="view-config">
     <h1 class="section-title">Configuración</h1>
     <p class="section-sub">Datos del asesor que aparecerán en cada simulación y PDF enviado al cliente. Se guardan en este navegador.</p>
@@ -1024,7 +1181,7 @@ if(FIREBASE_OK){
           <div class="form-group"><label>Cargo</label><input type="text" id="cfg-cargo" placeholder="Ej: Asesor de Crédito Hipotecario" value="Asesor de Crédito Hipotecario"></div>
         </div>
         <div class="form-grid" style="margin-top:14px">
-          <div class="form-group"><label>Correo electrónico <span class="req">*</span></label><input type="email" id="cfg-email" placeholder="lukas@befinance.cl"></div>
+          <div class="form-group"><label>Correo electrónico <span class="req">*</span></label><input type="email" id="cfg-email" placeholder="lukas@santaluzmira.cl"></div>
           <div class="form-group"><label>Teléfono / WhatsApp <span class="req">*</span></label><input type="text" id="cfg-telefono" placeholder="+56 9 1234 5678"></div>
         </div>
         <div class="btn-row" style="margin-top:18px">
@@ -1042,8 +1199,25 @@ if(FIREBASE_OK){
           <div class="form-group"><label>RUT</label><input type="text" id="cfg-empresa-rut" value="76.186.633-8"></div>
         </div>
         <div class="form-group" style="margin-top:14px"><label>Domicilio</label><input type="text" id="cfg-empresa-dir" value="Av. Kennedy 7900, Of. 301, Vitacura, Santiago"></div>
-        <div class="form-group" style="margin-top:14px"><label>Sitio web</label><input type="text" id="cfg-empresa-web" value="www.befinance.cl"></div>
+        <div class="form-group" style="margin-top:14px"><label>Sitio web</label><input type="text" id="cfg-empresa-web" value="www.santaluzmira.cl"></div>
         <div style="margin-top:14px"><button class="btn" onclick="guardarConfig()"><span>💾</span> Guardar empresa</button></div>
+      </div>
+    </div>
+
+    <!-- ===== PARAMETROS EVALUACION HIPOTECARIA (admin) ===== -->
+    <div class="form-card" id="cfgev-card" style="margin-top:18px; display:none">
+      <div class="form-card-header"><span class="h-icon">🏡</span><h3>Parametros de Evaluacion Hipotecaria</h3><div class="green-dot"></div></div>
+      <div class="form-body">
+        <p style="font-size:12.5px; color:var(--muted); margin-bottom:14px; line-height:1.5">Estos valores son <strong>compartidos por todo el equipo</strong>: definen los castigos de ingresos, el costo de seguros y los semaforos de la ficha de precalificacion. Solo el administrador puede modificarlos.</p>
+        <div style="font-size:10.5px; letter-spacing:1px; text-transform:uppercase; color:var(--green-l); font-weight:700; margin-bottom:8px">Castigo de ingresos (%)</div>
+        <div class="form-grid-3"><div class="form-group"><label>Retiros</label><input type="text" id="cfgev-cret" value="30"><span class="hint">Se reconoce el 70%.</span></div><div class="form-group"><label>Arriendo futuro</label><input type="text" id="cfgev-cfut" value="30"><span class="hint">Se reconoce el 70%.</span></div><div class="form-group"><label>Arriendo real</label><input type="text" id="cfgev-creal" value="20"><span class="hint">Se reconoce el 80%.</span></div></div>
+        <div style="font-size:10.5px; letter-spacing:1px; text-transform:uppercase; color:var(--green-l); font-weight:700; margin:16px 0 8px">Dividendo</div>
+        <div class="form-grid"><div class="form-group"><label>Seguros (% mensual sobre el credito)</label><input type="text" id="cfgev-seg" value="0.02221"><span class="hint">Desgravamen e incendio. 0,02221% reproduce la planilla actual.</span></div><div class="form-group"><label>Reparto del dividendo</label><select id="cfgev-reparto"><option value="mitad">Mitad y mitad</option><option value="proporcional">Proporcional a los ingresos</option><option value="completo">Completo a cada uno (estres)</option></select><span class="hint">El ratio que decide es el familiar.</span></div></div>
+        <div style="font-size:10.5px; letter-spacing:1px; text-transform:uppercase; color:var(--green-l); font-weight:700; margin:16px 0 8px">Semaforos · verde hasta / amarillo hasta</div>
+        <div class="form-grid-3"><div class="form-group"><label>Dividendo / renta (%)</label><input type="text" id="cfgev-div1" value="25"></div><div class="form-group"><label>Dividendo / renta · limite (%)</label><input type="text" id="cfgev-div2" value="30"></div><div class="form-group"><label>Carga financiera (%)</label><input type="text" id="cfgev-cf1" value="40"></div></div>
+        <div class="form-grid-3" style="margin-top:12px"><div class="form-group"><label>Carga financiera · limite (%)</label><input type="text" id="cfgev-cf2" value="50"></div><div class="form-group"><label>LTV (%)</label><input type="text" id="cfgev-ltv1" value="80"></div><div class="form-group"><label>LTV · limite (%)</label><input type="text" id="cfgev-ltv2" value="90"></div></div>
+        <div class="form-grid-3" style="margin-top:12px"><div class="form-group"><label>Edad + plazo</label><input type="text" id="cfgev-ed1" value="75"></div><div class="form-group"><label>Edad + plazo · limite</label><input type="text" id="cfgev-ed2" value="80"></div><div class="form-group"><label>Escenarios de financiamiento (%)</label><input type="text" id="cfgev-esc" value="70, 80, 90"><span class="hint">Separados por coma.</span></div></div>
+        <div style="margin-top:16px; display:flex; align-items:center; gap:12px"><button class="btn green" onclick="evGuardarParams()"><span>💾</span> Guardar parametros</button><span id="cfgev-status" class="alert green" style="display:none; margin:0; padding:7px 12px; font-size:12px"><span>✓</span> Parametros guardados para todo el equipo</span></div>
       </div>
     </div>
   </div>
@@ -1486,6 +1660,10 @@ if(FIREBASE_OK){
           </div>
         </div>
         <div class="cd-card">
+          <div class="cd-card-head"><h3>🏡 Evaluaciones hipotecarias</h3></div>
+          <div class="cd-card-body" id="cd-evals"></div>
+        </div>
+        <div class="cd-card">
           <div class="cd-card-head"><h3>📁 Documentos</h3></div>
           <div class="cd-card-body" id="cd-sims"><div style="font-size:13px; color:var(--muted)">Las simulaciones, notas de venta y contratos asociados aparecerán aquí.</div></div>
         </div>
@@ -1778,7 +1956,7 @@ if(FIREBASE_OK){
       <div class="modal-body">
         <div class="login-warn" style="margin-bottom:16px">La cuenta se crea con la contraseña que definas aquí. El asesor podrá cambiarla después desde su perfil. No envía correo automático.</div>
         <div class="form-group" style="margin-bottom:14px"><label>Nombre completo <span class="req">*</span></label><input type="text" id="nu-nombre" placeholder="Ej: María Pérez"></div>
-        <div class="form-group" style="margin-bottom:14px"><label>Email <span class="req">*</span></label><input type="email" id="nu-email" placeholder="asesor@befinance.cl"></div>
+        <div class="form-group" style="margin-bottom:14px"><label>Email <span class="req">*</span></label><input type="email" id="nu-email" placeholder="asesor@santaluzmira.cl"></div>
         <div class="form-group" style="margin-bottom:14px"><label>Contraseña inicial <span class="req">*</span></label><input type="text" id="nu-pass" placeholder="Mínimo 6 caracteres"></div>
         <div class="form-grid" style="margin-bottom:14px">
           <div class="form-group"><label>Teléfono</label><input type="tel" id="nu-telefono" placeholder="+56 9 1234 5678"></div>
@@ -1805,6 +1983,7 @@ const VIEW_TITLES = {
   'sim-leaseback': 'Simulación de Leaseback',
   'sim-hipotecario': 'Simulación de Crédito Hipotecario',
   'nota-venta': 'Nota de Venta',
+  'evaluacion': 'Evaluación Hipotecaria · Ficha de Precalificación',
   'conversor': 'Conversor UF / CLP',
   'config': 'Configuración',
   'clientes': 'Mis Clientes',
@@ -1925,6 +2104,7 @@ function showView(name){
   aplicarAsesorEnFormularios();
   // === v9: dispatch a renderers según vista ===
   try{
+    if(name==='evaluacion') evOnShow();
     if(name==='pipeline')  renderPipeline();
     if(name==='tareas')    renderTareas();
     if(name==='reportes')  { setDefaultReportDate(); poblarAsesorReporte(); renderReporte(); cambiarModoReporte(typeof RP_MODO !== 'undefined' ? RP_MODO : 'ejecutivo'); }
@@ -1987,7 +2167,7 @@ function guardarConfig(){
     empresa:document.getElementById('cfg-empresa').value.trim()||'Inversiones Santa Luzmira Ltda.',
     empresaRUT:document.getElementById('cfg-empresa-rut').value.trim()||'76.186.633-8',
     empresaDir:document.getElementById('cfg-empresa-dir').value.trim(),
-    empresaWeb:document.getElementById('cfg-empresa-web').value.trim()||'www.befinance.cl'
+    empresaWeb:document.getElementById('cfg-empresa-web').value.trim()||'www.santaluzmira.cl'
   };
   localStorage.setItem(CFG_KEY,JSON.stringify(data));
   document.getElementById('cfg-status').style.display='flex';
@@ -2455,7 +2635,7 @@ function pdfHeader(cfg, titulo, idCot){
 }
 function pdfFooter(cfg){
   const empresaLegal='Inversiones Santa Luzmira Ltda. · RUT 76.186.633-8';
-  const web=cfg.empresaWeb||'www.befinance.cl';
+  const web=cfg.empresaWeb||'www.santaluzmira.cl';
   return '<div style="margin-top:30px; padding-top:14px; border-top:1px solid #d8e0e4;">' +
     '<p style="font-size:8.5px; color:#6a7a85; line-height:1.5; text-align:justify;">' +
     '<strong>Cláusula de responsabilidad y transparencia:</strong> La presente simulación tiene carácter informativo y no representa una oferta formal ni vinculante. ' +
@@ -3121,6 +3301,8 @@ function setupAuthListener(){
       cargarTareas();
       cargarContratos();
       if(CURRENT_PROFILE && CURRENT_PROFILE.rol==='admin') cargarEquipo();
+      try{ evCargarParams(); evCargarEvals(); }catch(_){}
+      try{ if(CURRENT_PROFILE && CURRENT_PROFILE.rol==='admin'){ var _ce=document.getElementById('cfgev-card'); if(_ce) _ce.style.display=''; } }catch(_){}
       if(CURRENT_PROFILE){
         const cfg = cargarConfig() || {};
         if(!cfg.nombre || cfg.nombre.trim()==='') {
@@ -4157,6 +4339,681 @@ async function _autoGuardarNVDraft(cliId){
   }catch(e){ console.warn('_autoGuardarNVDraft:', e); }
 }
 
+/* ══════════════════════════════════════════════════════════════
+   MÓDULO · EVALUACIÓN HIPOTECARIA (ficha de precalificación)
+   Fórmulas verificadas contra la planilla real de Isaac.
+   ══════════════════════════════════════════════════════════════ */
+var EV_DEFAULTS = {
+  cRet:30, cFut:30, cReal:20,      // castigos (%) → se reconoce (100 - castigo)
+  segPct:0.02221,                  // % mensual de seguros sobre el monto del crédito
+  reparto:'mitad',                 // mitad | proporcional | completo
+  limDiv:[25,30], limCF:[40,50], limLTV:[80,90], limEdad:[75,80],
+  escenarios:[70,80,90]
+};
+var EV_PARAMS = Object.assign({}, EV_DEFAULTS);
+var EV_EDIT_ID = null;             // evaluación que se está editando
+var EVALS_CACHE = [];
+
+function evQ(id){ return document.getElementById(id); }
+function evNum(id){
+  var e=evQ(id); if(!e) return 0;
+  var v=(e.value||'').toString().replace(/\./g,'').replace(/[^0-9,\-]/g,'').replace(',','.');
+  var n=parseFloat(v); return isNaN(n)?0:n;
+}
+function evSet(id,v){ var e=evQ(id); if(e) e.value=v; }
+function evTxt(id,v){ var e=evQ(id); if(e) e.textContent=v; }
+function evCLP(n){ return '$'+Math.round(n||0).toLocaleString('es-CL'); }
+function evUFn(n,d){ return (n||0).toLocaleString('es-CL',{minimumFractionDigits:(d==null?2:d), maximumFractionDigits:(d==null?2:d)}); }
+function evPct(n){ return (100*(n||0)).toLocaleString('es-CL',{minimumFractionDigits:2,maximumFractionDigits:2})+'%'; }
+
+/* ---------- parámetros compartidos (Firestore) ---------- */
+async function evCargarParams(){
+  try{
+    if(!fbReady()) return;
+    var d = await fbDb.collection('config').doc('evaluacion').get();
+    if(d.exists) EV_PARAMS = Object.assign({}, EV_DEFAULTS, d.data());
+  }catch(e){ console.warn('evCargarParams:', e); }
+  evPintarParamsConfig();
+}
+function evPintarParamsConfig(){
+  var m = {'cfgev-cret':EV_PARAMS.cRet,'cfgev-cfut':EV_PARAMS.cFut,'cfgev-creal':EV_PARAMS.cReal,
+    'cfgev-seg':EV_PARAMS.segPct,'cfgev-div1':EV_PARAMS.limDiv[0],'cfgev-div2':EV_PARAMS.limDiv[1],
+    'cfgev-cf1':EV_PARAMS.limCF[0],'cfgev-cf2':EV_PARAMS.limCF[1],'cfgev-ltv1':EV_PARAMS.limLTV[0],
+    'cfgev-ltv2':EV_PARAMS.limLTV[1],'cfgev-ed1':EV_PARAMS.limEdad[0],'cfgev-ed2':EV_PARAMS.limEdad[1],
+    'cfgev-esc':(EV_PARAMS.escenarios||[70,80,90]).join(', ')};
+  Object.keys(m).forEach(function(k){ var e=evQ(k); if(e) e.value=m[k]; });
+  var r=evQ('cfgev-reparto'); if(r) r.value=EV_PARAMS.reparto;
+}
+async function evGuardarParams(){
+  if(!esAdmin()){ alert('Solo el administrador puede cambiar los parámetros de evaluación.'); return; }
+  var esc=(evQ('cfgev-esc').value||'').split(',').map(function(x){return parseFloat(x);}).filter(function(x){return !isNaN(x);});
+  EV_PARAMS = {
+    cRet:evNum('cfgev-cret'), cFut:evNum('cfgev-cfut'), cReal:evNum('cfgev-creal'),
+    segPct:evNum('cfgev-seg'), reparto:evQ('cfgev-reparto').value,
+    limDiv:[evNum('cfgev-div1'),evNum('cfgev-div2')], limCF:[evNum('cfgev-cf1'),evNum('cfgev-cf2')],
+    limLTV:[evNum('cfgev-ltv1'),evNum('cfgev-ltv2')], limEdad:[evNum('cfgev-ed1'),evNum('cfgev-ed2')],
+    escenarios: esc.length?esc:[70,80,90]
+  };
+  try{
+    await fbDb.collection('config').doc('evaluacion').set(Object.assign({}, EV_PARAMS, {updatedAt:nowTs(), updatedBy:CURRENT_USER.uid}));
+    var st=evQ('cfgev-status'); if(st){ st.style.display='flex'; setTimeout(function(){ st.style.display='none'; },3000); }
+    try{ evCalc(); }catch(_){}
+  }catch(e){ alert('No se pudieron guardar los parámetros: '+(e.message||e)); }
+}
+
+/* ---------- motor de cálculo (portado del prototipo) ---------- */
+function evCuotaPura(creditoUF, tasaAnual, anios){
+  var i = tasaAnual/12, n = anios*12;
+  if(!(n>0)) return 0;
+  if(i <= 0) return creditoUF/n;
+  return creditoUF * i / (1 - Math.pow(1+i, -n));
+}
+function evMotor(o){
+  var p = o.p;
+  var ingT = o.ingD + o.ingC, gasT = o.gasD + o.gasC;
+  var liqD = o.ingD - o.gasD, liqC = o.ingC - o.gasC;
+  var pura = evCuotaPura(o.creditoUF, o.tasa, o.anios);
+  var seg  = o.creditoUF * p.segPct;
+  var divUF = pura + seg;
+  var div = divUF * p.uf;
+  var divD, divC;
+  if(o.ingC <= 0){ divD = div; divC = 0; }
+  else if(p.reparto === 'mitad'){ divD = div/2; divC = div/2; }
+  else if(p.reparto === 'completo'){ divD = div; divC = div; }
+  else { var w = ingT ? o.ingD/ingT : 1; divD = div*w; divC = div*(1-w); }
+  var r = function(a,b){ return b>0 ? a/b : 0; };
+  // LTV: se toma el MENOR entre valor de compra y tasación (práctica de banca)
+  var base = (o.tasacUF>0 && o.valPropUF>0) ? Math.min(o.tasacUF, o.valPropUF) : (o.valPropUF || o.tasacUF);
+  return {
+    ingT:ingT, gasT:gasT, liqD:liqD, liqC:liqC, liqT:liqD+liqC,
+    pura:pura, seg:seg, divUF:divUF, div:div, divD:divD, divC:divC,
+    dr_D:r(divD,o.ingD), dr_C:r(divC,o.ingC), dr_F:r(div,ingT),
+    cf_D:r(o.gasD+divD,o.ingD), cf_C:r(o.gasC+divC,o.ingC), cf_F:r(gasT+div,ingT),
+    ltv:r(o.creditoUF,o.valPropUF), ltvT:r(o.creditoUF,o.tasacUF||o.valPropUF), ltvBase:r(o.creditoUF,base),
+    pieUF:(o.valPropUF||0)-(o.creditoUF||0),
+    edD:o.edadD?o.edadD+o.anios:0, edC:o.edadC?o.edadC+o.anios:0
+  };
+}
+function evCreditoMaximo(o){
+  var lim = function(c){
+    var r = evMotor(Object.assign({}, o, {creditoUF:c}));
+    return r.dr_F <= o.p.limDiv[1] && r.cf_F <= o.p.limCF[1] &&
+           (o.valPropUF ? c/o.valPropUF <= o.p.limLTV[1] : true);
+  };
+  if(!lim(1)) return 0;
+  var lo=1, hi=Math.max(o.valPropUF||0, o.creditoUF||0, 1)*1.2+1000;
+  for(var k=0;k<70;k++){ var m=(lo+hi)/2; if(lim(m)) lo=m; else hi=m; }
+  return lo;
+}
+
+/* ---------- lectura de la pantalla ---------- */
+function evParamsVivos(){
+  return { uf:evNum('ev-uf')||UF_VALOR, cRet:EV_PARAMS.cRet/100, cFut:EV_PARAMS.cFut/100, cReal:EV_PARAMS.cReal/100,
+    segPct:EV_PARAMS.segPct/100, reparto:EV_PARAMS.reparto,
+    limDiv:[EV_PARAMS.limDiv[0]/100,EV_PARAMS.limDiv[1]/100], limCF:[EV_PARAMS.limCF[0]/100,EV_PARAMS.limCF[1]/100],
+    limLTV:[EV_PARAMS.limLTV[0]/100,EV_PARAMS.limLTV[1]/100], limEdad:EV_PARAMS.limEdad };
+}
+function evLeer(){
+  var p = evParamsVivos();
+  var cod = evQ('ev-sw-cod') ? evQ('ev-sw-cod').checked : true;
+  var ingD = evNum('ev-i-sue-d') + evNum('ev-i-ret-d')*(1-p.cRet) + evNum('ev-i-fut-d')*(1-p.cFut) + evNum('ev-i-real-d')*(1-p.cReal);
+  var ingC = cod ? (evNum('ev-i-sue-c') + evNum('ev-i-ret-c')*(1-p.cRet) + evNum('ev-i-fut-c')*(1-p.cFut) + evNum('ev-i-real-c')*(1-p.cReal)) : 0;
+  var esRefi = (evQ('ev-destino')||{}).value === 'refi';
+  // En refinanciamiento el dividendo actual se reemplaza: no se suma a la carga financiera
+  var divActD = esRefi ? 0 : evNum('ev-g-div-d');
+  var divActC = esRefi ? 0 : evNum('ev-g-div-c');
+  var gasD = divActD + evNum('ev-g-emp-d') + evNum('ev-g-cae-d') + evNum('ev-g-rot-d') + evNum('ev-g-otro-d');
+  var gasC = cod ? (divActC + evNum('ev-g-emp-c') + evNum('ev-g-cae-c') + evNum('ev-g-rot-c') + evNum('ev-g-otro-c')) : 0;
+  return { p:p, cod:cod, esRefi:esRefi, ingD:ingD, ingC:ingC, gasD:gasD, gasC:gasC,
+    valPropUF:evNum('ev-valprop'), tasacUF:evNum('ev-tasac'), creditoUF:evNum('ev-credito'),
+    tasa:evNum('ev-tasa')/100, anios:evNum('ev-plazo'),
+    edadD:evNum('ev-edad-d'), edadC:cod?evNum('ev-edad-c'):0 };
+}
+function evSem(v, lim, inv){
+  if(!v) return 'off';
+  if(inv) return v<=lim[0] ? 'ok' : (v<=lim[1] ? 'warn' : 'bad');
+  return v<=lim[0] ? 'ok' : (v<=lim[1] ? 'warn' : 'bad');
+}
+
+/* ---------- render en vivo ---------- */
+function evCalc(){
+  if(!evQ('ev-uf')) return;
+  var o = evLeer(), p = o.p, r = evMotor(o);
+  document.querySelectorAll('#view-evaluacion .colC').forEach(function(e){ e.style.display = o.cod ? '' : 'none'; });
+
+  // castigos visibles
+  var cast = [['ev-i-ret',p.cRet],['ev-i-fut',p.cFut],['ev-i-real',p.cReal]];
+  cast.forEach(function(c){ ['d','c'].forEach(function(k){
+    var v = evNum(c[0]+'-'+k); evTxt(c[0]+'-'+k+'-h', v ? 'computa '+evCLP(v*(1-c[1])) : '');
+  });});
+
+  // totales
+  evSet('ev-t-ing-d',evCLP(o.ingD)); evSet('ev-t-ing-c',evCLP(o.ingC)); evSet('ev-t-ing-t',evCLP(r.ingT));
+  evSet('ev-t-gas-d',evCLP(o.gasD)); evSet('ev-t-gas-c',evCLP(o.gasC)); evSet('ev-t-gas-t',evCLP(r.gasT));
+  evSet('ev-t-liq-d',evCLP(r.liqD)); evSet('ev-t-liq-c',evCLP(r.liqC)); evSet('ev-t-liq-t',evCLP(r.liqT));
+  evSet('ev-ruf-d',evUFn(p.uf?o.ingD/p.uf:0)+' UF'); evSet('ev-ruf-c',evUFn(p.uf?o.ingC/p.uf:0)+' UF'); evSet('ev-ruf-t',evUFn(p.uf?r.ingT/p.uf:0)+' UF');
+
+  // equivalencias en pesos
+  evTxt('ev-valprop-eq', o.valPropUF?evCLP(o.valPropUF*p.uf):'');
+  evTxt('ev-tasac-eq',   o.tasacUF?evCLP(o.tasacUF*p.uf):'');
+  evTxt('ev-credito-eq', o.creditoUF?evCLP(o.creditoUF*p.uf):'');
+  evSet('ev-pie', evUFn(r.pieUF)+' UF  ·  '+evCLP(r.pieUF*p.uf));
+
+  // estado de situación
+  var acD=evNum('ev-a-pie-d')+evNum('ev-a-br-d')+evNum('ev-a-ot1-d')+evNum('ev-a-ot2-d');
+  var acC=o.cod?(evNum('ev-a-pie-c')+evNum('ev-a-br-c')+evNum('ev-a-ot1-c')+evNum('ev-a-ot2-c')):0;
+  var paD=evNum('ev-x-hip-d')+evNum('ev-x-con-d')+evNum('ev-x-cae-d')+evNum('ev-x-rot-d');
+  var paC=o.cod?(evNum('ev-x-hip-c')+evNum('ev-x-con-c')+evNum('ev-x-cae-c')+evNum('ev-x-rot-c')):0;
+  evSet('ev-t-act-d',evCLP(acD)); evSet('ev-t-act-c',evCLP(acC)); evSet('ev-t-act-t',evCLP(acD+acC));
+  evSet('ev-t-pas-d',evCLP(paD)); evSet('ev-t-pas-c',evCLP(paC)); evSet('ev-t-pas-t',evCLP(paD+paC));
+  var pat=[acD-paD, acC-paC, (acD+acC)-(paD+paC)];
+  ['ev-t-pat-d','ev-t-pat-c','ev-t-pat-t'].forEach(function(id,i){
+    evSet(id,evCLP(pat[i])); var e=evQ(id); if(e) e.style.color = pat[i]<0 ? 'var(--red)' : 'var(--teal)';
+  });
+
+  // libre disponibilidad
+  var destino=(evQ('ev-destino')||{}).value;
+  var muestraFF = (destino==='libre'||destino==='mixto'||destino==='refi');
+  var bx=evQ('ev-ffgg-box'), br=evQ('ev-ffgg-res');
+  if(bx) bx.style.display = muestraFF ? 'grid' : 'none';
+  if(br){
+    if(muestraFF && o.creditoUF>0){
+      var ff = o.creditoUF - evNum('ev-refi') - evNum('ev-gop');
+      br.style.display='block';
+      br.innerHTML = '<strong>Libre disponibilidad:</strong> '+evUFn(ff)+' UF · '+evCLP(ff*p.uf)+
+        '  <span style="color:var(--muted)">('+evPct(ff/o.creditoUF)+' del crédito)</span>';
+    } else br.style.display='none';
+  }
+
+  // dividendo
+  evTxt('ev-div-clp', evCLP(r.div));
+  evTxt('ev-div-uf', evUFn(r.divUF,4)+' UF');
+  evTxt('ev-div-brk', 'cuota '+evUFn(r.pura,4)+' UF  +  seguros '+evUFn(r.seg,4)+' UF');
+
+  // semáforos
+  var sDivF=evSem(r.dr_F,p.limDiv), sCFF=evSem(r.cf_F,p.limCF), sLTV=evSem(r.ltvBase,p.limLTV);
+  var sEdD=r.edD?evSem(r.edD,p.limEdad):'off', sEdC=r.edC?evSem(r.edC,p.limEdad):'off';
+  var fila=function(dot,k,v){ return '<div class="ev-r"><span class="ev-dot '+dot+'"></span><span class="k">'+k+'</span><span class="v">'+v+'</span></div>'; };
+  var h='';
+  h+=fila(evSem(r.dr_D,p.limDiv),'Dividendo / renta · deudor',evPct(r.dr_D));
+  if(o.cod) h+=fila(evSem(r.dr_C,p.limDiv),'Dividendo / renta · codeudor',evPct(r.dr_C));
+  h+=fila(sDivF,'<strong>Dividendo / renta · familiar</strong>','<strong>'+evPct(r.dr_F)+'</strong>');
+  h+=fila(evSem(r.cf_D,p.limCF),'Carga financiera · deudor',evPct(r.cf_D));
+  if(o.cod) h+=fila(evSem(r.cf_C,p.limCF),'Carga financiera · codeudor',evPct(r.cf_C));
+  h+=fila(sCFF,'<strong>Carga financiera · familiar</strong>','<strong>'+evPct(r.cf_F)+'</strong>');
+  h+=fila(sLTV,'Deuda / garantía (LTV)',evPct(r.ltv));
+  if(o.tasacUF) h+=fila(evSem(r.ltvT,p.limLTV),'Deuda / tasación',evPct(r.ltvT));
+  h+=fila(sEdD,'Edad + plazo · titular', r.edD?evUFn(r.edD,0):'—');
+  if(o.cod) h+=fila(sEdC,'Edad + plazo · codeudor', r.edC?evUFn(r.edC,0):'—');
+  var rows=evQ('ev-rows'); if(rows) rows.innerHTML=h;
+
+  // veredicto
+  var estados=[sDivF,sCFF,sLTV,sEdD,sEdC].filter(function(x){return x!=='off';});
+  var vd='ok', txt='APRUEBA';
+  if(!r.div || !r.ingT){ vd='off'; txt='—'; }
+  else if(estados.indexOf('bad')>=0){ vd='bad'; txt='NO CALIFICA'; }
+  else if(estados.indexOf('warn')>=0){ vd='warn'; txt='AL LÍMITE'; }
+  var vdEl=evQ('ev-vd'); if(vdEl){ vdEl.className='ev-vd '+(vd==='off'?'':vd); }
+  evTxt('ev-vd-txt', txt);
+
+  // crédito máximo
+  var cmax = (r.ingT>0 && o.anios>0) ? evCreditoMaximo(o) : 0;
+  evTxt('ev-cmax', cmax ? evUFn(cmax)+' UF  ·  '+evCLP(cmax*p.uf) : '—');
+
+  // sugerencias cuando hay rojo
+  var tips=[];
+  if(sDivF==='bad' || sCFF==='bad'){
+    if(cmax>0 && cmax < o.creditoUF) tips.push('Bajando el crédito a <strong>'+evUFn(cmax)+' UF</strong> ('+evCLP(cmax*p.uf)+') los ratios entran en rango.');
+    else {
+      var necesario = (r.gasT + r.div)/p.limCF[1];
+      if(necesario>r.ingT) tips.push('Necesita <strong>'+evCLP(necesario-r.ingT)+'</strong> más de renta familiar para cumplir la carga financiera.');
+    }
+    var pMax=0;
+    for(var pl=o.anios+1; pl<=40; pl++){
+      var rr=evMotor(Object.assign({},o,{anios:pl}));
+      if(rr.dr_F<=p.limDiv[1] && rr.cf_F<=p.limCF[1]){ pMax=pl; break; }
+    }
+    if(pMax) tips.push('Con un plazo de <strong>'+pMax+' años</strong> la carga financiera baja a '+evPct(evMotor(Object.assign({},o,{anios:pMax})).cf_F)+'.');
+  }
+  if(sLTV==='bad' && o.valPropUF){
+    var credOk=o.valPropUF*p.limLTV[1];
+    tips.push('El LTV supera el límite: el crédito máximo por garantía es <strong>'+evUFn(credOk)+' UF</strong> (pie de '+evUFn(o.valPropUF-credOk)+' UF).');
+  }
+  if(sEdD==='bad' || sEdC==='bad'){
+    var edadMax=Math.max(o.edadD||0, o.edadC||0);
+    var plazoOk=Math.max(0, p.limEdad[1]-edadMax);
+    tips.push('Edad + plazo sobre el límite: el plazo máximo sería <strong>'+plazoOk+' años</strong>.');
+  }
+  var tEl=evQ('ev-tips');
+  if(tEl) tEl.innerHTML = tips.length ? tips.map(function(t){ return '<div class="ev-tip">'+t+'</div>'; }).join('') : '';
+
+  // escenarios
+  var escs=(EV_PARAMS.escenarios||[70,80,90]);
+  var t='<thead><tr><th>Financiamiento</th>'+escs.map(function(x){return '<th>'+x+'%</th>';}).join('')+'</tr></thead><tbody>';
+  var filasE=[['Crédito UF',function(rr,c){return evUFn(c);}],['Crédito $',function(rr,c){return evCLP(c*p.uf);}],
+              ['Dividendo $',function(rr){return evCLP(rr.div);}],['Carga financiera',function(rr){return evPct(rr.cf_F);}]];
+  filasE.forEach(function(f){
+    t+='<tr><td>'+f[0]+'</td>';
+    escs.forEach(function(x){
+      var c=(o.valPropUF||0)*x/100; var rr=evMotor(Object.assign({},o,{creditoUF:c}));
+      t+='<td>'+f[1](rr,c)+'</td>';
+    });
+    t+='</tr>';
+  });
+  t+='</tbody>';
+  var escEl=evQ('ev-esc'); if(escEl) escEl.innerHTML=t;
+
+  return {o:o,r:r};
+}
+
+function evLinkSolicitud(){
+  var v=(evQ('ev-solicitud').value||'').trim();
+  var a=evQ('ev-solicitud-link'); if(!a) return;
+  if(/^https?:\/\//i.test(v)){ a.href=v; a.style.display='block'; } else a.style.display='none';
+}
+
+/* ---------- campos persistidos ---------- */
+var EV_CAMPOS = ['ev-fecha','ev-uf','ev-destino','ev-ejec-com','ev-ejec-riesgo','ev-solicitud','ev-nombre',
+'ev-i-sue-d','ev-i-sue-c','ev-i-ret-d','ev-i-ret-c','ev-i-fut-d','ev-i-fut-c','ev-i-real-d','ev-i-real-c',
+'ev-g-div-d','ev-g-div-c','ev-g-emp-d','ev-g-emp-c','ev-g-cae-d','ev-g-cae-c','ev-g-rot-d','ev-g-rot-c',
+'ev-g-otro-lbl','ev-g-otro-d','ev-g-otro-c',
+'ev-valprop','ev-tasac','ev-credito','ev-plazo','ev-tasa','ev-sup','ev-edad-d','ev-edad-c','ev-refi','ev-gop',
+'ev-a-pie-d','ev-a-pie-c','ev-a-br-d','ev-a-br-c','ev-a-ot1-lbl','ev-a-ot1-d','ev-a-ot1-c','ev-a-ot2-lbl','ev-a-ot2-d','ev-a-ot2-c',
+'ev-x-hip-d','ev-x-hip-c','ev-x-con-d','ev-x-con-c','ev-x-cae-d','ev-x-cae-c','ev-x-rot-d','ev-x-rot-c'];
+
+function evRecolectar(){
+  var c={}; EV_CAMPOS.forEach(function(k){ var e=evQ(k); c[k]=e?e.value:''; });
+  c['ev-sw-cod'] = evQ('ev-sw-cod') ? (evQ('ev-sw-cod').checked?'1':'0') : '1';
+  return c;
+}
+function evAplicar(campos){
+  EV_CAMPOS.forEach(function(k){ var e=evQ(k); if(e && campos[k]!=null) e.value=campos[k]; });
+  var sw=evQ('ev-sw-cod'); if(sw && campos['ev-sw-cod']!=null) sw.checked = campos['ev-sw-cod']==='1';
+  evLinkSolicitud(); evCalc();
+}
+
+/* ---------- inicializacion de la vista ---------- */
+function evOnShow(){
+  if(!evQ('ev-uf')) return;
+  if(!evQ('ev-fecha').value) evQ('ev-fecha').value = new Date().toISOString().substring(0,10);
+  if(!evQ('ev-uf').value) evQ('ev-uf').value = Math.round(UF_VALOR);
+  if(!evQ('ev-plazo').value) evQ('ev-plazo').value = 30;
+  var users = (typeof EQUIPO_CACHE!=='undefined' && EQUIPO_CACHE && EQUIPO_CACHE.length) ? EQUIPO_CACHE : [];
+  var optsU = '<option value=""></option>' + users.map(function(u){ return '<option value="'+escapeHTML(u.nombre||u.email||'')+'">'+escapeHTML(u.nombre||u.email||'')+'</option>'; }).join('');
+  ['ev-ejec-com','ev-ejec-riesgo'].forEach(function(id){
+    var e=evQ(id); if(!e) return; var prev=e.value; e.innerHTML=optsU; if(prev) e.value=prev;
+  });
+  var ec=evQ('ev-ejec-com');
+  if(ec && !ec.value){
+    var mi=miNombre();
+    if(mi){
+      var has=Array.prototype.some.call(ec.options,function(o){return o.value===mi;});
+      if(!has) ec.insertAdjacentHTML('beforeend','<option value="'+escapeHTML(mi)+'">'+escapeHTML(mi)+'</option>');
+      ec.value=mi;
+    }
+  }
+  var sel=evQ('ev-cliente');
+  if(sel){
+    var prev=sel.value;
+    sel.innerHTML='<option value="">- Sin asociar -</option>'+(CLIENTES_CACHE||[]).map(function(c){
+      return '<option value="'+c.id+'">'+escapeHTML(c.nombre||'(sin nombre)')+' - '+escapeHTML(c.rut||'')+'</option>'; }).join('');
+    if(prev) sel.value=prev;
+  }
+  evCalc();
+  evRenderHist();
+}
+function evOnCliente(){
+  var id=evQ('ev-cliente').value;
+  var c=(CLIENTES_CACHE||[]).find(function(x){ return x.id===id; });
+  if(c && evQ('ev-nombre') && !evQ('ev-nombre').value) evQ('ev-nombre').value=c.nombre||'';
+  evRenderHist();
+}
+
+/* ---------- historial de evaluaciones ---------- */
+async function evCargarEvals(){
+  if(!fbReady() || !CURRENT_USER) return;
+  try{
+    var q=fbDb.collection('evaluaciones');
+    if(!esAdmin()) q=q.where('asesorId','==',CURRENT_USER.uid);
+    var snap;
+    try{ snap = await q.orderBy('createdAt','desc').limit(300).get(); }
+    catch(e1){ snap = await q.limit(300).get(); }
+    var l=[]; snap.forEach(function(d){ var x=d.data(); l.push(Object.assign({id:d.id},x,{fechaSort:tsToDate(x.createdAt)})); });
+    l.sort(function(a,b){ return (b.fechaSort||0)-(a.fechaSort||0); });
+    EVALS_CACHE=l;
+  }catch(e){ console.warn('evCargarEvals:',e); }
+}
+function evRenderHist(){
+  var cont=evQ('ev-hist'); if(!cont) return;
+  var cliId=evQ('ev-cliente')?evQ('ev-cliente').value:'';
+  if(!cliId){ cont.innerHTML='<div style="font-size:12px;color:var(--muted)">Asocia un cliente para ver su historial.</div>'; return; }
+  var l=EVALS_CACHE.filter(function(x){ return x.clienteId===cliId; });
+  if(!l.length){ cont.innerHTML='<div style="font-size:12px;color:var(--muted)">Sin evaluaciones guardadas para este cliente.</div>'; return; }
+  cont.innerHTML=l.map(function(x){
+    var col = x.veredicto==='APRUEBA'?'#1b7f4d':(x.veredicto==='AL LIMITE'?'#a05c10':'#b52a2a');
+    return '<div class="it" onclick="evAbrir(\''+x.id+'\')">'+
+      '<div style="display:flex;justify-content:space-between;gap:8px"><strong style="color:'+col+'">'+escapeHTML(x.veredicto||'-')+'</strong>'+
+      '<span style="color:var(--muted);font-size:11px">'+fmtTimestamp(x.createdAt)+'</span></div>'+
+      '<div style="color:var(--muted);font-size:11.5px;margin-top:3px">Credito '+evUFn(x.creditoUF||0)+' UF - '+(x.plazo||0)+' anios - div '+evCLP(x.dividendoCLP||0)+'</div>'+
+    '</div>';
+  }).join('');
+}
+function evAbrir(id){
+  var x=EVALS_CACHE.find(function(e){ return e.id===id; });
+  if(!x){ alert('Evaluacion no encontrada.'); return; }
+  showView('evaluacion');
+  setTimeout(function(){
+    EV_EDIT_ID=x.id;
+    if(x.clienteId && evQ('ev-cliente')) evQ('ev-cliente').value=x.clienteId;
+    evAplicar(x.campos||{});
+    mostrarToastAutoCliente('Evaluacion cargada - al guardar se actualiza','creado');
+    evRenderHist();
+  },220);
+}
+function evDuplicar(){
+  EV_EDIT_ID=null;
+  mostrarToastAutoCliente('Escenario duplicado - al guardar se crea una evaluacion nueva','vinculado');
+}
+function evLimpiar(){
+  if(!confirm('Limpiar la ficha? Se perderan los datos no guardados.')) return;
+  EV_CAMPOS.forEach(function(k){ var e=evQ(k); if(e && k!=='ev-fecha' && k!=='ev-uf' && k!=='ev-plazo') e.value=''; });
+  EV_EDIT_ID=null; evCalc();
+}
+
+/* ---------- guardar ---------- */
+async function evGuardar(){
+  if(!fbReady() || !CURRENT_USER){ alert('Debes iniciar sesion.'); return; }
+  var res=evCalc(); if(!res){ alert('Completa los datos primero.'); return; }
+  var o=res.o, r=res.r;
+  var cliId=evQ('ev-cliente')?evQ('ev-cliente').value:'';
+  var cli=(CLIENTES_CACHE||[]).find(function(c){ return c.id===cliId; });
+  var vd=evQ('ev-vd-txt')?evQ('ev-vd-txt').textContent:'-';
+  var doc={
+    asesorId:CURRENT_USER.uid, asesorNombre:miNombre(),
+    clienteId:cliId||null,
+    clienteNombre: cli?cli.nombre:(evQ('ev-nombre')?evQ('ev-nombre').value:''),
+    campos:evRecolectar(),
+    ufValor:o.p.uf, creditoUF:o.creditoUF, valPropUF:o.valPropUF, plazo:o.anios, tasa:o.tasa*100,
+    dividendoUF:r.divUF, dividendoCLP:r.div,
+    ratios:{ drD:r.dr_D, drC:r.dr_C, drF:r.dr_F, cfD:r.cf_D, cfC:r.cf_C, cfF:r.cf_F, ltv:r.ltv, ltvTasacion:r.ltvT },
+    veredicto:vd, params:JSON.parse(JSON.stringify(EV_PARAMS)),
+    updatedAt:nowTs()
+  };
+  try{
+    if(EV_EDIT_ID){ await fbDb.collection('evaluaciones').doc(EV_EDIT_ID).update(doc); }
+    else { doc.createdAt=nowTs(); var ref=await fbDb.collection('evaluaciones').add(doc); EV_EDIT_ID=ref.id; }
+    if(cliId){
+      try{ await fbDb.collection('clientes').doc(cliId).collection('notas').add({
+        tipo:'simulacion', texto:'Evaluacion hipotecaria - '+vd+' - div '+evCLP(r.div),
+        asesorId:CURRENT_USER.uid, asesorNombre:miNombre(), createdAt:nowTs() });
+        await fbDb.collection('clientes').doc(cliId).update({updatedAt:nowTs()});
+      }catch(_){}
+    }
+    await evCargarEvals(); evRenderHist();
+    if(CD_ID===cliId && cliId){ try{ await cargarNotas(cliId); renderTimeline(cliId); renderEvalsCliente(cliId); }catch(_){} }
+    mostrarToastAutoCliente('Evaluacion guardada','creado');
+  }catch(e){ console.error('evGuardar:',e); alert('No se pudo guardar: '+(e.message||e)); }
+}
+
+/* ---------- PDF ---------- */
+function evPDF(){
+  var res=evCalc(); if(!res){ alert('Completa los datos primero.'); return; }
+  var o=res.o, r=res.r, p=o.p, cfg=cargarConfig()||{};
+  var vd=evQ('ev-vd-txt')?evQ('ev-vd-txt').textContent:'-';
+  var col = vd==='APRUEBA'?'#1b7f4d':(vd==='AL LIMITE'?'#a05c10':'#b52a2a');
+  var nom=(evQ('ev-nombre')?evQ('ev-nombre').value:'')||'-';
+  var sem=function(v,lim){ var e=evSem(v,lim); return e==='ok'?'#1b7f4d':(e==='warn'?'#a05c10':'#b52a2a'); };
+  var fila=function(k,v,c){ return '<tr><td style="padding:4px 8px;border-bottom:1px dotted #d8e0e4;color:#6a7a85;font-size:9pt">'+k+'</td>'+
+    '<td style="padding:4px 8px;border-bottom:1px dotted #d8e0e4;text-align:right;font-size:9.5pt;font-weight:600;color:'+(c||'#1f2d3d')+'">'+v+'</td></tr>'; };
+  var sec=function(t){ return '<h2 style="font-size:9.5pt;font-weight:700;color:#1F2940;text-transform:uppercase;letter-spacing:.4px;border-bottom:1.2px solid #B08A4C;padding-bottom:2px;margin:14px 0 5px">'+t+'</h2>'; };
+  var h='';
+  h+='<div style="font-family:Inter,Arial,sans-serif;color:#1f2d3d">';
+  h+='<div style="background:#1F2940;color:#fff;padding:14px 18px;border-radius:8px;margin-bottom:12px">'+
+     '<div style="font-family:Georgia,serif;letter-spacing:3px;font-size:11pt;color:#B08A4C">SANTA <span style="color:#fff">LUZMIRA</span></div>'+
+     '<div style="font-size:14pt;font-weight:700;margin-top:5px">Evaluacion Hipotecaria</div>'+
+     '<div style="font-size:9pt;opacity:.8;margin-top:2px">Ficha de precalificacion - '+escapeHTML(nom)+'</div></div>';
+  h+='<div style="text-align:center;border:2px solid '+col+';border-radius:8px;padding:10px;margin-bottom:12px">'+
+     '<div style="font-size:8.5pt;letter-spacing:2px;color:#6a7a85;text-transform:uppercase">Veredicto</div>'+
+     '<div style="font-size:17pt;font-weight:800;color:'+col+'">'+vd+'</div>'+
+     '<div style="font-size:10pt;margin-top:4px">Dividendo mensual <strong>'+evCLP(r.div)+'</strong> - '+evUFn(r.divUF,4)+' UF</div>'+
+     '<div style="font-size:8.5pt;color:#6a7a85">cuota '+evUFn(r.pura,4)+' UF + seguros '+evUFn(r.seg,4)+' UF</div></div>';
+  h+='<table style="width:100%;border-collapse:collapse">';
+  h+='<tr><td style="width:50%;vertical-align:top;padding-right:10px">';
+  h+=sec('Operacion')+'<table style="width:100%;border-collapse:collapse">';
+  h+=fila('Fecha',(evQ('ev-fecha').value||''))+fila('Valor UF',evCLP(p.uf));
+  h+=fila('Destino',(evQ('ev-destino').options[evQ('ev-destino').selectedIndex]||{}).text||'');
+  h+=fila('Valor propiedad',evUFn(o.valPropUF)+' UF - '+evCLP(o.valPropUF*p.uf));
+  if(o.tasacUF) h+=fila('Valor tasacion',evUFn(o.tasacUF)+' UF - '+evCLP(o.tasacUF*p.uf));
+  h+=fila('Monto del credito',evUFn(o.creditoUF)+' UF - '+evCLP(o.creditoUF*p.uf));
+  h+=fila('Pie',evUFn(r.pieUF)+' UF - '+evCLP(r.pieUF*p.uf));
+  h+=fila('Plazo',o.anios+' anios')+fila('Tasa anual',evUFn(o.tasa*100)+'%');
+  h+='</table>';
+  h+=sec('Ingresos y gastos')+'<table style="width:100%;border-collapse:collapse">';
+  h+=fila('Ingresos deudor',evCLP(o.ingD))+ (o.cod?fila('Ingresos codeudor',evCLP(o.ingC)):'');
+  h+=fila('Ingresos totales',evCLP(r.ingT))+fila('Gastos totales',evCLP(r.gasT))+fila('Ingreso liquido',evCLP(r.liqT));
+  h+='</table>';
+  h+='</td><td style="width:50%;vertical-align:top;padding-left:10px">';
+  h+=sec('Indicadores')+'<table style="width:100%;border-collapse:collapse">';
+  h+=fila('Dividendo / renta - deudor',evPct(r.dr_D),sem(r.dr_D,p.limDiv));
+  if(o.cod) h+=fila('Dividendo / renta - codeudor',evPct(r.dr_C),sem(r.dr_C,p.limDiv));
+  h+=fila('Dividendo / renta - familiar',evPct(r.dr_F),sem(r.dr_F,p.limDiv));
+  h+=fila('Carga financiera - deudor',evPct(r.cf_D),sem(r.cf_D,p.limCF));
+  if(o.cod) h+=fila('Carga financiera - codeudor',evPct(r.cf_C),sem(r.cf_C,p.limCF));
+  h+=fila('Carga financiera - familiar',evPct(r.cf_F),sem(r.cf_F,p.limCF));
+  h+=fila('Deuda / garantia (LTV)',evPct(r.ltv),sem(r.ltvBase,p.limLTV));
+  if(o.tasacUF) h+=fila('Deuda / tasacion',evPct(r.ltvT),sem(r.ltvT,p.limLTV));
+  if(r.edD) h+=fila('Edad + plazo - titular',evUFn(r.edD,0),sem(r.edD,p.limEdad));
+  if(r.edC) h+=fila('Edad + plazo - codeudor',evUFn(r.edC,0),sem(r.edC,p.limEdad));
+  h+='</table>';
+  var cmax=(r.ingT>0&&o.anios>0)?evCreditoMaximo(o):0;
+  if(cmax) h+='<div style="margin-top:10px;background:#F7F4EE;border-left:3px solid #B08A4C;padding:8px 10px;font-size:9.5pt">'+
+    '<strong>Credito maximo que soporta:</strong> '+evUFn(cmax)+' UF - '+evCLP(cmax*p.uf)+'</div>';
+  h+='</td></tr></table>';
+  h+='<div style="margin-top:14px;font-size:7.5pt;color:#6a7a85;border-top:1px solid #DDD6C9;padding-top:6px">'+
+     'Documento de precalificacion referencial. No constituye una oferta de credito; la aprobacion final depende de la entidad financiera.<br>'+
+     'Inversiones Santa Luzmira Ltda.'+(cfg.nombre?' - '+escapeHTML(cfg.nombre):'')+' - '+fmtFecha()+'</div>';
+  h+='</div>';
+  generarPDF(h,'Evaluacion Hipotecaria - '+nom,{size:'A4'});
+}
+
+/* ---------- historial en la ficha del cliente ---------- */
+function renderEvalsCliente(clienteId){
+  var cont=document.getElementById('cd-evals'); if(!cont) return;
+  var l=EVALS_CACHE.filter(function(x){ return x.clienteId===clienteId; });
+  var btn='<button class="btn green" style="padding:6px 12px;font-size:12px" onclick="evNuevaDesdeFicha(\''+clienteId+'\')">Nueva evaluacion</button>';
+  if(!l.length){ cont.innerHTML='<div style="font-size:13px;color:var(--muted);margin-bottom:10px">Sin evaluaciones hipotecarias.</div>'+btn; return; }
+  cont.innerHTML=l.map(function(x){
+    var col=x.veredicto==='APRUEBA'?'#1b7f4d':(x.veredicto==='AL LIMITE'?'#a05c10':'#b52a2a');
+    return '<div onclick="evAbrir(\''+x.id+'\')" style="border:1px solid var(--border-l);border-radius:8px;padding:9px 11px;margin-bottom:7px;cursor:pointer;font-size:12.5px">'+
+      '<div style="display:flex;justify-content:space-between;gap:8px"><strong style="color:'+col+'">'+escapeHTML(x.veredicto||'-')+'</strong>'+
+      '<span style="color:var(--muted);font-size:11px">'+fmtTimestamp(x.createdAt)+'</span></div>'+
+      '<div style="color:var(--muted);font-size:11.5px;margin-top:3px">Credito '+evUFn(x.creditoUF||0)+' UF - '+(x.plazo||0)+' anios - div '+evCLP(x.dividendoCLP||0)+'</div></div>';
+  }).join('')+btn;
+}
+function evNuevaDesdeFicha(clienteId){
+  EV_EDIT_ID=null;
+  showView('evaluacion');
+  setTimeout(function(){
+    var sel=evQ('ev-cliente'); if(sel){ sel.value=clienteId; evOnCliente(); }
+    var c=(CLIENTES_CACHE||[]).find(function(x){ return x.id===clienteId; });
+    if(c && evQ('ev-nombre')) evQ('ev-nombre').value=c.nombre||'';
+    evCalc();
+  },220);
+}
+
+/* ---------- exportar a Excel (.xlsx real, SheetJS cargado bajo demanda) ---------- */
+function evCargarSheetJS(){
+  return new Promise(function(res, rej){
+    if(window.XLSX) return res(window.XLSX);
+    var sc=document.createElement('script');
+    sc.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+    sc.onload=function(){ res(window.XLSX); };
+    sc.onerror=function(){ rej(new Error('No se pudo cargar la libreria de Excel. Revisa tu conexion.')); };
+    document.head.appendChild(sc);
+  });
+}
+async function evExcel(){
+  var res=evCalc(); if(!res){ alert('Completa los datos primero.'); return; }
+  var XLSX;
+  try{ XLSX = await evCargarSheetJS(); }
+  catch(e){ alert(e.message||e); return; }
+  var o=res.o, r=res.r, p=o.p;
+  var cod=o.cod;
+  var nom=(evQ('ev-nombre')?evQ('ev-nombre').value:'')||'Cliente';
+  var vd=evQ('ev-vd-txt')?evQ('ev-vd-txt').textContent:'-';
+  var n=function(id){ return evNum(id); };
+  var pctN=function(x){ return Math.round((x||0)*10000)/10000; }; // fraccion, con formato % en la celda
+  var A=[];
+  var fila=function(a,b,c,d){ A.push([a, (b===undefined?'':b), (cod? (c===undefined?'':c) : ''), (d===undefined?'':d)]); };
+
+  A.push(['INVERSIONES SANTA LUZMIRA']);
+  A.push(['EVALUACION HIPOTECARIA - FICHA DE PRECALIFICACION']);
+  A.push([]);
+  A.push(['Cliente', nom]);
+  A.push(['Fecha', (evQ('ev-fecha')?evQ('ev-fecha').value:'')]);
+  A.push(['Valor UF', p.uf]);
+  A.push(['Destino del credito', (evQ('ev-destino').options[evQ('ev-destino').selectedIndex]||{}).text||'']);
+  A.push(['Ejecutivo comercial', (evQ('ev-ejec-com')?evQ('ev-ejec-com').value:'')]);
+  A.push(['Ejecutivo riesgo credito', (evQ('ev-ejec-riesgo')?evQ('ev-ejec-riesgo').value:'')]);
+  A.push(['N de solicitud', (evQ('ev-solicitud')?evQ('ev-solicitud').value:'')]);
+  A.push([]);
+  A.push(['1. ANTECEDENTES FINANCIEROS']);
+  A.push(['Concepto','Deudor', cod?'Codeudor':'', 'Total']);
+  A.push(['INGRESOS']);
+  fila('Sueldo', n('ev-i-sue-d'), n('ev-i-sue-c'));
+  fila('Retiros (se reconoce '+Math.round((1-p.cRet)*100)+'%)', n('ev-i-ret-d'), n('ev-i-ret-c'));
+  fila('Arriendo futuro (se reconoce '+Math.round((1-p.cFut)*100)+'%)', n('ev-i-fut-d'), n('ev-i-fut-c'));
+  fila('Arriendo real (se reconoce '+Math.round((1-p.cReal)*100)+'%)', n('ev-i-real-d'), n('ev-i-real-c'));
+  fila('Total ingresos computados', o.ingD, o.ingC, r.ingT);
+  A.push(['GASTOS']);
+  fila('Dividendo actual', n('ev-g-div-d'), n('ev-g-div-c'));
+  fila('Cuota prestamo empresa', n('ev-g-emp-d'), n('ev-g-emp-c'));
+  fila('Cuota CAE', n('ev-g-cae-d'), n('ev-g-cae-c'));
+  fila('Cuota creditos rotativos', n('ev-g-rot-d'), n('ev-g-rot-c'));
+  var otroL=(evQ('ev-g-otro-lbl')?evQ('ev-g-otro-lbl').value:'')||'Otro gasto';
+  fila(otroL, n('ev-g-otro-d'), n('ev-g-otro-c'));
+  fila('Total gastos', o.gasD, o.gasC, r.gasT);
+  fila('Ingreso liquido', r.liqD, r.liqC, r.liqT);
+  fila('Renta en UF', p.uf?o.ingD/p.uf:0, p.uf?o.ingC/p.uf:0, p.uf?r.ingT/p.uf:0);
+  A.push([]);
+  A.push(['2. PROPIEDAD Y CREDITO']);
+  A.push(['Concepto','UF','Pesos']);
+  A.push(['Valor de la propiedad', o.valPropUF, o.valPropUF*p.uf]);
+  A.push(['Valor de tasacion', o.tasacUF, o.tasacUF*p.uf]);
+  A.push(['Monto del credito', o.creditoUF, o.creditoUF*p.uf]);
+  A.push(['Pie', r.pieUF, r.pieUF*p.uf]);
+  A.push(['Plazo (anios)', o.anios]);
+  A.push(['Tasa anual (%)', o.tasa*100]);
+  A.push(['Superficie (m2)', n('ev-sup')]);
+  A.push(['Edad titular', o.edadD]);
+  if(cod) A.push(['Edad codeudor', o.edadC]);
+  A.push([]);
+  A.push(['3. ESTADO DE SITUACION']);
+  A.push(['Concepto','Deudor', cod?'Codeudor':'', 'Total']);
+  A.push(['ACTIVOS']);
+  fila('Pie', n('ev-a-pie-d'), n('ev-a-pie-c'));
+  fila('Bien raiz', n('ev-a-br-d'), n('ev-a-br-c'));
+  fila((evQ('ev-a-ot1-lbl').value||'Otro activo'), n('ev-a-ot1-d'), n('ev-a-ot1-c'));
+  fila((evQ('ev-a-ot2-lbl').value||'Otro activo'), n('ev-a-ot2-d'), n('ev-a-ot2-c'));
+  var acD=n('ev-a-pie-d')+n('ev-a-br-d')+n('ev-a-ot1-d')+n('ev-a-ot2-d');
+  var acC=cod?(n('ev-a-pie-c')+n('ev-a-br-c')+n('ev-a-ot1-c')+n('ev-a-ot2-c')):0;
+  fila('Total activos', acD, acC, acD+acC);
+  A.push(['PASIVOS']);
+  fila('Hipotecario', n('ev-x-hip-d'), n('ev-x-hip-c'));
+  fila('Credito de consumo', n('ev-x-con-d'), n('ev-x-con-c'));
+  fila('Credito CAE', n('ev-x-cae-d'), n('ev-x-cae-c'));
+  fila('Deuda rotativos (TC/LC)', n('ev-x-rot-d'), n('ev-x-rot-c'));
+  var paD=n('ev-x-hip-d')+n('ev-x-con-d')+n('ev-x-cae-d')+n('ev-x-rot-d');
+  var paC=cod?(n('ev-x-hip-c')+n('ev-x-con-c')+n('ev-x-cae-c')+n('ev-x-rot-c')):0;
+  fila('Total pasivos', paD, paC, paD+paC);
+  fila('Patrimonio', acD-paD, acC-paC, (acD+acC)-(paD+paC));
+  A.push([]);
+  A.push(['4. RESULTADOS']);
+  A.push(['Indicador','Valor','Limite verde','Limite amarillo']);
+  A.push(['Dividendo mensual (UF)', Math.round(r.divUF*10000)/10000]);
+  A.push(['  Cuota pura (UF)', Math.round(r.pura*10000)/10000]);
+  A.push(['  Seguros (UF)', Math.round(r.seg*10000)/10000]);
+  A.push(['Dividendo mensual (pesos)', Math.round(r.div)]);
+  A.push(['Dividendo / renta - deudor', pctN(r.dr_D), pctN(p.limDiv[0]), pctN(p.limDiv[1])]);
+  if(cod) A.push(['Dividendo / renta - codeudor', pctN(r.dr_C), pctN(p.limDiv[0]), pctN(p.limDiv[1])]);
+  A.push(['Dividendo / renta - familiar', pctN(r.dr_F), pctN(p.limDiv[0]), pctN(p.limDiv[1])]);
+  A.push(['Carga financiera - deudor', pctN(r.cf_D), pctN(p.limCF[0]), pctN(p.limCF[1])]);
+  if(cod) A.push(['Carga financiera - codeudor', pctN(r.cf_C), pctN(p.limCF[0]), pctN(p.limCF[1])]);
+  A.push(['Carga financiera - familiar', pctN(r.cf_F), pctN(p.limCF[0]), pctN(p.limCF[1])]);
+  A.push(['Deuda / garantia (LTV)', pctN(r.ltv), pctN(p.limLTV[0]), pctN(p.limLTV[1])]);
+  if(o.tasacUF) A.push(['Deuda / tasacion', pctN(r.ltvT), pctN(p.limLTV[0]), pctN(p.limLTV[1])]);
+  if(r.edD) A.push(['Edad + plazo - titular', r.edD, p.limEdad[0], p.limEdad[1]]);
+  if(r.edC) A.push(['Edad + plazo - codeudor', r.edC, p.limEdad[0], p.limEdad[1]]);
+  var cmax=(r.ingT>0&&o.anios>0)?evCreditoMaximo(o):0;
+  A.push(['Credito maximo que soporta (UF)', Math.round(cmax*100)/100]);
+  A.push(['VEREDICTO', vd]);
+  A.push([]);
+  A.push(['5. ESCENARIOS DE FINANCIAMIENTO']);
+  var escs=(EV_PARAMS.escenarios||[70,80,90]);
+  A.push(['Concepto'].concat(escs.map(function(x){ return x+'%'; })));
+  A.push(['Credito UF'].concat(escs.map(function(x){ return Math.round((o.valPropUF||0)*x/100*100)/100; })));
+  A.push(['Credito pesos'].concat(escs.map(function(x){ return Math.round((o.valPropUF||0)*x/100*p.uf); })));
+  A.push(['Dividendo pesos'].concat(escs.map(function(x){
+    return Math.round(evMotor(Object.assign({},o,{creditoUF:(o.valPropUF||0)*x/100})).div); })));
+  A.push(['Carga financiera'].concat(escs.map(function(x){
+    return pctN(evMotor(Object.assign({},o,{creditoUF:(o.valPropUF||0)*x/100})).cf_F); })));
+  A.push([]);
+  A.push(['Documento de precalificacion referencial. No constituye una oferta de credito.']);
+
+  var ws=XLSX.utils.aoa_to_sheet(A);
+  ws['!cols']=[{wch:38},{wch:16},{wch:16},{wch:16}];
+  var wb=XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Evaluacion');
+  var limpio=nom.replace(/[^\w\sáéíóúñÁÉÍÓÚÑ-]/g,'').trim();
+  XLSX.writeFile(wb, 'Evaluacion Hipotecaria - '+limpio+'.xlsx');
+  if(typeof mostrarToastAutoCliente==='function') mostrarToastAutoCliente('Excel descargado','creado');
+}
+
+/* ---------- copiar resumen para WhatsApp / correo ---------- */
+function evCopiarResumen(){
+  var res=evCalc(); if(!res){ alert('Completa los datos primero.'); return; }
+  var o=res.o, r=res.r, p=o.p;
+  var nom=(evQ('ev-nombre')?evQ('ev-nombre').value:'')||'Cliente';
+  var vd=evQ('ev-vd-txt')?evQ('ev-vd-txt').textContent:'-';
+  var cmax=(r.ingT>0&&o.anios>0)?evCreditoMaximo(o):0;
+  var L=[];
+  L.push('*Evaluacion Hipotecaria - Santa Luzmira*');
+  L.push(nom);
+  L.push('');
+  L.push('*Veredicto: '+vd+'*');
+  L.push('');
+  L.push('Propiedad: '+evUFn(o.valPropUF)+' UF ('+evCLP(o.valPropUF*p.uf)+')');
+  L.push('Credito: '+evUFn(o.creditoUF)+' UF ('+evCLP(o.creditoUF*p.uf)+')');
+  L.push('Pie: '+evUFn(r.pieUF)+' UF ('+evCLP(r.pieUF*p.uf)+')');
+  L.push('Plazo: '+o.anios+' anios  |  Tasa: '+evUFn(o.tasa*100)+'%');
+  L.push('');
+  L.push('*Dividendo mensual: '+evCLP(r.div)+'* ('+evUFn(r.divUF,4)+' UF)');
+  L.push('  cuota '+evUFn(r.pura,4)+' UF + seguros '+evUFn(r.seg,4)+' UF');
+  L.push('');
+  L.push('Ingresos totales: '+evCLP(r.ingT));
+  L.push('Dividendo / renta familiar: '+evPct(r.dr_F));
+  L.push('Carga financiera familiar: '+evPct(r.cf_F));
+  L.push('LTV (deuda / garantia): '+evPct(r.ltv));
+  if(r.edD) L.push('Edad + plazo titular: '+evUFn(r.edD,0));
+  if(cmax) L.push('');
+  if(cmax) L.push('Credito maximo que soporta: '+evUFn(cmax)+' UF ('+evCLP(cmax*p.uf)+')');
+  L.push('');
+  L.push('_Precalificacion referencial. No constituye una oferta de credito._');
+  var txt=L.join('\n');
+  var ok=function(){ if(typeof mostrarToastAutoCliente==='function') mostrarToastAutoCliente('Resumen copiado - pegalo en WhatsApp o correo','creado'); else alert('Resumen copiado.'); };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(ok).catch(function(){ evCopiarFallback(txt, ok); });
+  } else evCopiarFallback(txt, ok);
+}
+function evCopiarFallback(txt, ok){
+  var ta=document.createElement('textarea');
+  ta.value=txt; ta.style.position='fixed'; ta.style.left='-9999px';
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); ok(); }
+  catch(e){ alert('No se pudo copiar automaticamente. Copia manualmente:\n\n'+txt); }
+  document.body.removeChild(ta);
+}
+
 /* === EQUIPO === */
 async function cargarEquipo(){
   if(!fbReady() || !CURRENT_PROFILE || CURRENT_PROFILE.rol!=='admin') return;
@@ -4795,6 +5652,7 @@ async function mostrarFichaCliente(id){
 
   renderDocsChecklistV2(c);
   renderFichaEmpresa(c);
+  try{ renderEvalsCliente(id); }catch(_){}
   await cargarNotas(id);
   renderTimeline(id);
   renderSimsCliente(id);
